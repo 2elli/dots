@@ -28,13 +28,13 @@ alias ls="lsd"
 alias tree="lsd --tree"
 
 # pyenv aliases
-alias pyenv3.7="PYENV_VERSION=3.7 pyenv exec python"
-alias pyenv3.8="PYENV_VERSION=3.8 pyenv exec python"
-alias pyenv3.9="PYENV_VERSION=3.9 pyenv exec python"
-alias pyenv3.10="PYENV_VERSION=3.10 pyenv exec python"
-alias pyenv3.11="PYENV_VERSION=3.11 pyenv exec python"
-alias pyenv3.12="PYENV_VERSION=3.12.0rc2 pyenv exec python"
-alias pyenv3.13="PYENV_VERSION=3.13-dev pyenv exec python"
+alias py3.7="PYENV_VERSION=3.7 pyenv exec python"
+alias py3.8="PYENV_VERSION=3.8 pyenv exec python"
+alias py3.9="PYENV_VERSION=3.9 pyenv exec python"
+alias py3.10="PYENV_VERSION=3.10 pyenv exec python"
+alias py3.11="PYENV_VERSION=3.11 pyenv exec python"
+alias py3.12="PYENV_VERSION=3.12.0rc2 pyenv exec python"
+alias py3.13="PYENV_VERSION=3.13-dev pyenv exec python"
 #####
 
 ##### KEYS
