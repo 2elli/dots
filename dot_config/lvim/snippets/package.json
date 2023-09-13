@@ -1,0 +1,12 @@
+{
+  "name": "lvim-snippets",
+  "author": "2elli",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "python",
+        "path": "./python.json"
+      }
+    ]
+  }
+}

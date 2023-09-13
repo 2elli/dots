@@ -1,0 +1,272 @@
+#######################
+#  i3-BAR AND CONFIG  #
+#  2elli              #
+#######################
+
+########################## FONT
+font pango:JetBrainsMono Nerd Font Mono 10
+###############################
+
+########################### MOD
+set $mod Mod4
+###############################
+
+######################## i3 GENERAL
+# default i3 tiling mode:
+workspace_layout default
+
+# Set inner/outer gaps
+gaps inner 6
+gaps outer 3
+for_window [class=".*"] border pixel 2
+
+#no mouse focus 
+focus_follows_mouse false
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+###############################
+
+
+#################### workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1    workspace  $ws1
+bindsym $mod+2    workspace  $ws2
+bindsym $mod+3    workspace  $ws3
+bindsym $mod+4    workspace  $ws4
+bindsym $mod+5    workspace  $ws5
+bindsym $mod+6    workspace  $ws6
+bindsym $mod+7    workspace  $ws7
+bindsym $mod+8    workspace  $ws8
+bindsym $mod+9    workspace  $ws9
+bindsym $mod+0    workspace  $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1    move container to workspace  $ws1
+bindsym $mod+Shift+2    move container to workspace  $ws2
+bindsym $mod+Shift+3    move container to workspace  $ws3
+bindsym $mod+Shift+4    move container to workspace  $ws4
+bindsym $mod+Shift+5    move container to workspace  $ws5
+bindsym $mod+Shift+6    move container to workspace  $ws6
+bindsym $mod+Shift+7    move container to workspace  $ws7
+bindsym $mod+Shift+8    move container to workspace  $ws8
+bindsym $mod+Shift+9    move container to workspace  $ws9
+bindsym $mod+Shift+0    move container to workspace  $ws10
+###############################
+
+
+##################################################### resize
+mode "resize" {
+
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+      	bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+# larger interval
+        bindsym Shift+h resize shrink width 60 px or 60 ppt
+        bindsym Shift+j resize grow height 60 px or 60 ppt
+        bindsym Shift+k resize shrink height 60 px or 60 ppt
+        bindsym Shift+l resize grow width 60 px or 60 ppt
+
+       	bindsym Shift+Left resize shrink width 60 px or 60 ppt
+        bindsym Shift+Down resize grow height 60 px or 60 ppt
+        bindsym Shift+Up resize shrink height 60 px or 60 ppt
+        bindsym Shift+Right resize grow width 60 px or 60 ppt
+
+# switch window and tiled
+        bindsym $mod+Shift+space floating toggle
+        bindsym $mod+space focus mode_toggle
+
+# back to normal: Enter, Escape, or mod+r 
+      	bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+#############################################################
+
+
+################################################# keybindings
+bindsym $mod+Return exec --no-startup-id alacritty
+# bindsym $mod+Return exec --no-startup-id WINIT_X11_SCALE_FACTOR=1 alacritty
+
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left 50px
+bindsym $mod+Shift+j move down 50px 
+bindsym $mod+Shift+k move up 50px
+bindsym $mod+Shift+l move right 50px
+
+bindsym $mod+Shift+Left move left 50px 
+bindsym $mod+Shift+Down move down 50px 
+bindsym $mod+Shift+Up move up 50px 
+bindsym $mod+Shift+Right move right 50px 
+
+#split h and v
+bindsym $mod+b split h
+bindsym $mod+v split v
+ 
+#fullscreen
+bindsym $mod+f fullscreen toggle
+
+#layouts
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+#float toggle view and mode
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+#i3 lock
+bindsym $mod+Ctrl+l exec --no-startup-id betterlockscreen -l
+
+#parent
+bindsym $mod+a focus parent
+#############################################################
+
+###################
+### OTHER BINDS ###
+###################
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec light -A 10
+bindsym XF86MonBrightnessDown exec light -U 10
+
+#############
+### EXECS ###
+#############
+
+####################### compositor
+exec --no-startup-id picom
+###################################
+
+######################## libinput
+exec_always --no-startup-id ~/.config/i3/setxinput.sh
+###################################
+
+############################# autostart
+exec_always --no-startup-id autotiling
+exec --no-startup-id nm-applet
+######################################
+
+########## idk what this does I took it from old conf
+exec --no-startup-id dex --autostart --environment i3
+#####################################################
+
+########################################## rofi
+#bindsym $mod+d exec rofi -modi drun -show drun
+#bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-3/launcher.sh
+###############################################
+
+
+#############################
+### FLOATING + WORKSPACES ###
+#############################
+
+########################################
+#for_window [identifier] floating enabled
+for_window [title="Qalculate!"] floating enabled
+########################################
+
+
+##############
+### COLORS ###
+##############
+
+############################################## colors
+# Define colors variables:
+
+set $rosewater #f5e0dc
+
+set $background #161616
+set $base       #161616
+set $foreground #f2f4f8
+set $text       #f2f4f8
+set $border     #7F78FF
+
+# Normal colors
+set $black   #282828
+set $red     #ee5396
+set $green   #25be6a
+set $yellow  #08bdba
+set $blue    #78a9ff
+set $magenta #be95ff
+set $pink    #be95ff
+set $purple  #be95ff
+set $cyan    #33b1ff
+set $white   #dfdfe0
+set $grey    #979797
+
+# define colors for windows:
+# target                 title     bg    text   indicator  border
+client.focused           $black    $base $text  $border      $border
+client.unfocused         $blue     $base $text  $background  $background
+client.focused_inactive  $purple   $base $text  $background  $background
+client.urgent            $red      $base $text  $background  $cyan
+############################################################################
+
+
+################
+### i3status ###
+################
+
+############################################################################ bar
+bar {
+        font pango:JetBrainsMono Nerd Font Mono 10
+		status_command i3status --config ~/.config/i3/i3status.conf
+	    	position bottom
+		tray_output primary
+		separator_symbol ][
+
+
+		colors {
+		separator          $text
+		background         $base
+		statusline         $text
+
+		focused_workspace	$purple $black $grey $purple
+		active_workspace	$purple $purple $base $purple
+		inactive_workspace	$black $black $text $purple
+		urgent_workspace	$grey $red $text $purple
+	}
+}
+############################################################################
