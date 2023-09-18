@@ -2,7 +2,7 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<SPACE>", "<Nop>")
 vim.keymap.set("n", "<leader>w", ":w<cr>")
-vim.keymap.set("n", "<leader>q", ":wq<cr>")
+vim.keymap.set("n", "<leader>q", ":q<cr>")
 
 vim.opt.nu=true
 vim.opt.tabstop=4
