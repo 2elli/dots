@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+PYENV_VERSION=3.10 pyenv exec python "$@"

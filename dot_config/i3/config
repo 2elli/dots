@@ -237,9 +237,9 @@ set $white   #dfdfe0
 set $grey    #979797
 
 # define colors for windows:
-# target                 title     bg    text   indicator  border
-client.focused           $black    $base $text  $border      $border
-client.unfocused         $blue     $base $text  $background  $background
+# target                 title     bg    text   indicator    border
+client.focused           $border   $base $text  $border      $border
+client.unfocused         $black    $base $text  $background  $background
 client.focused_inactive  $purple   $base $text  $background  $background
 client.urgent            $red      $base $text  $background  $cyan
 ############################################################################
