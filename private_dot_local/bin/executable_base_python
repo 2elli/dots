@@ -5,5 +5,5 @@ set -e
 program="${0##*/}"
 
 export PYENV_ROOT="/home/morgan/.pyenv"
-export PYENV_VERSION=$(sed 's/python//g' <<< $program)
+export PYENV_VERSION=$(sed 's/py//g' <<< $program)
 exec "pyenv" exec python "$@"
