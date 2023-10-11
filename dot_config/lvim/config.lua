@@ -61,5 +61,5 @@ linters.setup {
 }
 
 lvim.plugins = {
-  { "EdenEast/nightfox.nvim", name = "nightfox" }
+  { "EdenEast/nightfox.nvim", name = "nightfox" },
 }
