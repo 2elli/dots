@@ -1,1 +1,1 @@
-require("binds")
+require("default")

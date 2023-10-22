@@ -13,6 +13,7 @@ bindkey -e
 # End of lines configured by zsh-newuser-install
 
 ##### PATHS
+export PATH=/home/morgan/.local/bin/tex:$PATH
 export PATH=/home/morgan/.local/bin:$PATH
 ##### 
 
