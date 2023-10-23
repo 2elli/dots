@@ -53,7 +53,7 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "texlab" })
 -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-  { command = "yapf", filetypes = { "python" } },
+  { command = "yapf",               filetypes = { "python" } },
   { command = "google-java-format", filetypes = { "java" } }
 }
 -- set additional linters
@@ -64,5 +64,23 @@ linters.setup {
 
 -- other plugins
 lvim.plugins = {
-  { "EdenEast/nightfox.nvim", name = "nightfox" }
+  { "EdenEast/nightfox.nvim", name = "nightfox" },
+  {
+    "folke/persistence.nvim",
+    event = "BufReadPre",
+    lazy = true,
+    config = function()
+      require("persistence").setup {
+        dir = vim.fn.expand(vim.fn.stdpath "config" .. "/session/"),
+        options = { "buffers", "curdir", "tabpages", "winsize" },
+      }
+    end,
+  },
+}
+
+lvim.builtin.which_key.mappings["S"] = {
+  name = "Session",
+  c = { "<cmd>lua require('persistence').load()<cr>", "Restore last session for current dir" },
+  l = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Restore last session" },
+  Q = { "<cmd>lua require('persistence').stop()<cr>", "Quit without saving session" },
 }
