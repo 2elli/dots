@@ -48,6 +48,8 @@ lvim.builtin.treesitter.ensure_installed = {
 
 lvim.builtin.treesitter.highlight.enable = true
 
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "texlab" })
+
 -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
@@ -62,19 +64,5 @@ linters.setup {
 
 -- other plugins
 lvim.plugins = {
-  { "EdenEast/nightfox.nvim", name = "nightfox" },
-  {
-    "folke/persistence.nvim",
-    event = "BufReadPre"
-  }
+  { "EdenEast/nightfox.nvim", name = "nightfox" }
 }
-
----- plugin config
--- restore the session for the current directory
-vim.api.nvim_set_keymap("n", "<leader>ms", [[<cmd>lua require("persistence").load()<cr>]], {})
-
--- restore the last session
-vim.api.nvim_set_keymap("n", "<leader>ml", [[<cmd>lua require("persistence").load({ last = true })<cr>]], {})
-
--- stop Persistence => session won't be saved on exit
-vim.api.nvim_set_keymap("n", "<leader>md", [[<cmd>lua require("persistence").stop()<cr>]], {})

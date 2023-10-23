@@ -15,6 +15,7 @@ bindkey -e
 ##### PATHS
 export PATH=/home/morgan/.local/bin/tex:$PATH
 export PATH=/home/morgan/.local/bin:$PATH
+export PATH=/home/morgan/.cargo/bin:$PATH
 ##### 
 
 ##### ENVIRON VARS
