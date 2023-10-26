@@ -87,6 +87,10 @@ eval "$(zoxide init zsh)"
 #fzf
 source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
+
+# fnm (fast node manager)
+export PATH="/home/morgan/.local/share/fnm:$PATH"
+eval "`fnm env`"
 #####
 
 ##### AUTO GEN
@@ -109,3 +113,4 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=blue,underline
 ZSH_HIGHLIGHT_STYLES[precommand]=fg=blue,underline
 ZSH_HIGHLIGHT_STYLES[arg0]=fg=blue
+
