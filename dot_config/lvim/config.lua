@@ -11,6 +11,11 @@ lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 
+vim.opt.nu=true
+vim.opt.tabstop=4
+vim.opt.expandtab=true
+vim.opt.shiftwidth=4
+
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
