@@ -4,7 +4,7 @@
 #######################
 
 ########################## FONT
-font pango:JetBrainsMono Nerd Font Mono 10
+font pango:JetBrainsMono Nerd Font 10
 ###############################
 
 ########################### MOD
@@ -192,9 +192,9 @@ exec --no-startup-id dex --autostart --environment i3
 #####################################################
 
 ########################################## rofi
-#bindsym $mod+d exec rofi -modi drun -show drun
+bindsym $mod+d exec rofi -modi drun -show drun
 #bindsym $mod+d exec --no-startup-id dmenu_run
-bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-3/launcher.sh
+#bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-3/launcher.sh
 ###############################################
 
 
@@ -251,7 +251,7 @@ client.urgent            $red      $base $text  $background  $cyan
 
 ############################################################################ bar
 bar {
-        font pango:JetBrainsMono Nerd Font Mono 10
+        font pango:JetBrainsMono Nerd Font 10
 		status_command i3status --config ~/.config/i3/i3status.conf
 	    	position bottom
 		tray_output primary
