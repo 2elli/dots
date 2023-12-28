@@ -1,0 +1,32 @@
+import = ["/home/morgan/.config/alacritty/carbonfox/carbonfox.toml"]
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 10.0
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[[keyboard.bindings]]
+action = "ScrollLineUp"
+key = "PageUp"
+
+[[keyboard.bindings]]
+action = "ScrollLineDown"
+key = "PageDown"
+
+[[keyboard.bindings]]
+action = "ScrollHalfPageUp"
+key = "PageUp"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ScrollHalfPageDown"
+key = "PageDown"
+mods = "Shift"
+
+[scrolling]
+history = 1000
