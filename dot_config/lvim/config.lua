@@ -84,19 +84,21 @@ lvim.plugins = {
   {
     "ThePrimeagen/harpoon",
     config = function()
+        -- remove old bindings
+        lvim.builtin.which_key.mappings['h'] = "harpoon quick menu"
+        lvim.builtin.which_key.mappings['a'] = "add mark"
+        -- init
         require("harpoon").setup()
+        local mark = require("harpoon.mark")
+        local ui = require("harpoon.ui")
+        -- bindings
+        vim.keymap.set("n", "<leader>a", mark.add_file)
+        vim.keymap.set("n", "<leader>h", ui.toggle_quick_menu)
+        vim.keymap.set("n", "<C-b>", function() ui.nav_next() end)
+        vim.keymap.set("n", "<C-n>", function() ui.nav_prev() end)
     end,
     },
 }
-
--- harpoon
-local mark = require("harpoon.mark")
-local ui = require("harpoon.ui")
-vim.keymap.set("n", "<leader>a", mark.add_file)
-vim.keymap.set("n", "<leader>h", ui.toggle_quick_menu)
-vim.keymap.set("n", "<C-b>", function() ui.nav_next() end)
-vim.keymap.set("n", "<C-n>", function() ui.nav_prev() end)
-
 
 lvim.builtin.which_key.mappings["S"] = {
   name = "Session",
