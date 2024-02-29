@@ -81,9 +81,6 @@ fi
 #####
 
 ##### other sources
-# zoxide
-eval "$(zoxide init zsh)"
-
 #fzf
 source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
@@ -100,6 +97,10 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# setup rye
+FPATH="$HOME/.zfunc:${FPATH}"
+source "$HOME/.rye/env"
+
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/morgan/.zshrc'
 
@@ -113,7 +114,6 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=blue,underline
 ZSH_HIGHLIGHT_STYLES[precommand]=fg=blue,underline
 ZSH_HIGHLIGHT_STYLES[arg0]=fg=blue
-
 
 # Codon compiler path (added by install script)
 export PATH=/home/morgan/.codon/bin:$PATH
