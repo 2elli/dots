@@ -63,8 +63,6 @@ require("lazy").setup({
     "ThePrimeagen/harpoon",
 
     "EdenEast/nightfox.nvim",
-
-    "RaafatTurki/hex.nvim",
 })
 
 vim.opt.background = "dark"
@@ -128,7 +126,6 @@ require("nvim-autopairs").setup()
 require("gitsigns").setup()
 require("Comment").setup()
 require("dressing").setup()
-require("hex").setup()
 
 -- harpoon
 require("harpoon").setup()
