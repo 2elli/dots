@@ -17,7 +17,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    "nvim-lua/plenary.nvim",
+    {"nvim-lua/plenary.nvim"},
     {"williamboman/mason.nvim"},
     {"williamboman/mason-lspconfig.nvim"},
 
@@ -50,6 +50,18 @@ require("lazy").setup({
 
     {"ThePrimeagen/harpoon"},
 
+    {
+        "folke/persistence.nvim",
+        event = "BufReadPre",
+        lazy = true,
+        config = function()
+            require("persistence").setup {
+                dir = vim.fn.expand(vim.fn.stdpath "config" .. "/session/"),
+                options = { "buffers", "curdir", "tabpages", "winsize" },
+            }
+        end,
+    },
+
     {"EdenEast/nightfox.nvim"},
 })
 
@@ -74,6 +86,17 @@ require('mason-lspconfig').setup({
         lsp_zero.default_setup,
     },
 })
+
+local cmp = require('cmp')
+local cmp_action = require('lsp-zero').cmp_action()
+
+cmp.setup({
+  mapping = {
+    ['<Tab>'] = cmp_action.tab_complete(),
+    ['<S-Tab>'] = cmp_action.select_prev_or_fallback(),
+  }
+})
+--
 
 require("nvim-tree").setup()
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
@@ -102,4 +125,10 @@ vim.keymap.set("n", "<leader>f", ui.toggle_quick_menu)
 
 vim.keymap.set("n", "<C-n>", function() ui.nav_next() end)
 vim.keymap.set("n", "<C-S-N>", function() ui.nav_prev() end)
+--
+
+-- persistence
+vim.keymap.set("n", "<leader>Sc", function() require("persistence").load() end)
+vim.keymap.set("n", "<leader>Sl", function() require("persistence").load({ last = true}) end)
+vim.keymap.set("n", "<leader>Sq", function() require("persistence").stop() end)
 --
