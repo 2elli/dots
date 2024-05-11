@@ -5,14 +5,14 @@ vim.opt.termguicolors = true
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -27,15 +27,15 @@ require("lazy").setup({
     {"hrsh7th/nvim-cmp"},
     {"L3MON4D3/LuaSnip"},
     {
-    "nvim-treesitter/nvim-treesitter",
-    dependencies = { "JoosepAlviste/nvim-ts-context-commentstring", },
+        "nvim-treesitter/nvim-treesitter",
+        dependencies = { "JoosepAlviste/nvim-ts-context-commentstring", },
     },
-    "nvim-tree/nvim-web-devicons",
-    "nvim-tree/nvim-tree.lua",
-    "nvim-lualine/lualine.nvim",
+    {"nvim-tree/nvim-web-devicons"},
+    {"nvim-tree/nvim-tree.lua"},
+    {"nvim-lualine/lualine.nvim"},
     {
-    'numToStr/Comment.nvim',
-    lazy = false,
+        'numToStr/Comment.nvim',
+        lazy = false,
     },
     { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
     {
@@ -43,14 +43,14 @@ require("lazy").setup({
         event = "InsertEnter",
         opts = {},
     },
-    "stevearc/dressing.nvim",
+    {"stevearc/dressing.nvim"},
 
-    "RRethy/vim-illuminate",
-    "lewis6991/gitsigns.nvim",
+    {"RRethy/vim-illuminate"},
+    {"lewis6991/gitsigns.nvim"},
 
-    "ThePrimeagen/harpoon",
+    {"ThePrimeagen/harpoon"},
 
-    "EdenEast/nightfox.nvim",
+    {"EdenEast/nightfox.nvim"},
 })
 
 vim.opt.background = "dark"
@@ -60,19 +60,19 @@ vim.cmd.colorscheme "carbonfox"
 local lsp_zero = require('lsp-zero')
 
 lsp_zero.on_attach(function(client, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
-  lsp_zero.default_keymaps({buffer = bufnr})
+    -- see :help lsp-zero-keybindings
+    -- to learn the available actions
+    lsp_zero.default_keymaps({buffer = bufnr})
 end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  -- Replace the language servers listed here 
-  -- with the ones you want to install
-  ensure_installed = {'pyright', 'rust_analyzer', 'clangd'},
-  handlers = {
-      lsp_zero.default_setup,
-  },
+    -- Replace the language servers listed here 
+    -- with the ones you want to install
+    ensure_installed = {'pyright', 'rust_analyzer', 'clangd'},
+    handlers = {
+        lsp_zero.default_setup,
+    },
 })
 
 require("nvim-tree").setup()
