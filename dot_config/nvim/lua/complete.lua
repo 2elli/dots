@@ -75,6 +75,10 @@ lsp_zero.on_attach(function(client, bufnr)
     -- see :help lsp-zero-keybindings
     -- to learn the available actions
     lsp_zero.default_keymaps({buffer = bufnr})
+
+    vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.rename() end)
+    vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format() end)
+    vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end)
 end)
 
 require('mason').setup({})
