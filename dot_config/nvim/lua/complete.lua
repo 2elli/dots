@@ -137,7 +137,7 @@ vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end)
 vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.rename() end)
 
 -- fzf
-vim.keymap.set("n", "<leader>f", builtin.live_grep, {})
+vim.keymap.set("n", "<leader>/", builtin.live_grep, {})
 
 -- persistence
 vim.keymap.set("n", "<leader>Sc", function() require("persistence").load() end)

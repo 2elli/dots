@@ -25,7 +25,7 @@ vim.opt.ignorecase=true
 
 ---- keybinds ----
 -- append next line
-vim.keymap.set("n", "J", "mzJ`z")
+Vim.keymap.set("n", "J", "mzJ`z")
 -- keep page dwn + up centered
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
