@@ -54,7 +54,10 @@ require("lazy").setup({
     { "RRethy/vim-illuminate" },
     { "lewis6991/gitsigns.nvim" },
 
-    { "ThePrimeagen/harpoon" },
+    {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+    },
 
     {
         "folke/persistence.nvim",
@@ -122,10 +125,8 @@ require("Comment").setup()
 require("dressing").setup()
 
 -- harpoon
-require("harpoon").setup()
-local mark = require("harpoon.mark")
-local ui = require("harpoon.ui")
-
+local harpoon = require("harpoon")
+harpoon:setup()
 
 -- fzf
 local builtin = require("telescope.builtin")
@@ -145,8 +146,8 @@ vim.keymap.set("n", "<leader>Sl", function() require("persistence").load({ last 
 vim.keymap.set("n", "<leader>Sq", function() require("persistence").stop() end)
 
 -- harpoon
-vim.keymap.set("n", "<leader>a", mark.add_file)
-vim.keymap.set("n", "<leader>f", ui.toggle_quick_menu)
-vim.keymap.set("n", "<C-n>", function() ui.nav_next() end)
-vim.keymap.set("n", "<C-S-N>", function() ui.nav_prev() end)
+vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+vim.keymap.set("n", "<leader>f", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+vim.keymap.set("n", "<C-n>", function() harpoon:list():next() end)
+vim.keymap.set("n", "<C-S-N>", function() harpoon:list():prev() end)
 ------------------
