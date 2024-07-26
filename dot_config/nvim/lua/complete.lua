@@ -152,5 +152,5 @@ vim.keymap.set("n", "<leader>Sq", function() require("persistence").stop() end)
 vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
 vim.keymap.set("n", "<leader>f", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 vim.keymap.set("n", "<C-n>", function() harpoon:list():next() end)
-vim.keymap.set("n", "<C-S-N>", function() harpoon:list():prev() end)
+vim.keymap.set("n", "<C-p>", function() harpoon:list():prev() end)
 ------------------
