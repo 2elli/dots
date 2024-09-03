@@ -19,14 +19,14 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     { "nvim-lua/plenary.nvim" },
 
+    { "VonHeikemen/lsp-zero.nvim",        branch = "v4.x" },
+
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
 
-    { "VonHeikemen/lsp-zero.nvim",        branch = "v3.x" },
     { "neovim/nvim-lspconfig" },
     { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/nvim-cmp" },
-    { "L3MON4D3/LuaSnip" },
     { "nvim-treesitter/nvim-treesitter", dependencies = { "JoosepAlviste/nvim-ts-context-commentstring", },
     },
     {
@@ -82,10 +82,17 @@ vim.cmd.colorscheme "carbonfox"
 --- LSP ---
 local lsp_zero = require("lsp-zero")
 
-lsp_zero.on_attach(function(client, bufnr)
-    -- :help lsp-zero-keybindings
+local lsp_attach = function(client, bufnr)
+    local opts = {buffer = bufnr}
     lsp_zero.default_keymaps({ buffer = bufnr })
-end)
+end
+
+lsp_zero.extend_lspconfig({
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+  lsp_attach = lsp_attach,
+  float_border = 'rounded',
+  sign_text = true,
+})
 
 require("mason").setup({})
 require("mason-lspconfig").setup({
@@ -94,18 +101,25 @@ require("mason-lspconfig").setup({
         function(server_name)
           require('lspconfig')[server_name].setup({})
         end,
-        -- lsp_zero.default_setup,
     },
 })
 
 local cmp = require("cmp")
-local cmp_action = require("lsp-zero").cmp_action()
 
 cmp.setup({
-    mapping = {
-        ["<Tab>"] = cmp_action.tab_complete(),
-        ["<S-Tab>"] = cmp_action.select_prev_or_fallback(),
-    }
+    sources = {
+        {name = 'nvim_lsp'},
+    },
+    mapping = cmp.mapping.preset.insert({
+        ["<Tab>"] = cmp.mapping.select_next_item({behavoir = 'select'}),
+        ["<S-Tab>"] = cmp.mapping.select_prev_item({behavoir = 'select'}),
+        ['<CR>'] = cmp.mapping.confirm({select = false}),
+    }),
+    snippet = {
+        expand = function(args)
+            vim.snippet.expand(args.body)
+        end,
+    },
 })
 -----------
 
