@@ -79,6 +79,11 @@ vim.opt.background = "dark"
 vim.cmd.colorscheme "carbonfox"
 
 
+require("nvim-treesitter.configs").setup({
+    ensure_installed = {"c", "cpp", "python", "lua", "bash"},
+    auto_install = true,
+})
+
 --- LSP ---
 local lsp_zero = require("lsp-zero")
 
