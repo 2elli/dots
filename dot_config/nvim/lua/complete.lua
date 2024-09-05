@@ -82,6 +82,9 @@ vim.cmd.colorscheme "carbonfox"
 require("nvim-treesitter.configs").setup({
     ensure_installed = {"c", "cpp", "python", "lua", "bash"},
     auto_install = true,
+    highlight = {
+        enable = true,
+    },
 })
 
 --- LSP ---
