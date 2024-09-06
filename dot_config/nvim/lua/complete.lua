@@ -53,6 +53,11 @@ require("lazy").setup({
 
     { "RRethy/vim-illuminate" },
     { "lewis6991/gitsigns.nvim" },
+    {
+      "chentoast/marks.nvim",
+      event = "VeryLazy",
+      opts = {},
+    },
 
     {
         "ThePrimeagen/harpoon",
