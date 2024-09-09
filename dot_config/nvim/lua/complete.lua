@@ -26,9 +26,17 @@ require("lazy").setup({
 
     { "neovim/nvim-lspconfig" },
     { "hrsh7th/cmp-nvim-lsp" },
+    { "hrsh7th/cmp-buffer" },
+    { "hrsh7th/cmp-buffer" },
     { "hrsh7th/nvim-cmp" },
-    { "nvim-treesitter/nvim-treesitter", dependencies = { "JoosepAlviste/nvim-ts-context-commentstring", },
+    { "nvim-treesitter/nvim-treesitter",  dependencies = { "JoosepAlviste/nvim-ts-context-commentstring", }, },
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "VeryLazy",
+        opts = {},
+        config = function(_, opts) require 'lsp_signature'.setup(opts) end
     },
+
     {
         "nvim-tree/nvim-tree.lua",
         version = "*",
@@ -53,10 +61,11 @@ require("lazy").setup({
 
     { "RRethy/vim-illuminate" },
     { "lewis6991/gitsigns.nvim" },
+
     {
-      "chentoast/marks.nvim",
-      event = "VeryLazy",
-      opts = {},
+        "chentoast/marks.nvim",
+        event = "VeryLazy",
+        opts = {},
     },
 
     {
@@ -79,32 +88,32 @@ require("lazy").setup({
     { "EdenEast/nightfox.nvim" },
 })
 
-
 vim.opt.background = "dark"
 vim.cmd.colorscheme "carbonfox"
 
-
+--- treesitter ---
 require("nvim-treesitter.configs").setup({
-    ensure_installed = {"c", "cpp", "python", "lua", "bash"},
+    ensure_installed = { "c", "cpp", "python", "lua", "bash" },
     auto_install = true,
     highlight = {
         enable = true,
     },
 })
+------------------
 
 --- LSP ---
 local lsp_zero = require("lsp-zero")
 
 local lsp_attach = function(client, bufnr)
-    local opts = {buffer = bufnr}
+    local opts = { buffer = bufnr }
     lsp_zero.default_keymaps({ buffer = bufnr })
 end
 
 lsp_zero.extend_lspconfig({
-  capabilities = require('cmp_nvim_lsp').default_capabilities(),
-  lsp_attach = lsp_attach,
-  float_border = 'rounded',
-  sign_text = true,
+    capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    lsp_attach = lsp_attach,
+    float_border = 'rounded',
+    sign_text = true,
 })
 
 require("mason").setup({})
@@ -112,7 +121,7 @@ require("mason-lspconfig").setup({
     ensure_installed = { "pyright", "lua_ls", "rust_analyzer", "clangd" },
     handlers = {
         function(server_name)
-          require('lspconfig')[server_name].setup({})
+            require('lspconfig')[server_name].setup({})
         end,
     },
 })
@@ -120,13 +129,15 @@ require("mason-lspconfig").setup({
 local cmp = require("cmp")
 
 cmp.setup({
-    sources = {
-        {name = 'nvim_lsp'},
-    },
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+        { name = 'buffer' },
+        { name = 'path' },
+    }),
     mapping = cmp.mapping.preset.insert({
-        ["<Tab>"] = cmp.mapping.select_next_item({behavoir = 'select'}),
-        ["<S-Tab>"] = cmp.mapping.select_prev_item({behavoir = 'select'}),
-        ['<CR>'] = cmp.mapping.confirm({select = false}),
+        ["<Tab>"] = cmp.mapping.select_next_item({ behavoir = 'select' }),
+        ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavoir = 'select' }),
+        ['<CR>'] = cmp.mapping.confirm({ select = false }),
     }),
     snippet = {
         expand = function(args)
@@ -134,6 +145,8 @@ cmp.setup({
         end,
     },
 })
+
+require("lsp_signature").setup({})
 -----------
 
 
