@@ -17,25 +17,26 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+    -- dep
     { "nvim-lua/plenary.nvim" },
-
+    -- treesitter
+    { "nvim-treesitter/nvim-treesitter",  dependencies = { "JoosepAlviste/nvim-ts-context-commentstring", }, },
+    -- lsp
     { "VonHeikemen/lsp-zero.nvim",        branch = "v4.x" },
-
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
-
     { "neovim/nvim-lspconfig" },
-    { "hrsh7th/cmp-nvim-lsp" },
-    { "hrsh7th/cmp-buffer" },
-    { "hrsh7th/cmp-buffer" },
-    { "hrsh7th/nvim-cmp" },
-    { "nvim-treesitter/nvim-treesitter",  dependencies = { "JoosepAlviste/nvim-ts-context-commentstring", }, },
     {
         "ray-x/lsp_signature.nvim",
         event = "VeryLazy",
         opts = {},
         config = function(_, opts) require 'lsp_signature'.setup(opts) end
     },
+    -- autocomplete
+    { "hrsh7th/cmp-nvim-lsp" },
+    { "hrsh7th/cmp-buffer" },
+    { "hrsh7th/nvim-cmp" },
+    -- code action
     {
         "folke/trouble.nvim",
         opts = {}, -- for default options, refer to the configuration section for custom setup.
@@ -53,7 +54,20 @@ require("lazy").setup({
             },
         },
     },
-
+    -- ui
+    { "stevearc/dressing.nvim" },
+    {
+        "j-hui/fidget.nvim",
+        opts = {
+            -- options
+        },
+    },
+    { "nvim-lualine/lualine.nvim" },
+    -- files
+    {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+    },
     {
         "nvim-tree/nvim-tree.lua",
         version = "*",
@@ -65,31 +79,24 @@ require("lazy").setup({
             require("nvim-tree").setup {}
         end,
     },
-    { "nvim-lualine/lualine.nvim" },
-    { "nvim-telescope/telescope.nvim",       tag = "0.1.6", },
-    { "numToStr/Comment.nvim",               lazy = false, },
+    -- format
     { "lukas-reineke/indent-blankline.nvim", main = "ibl",  opts = {} },
     {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
         opts = {},
     },
-    { "stevearc/dressing.nvim" },
-
-    { "RRethy/vim-illuminate" },
-    { "lewis6991/gitsigns.nvim" },
-
+    -- aux
+    { "nvim-telescope/telescope.nvim",       tag = "0.1.6", },
     {
         "chentoast/marks.nvim",
         event = "VeryLazy",
         opts = {},
     },
-
-    {
-        "ThePrimeagen/harpoon",
-        branch = "harpoon2",
-    },
-
+    { "RRethy/vim-illuminate" },
+    { "numToStr/Comment.nvim",               lazy = false, },
+    { "lewis6991/gitsigns.nvim" },
+    -- persistence
     {
         "folke/persistence.nvim",
         event = "BufReadPre",
@@ -101,7 +108,7 @@ require("lazy").setup({
             }
         end,
     },
-
+    -- theme
     { "EdenEast/nightfox.nvim" },
 })
 
@@ -116,13 +123,11 @@ require("nvim-treesitter.configs").setup({
         enable = true,
     },
 })
-------------------
 
 --- LSP ---
 local lsp_zero = require("lsp-zero")
 
 local lsp_attach = function(client, bufnr)
-    local opts = { buffer = bufnr }
     lsp_zero.default_keymaps({ buffer = bufnr })
 end
 
@@ -142,7 +147,9 @@ require("mason-lspconfig").setup({
         end,
     },
 })
+require("lsp_signature").setup({})
 
+--- autocomplete ---
 local cmp = require("cmp")
 
 cmp.setup({
@@ -163,13 +170,13 @@ cmp.setup({
     },
 })
 
-require("lsp_signature").setup({})
------------
+-- harpoon
+local harpoon = require("harpoon")
+harpoon:setup()
 
-
+-- ui
+require("dressing").setup()
 require("nvim-tree").setup()
-vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
-
 require("lualine").setup({
     options = {
         theme = "auto",
@@ -178,24 +185,29 @@ require("lualine").setup({
     },
 })
 
-require("ibl").setup({ scope = { enabled = false } })
-require("nvim-autopairs").setup()
-require("gitsigns").setup()
-require("Comment").setup()
-require("dressing").setup()
-
--- harpoon
-local harpoon = require("harpoon")
-harpoon:setup()
-
 -- fzf
 local builtin = require("telescope.builtin")
+
+-- other
+require("Comment").setup()
+require("nvim-autopairs").setup()
+require("ibl").setup({ scope = { enabled = false } })
+require("gitsigns").setup()
 
 ---- keybinds ----
 -- lsp
 vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format() end)
 vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end)
 vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.rename() end)
+
+-- harpoon
+vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+vim.keymap.set("n", "<leader>f", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+vim.keymap.set("n", "<C-n>", function() harpoon:list():next() end)
+vim.keymap.set("n", "<C-p>", function() harpoon:list():prev() end)
+
+-- file tree
+vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
 
 -- fzf
 vim.keymap.set("n", "<leader>/", builtin.live_grep, {})
@@ -204,10 +216,4 @@ vim.keymap.set("n", "<leader>/", builtin.live_grep, {})
 vim.keymap.set("n", "<leader>Sc", function() require("persistence").load() end)
 vim.keymap.set("n", "<leader>Sl", function() require("persistence").load({ last = true }) end)
 vim.keymap.set("n", "<leader>Sq", function() require("persistence").stop() end)
-
--- harpoon
-vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
-vim.keymap.set("n", "<leader>f", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-vim.keymap.set("n", "<C-n>", function() harpoon:list():next() end)
-vim.keymap.set("n", "<C-p>", function() harpoon:list():prev() end)
 ------------------
