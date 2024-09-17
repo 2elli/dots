@@ -216,4 +216,5 @@ vim.keymap.set("n", "<leader>/", builtin.live_grep, {})
 vim.keymap.set("n", "<leader>Sc", function() require("persistence").load() end)
 vim.keymap.set("n", "<leader>Sl", function() require("persistence").load({ last = true }) end)
 vim.keymap.set("n", "<leader>Sq", function() require("persistence").stop() end)
+vim.keymap.set("n", "<leader>SS", function() require("persistence").select() end)
 ------------------
