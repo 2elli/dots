@@ -135,7 +135,18 @@ require("nvim-treesitter.configs").setup({
 local lsp_zero = require("lsp-zero")
 
 local lsp_attach = function(client, bufnr)
-    lsp_zero.default_keymaps({ buffer = bufnr })
+    -- lsp_zero.default_keymaps({ buffer = bufnr })
+    local opts = {buffer = bufnr}
+    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+    vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
+    vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
+    vim.keymap.set("n", "go", function() vim.lsp.buf.type_definition() end, opts)
+    vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
+    vim.keymap.set("n", "gs", function() vim.lsp.buf.signature_help() end, opts)
+    vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format() end, opts)
+    vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end, opts)
+    vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.rename() end, opts)
 end
 
 lsp_zero.extend_lspconfig({
@@ -208,11 +219,6 @@ require("ibl").setup({ scope = { enabled = false } })
 require("gitsigns").setup()
 
 ---- keybinds ----
--- lsp
-vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format() end)
-vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end)
-vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.rename() end)
-
 -- harpoon
 vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
 vim.keymap.set("n", "<leader>f", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
