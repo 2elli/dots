@@ -39,6 +39,7 @@ require("lazy").setup({
     -- autocomplete
     { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/cmp-buffer" },
+    { "hrsh7th/cmp-path" },
     { "hrsh7th/nvim-cmp" },
     { "saadparwaiz1/cmp_luasnip" },
     -- code action
@@ -83,6 +84,8 @@ require("lazy").setup({
     },
     -- theme
     { "EdenEast/nightfox.nvim" },
+    -- other
+    { "ThePrimeagen/vim-be-good" },
 })
 
 vim.opt.background = "dark"
@@ -149,7 +152,7 @@ cmp.setup({
     mapping = cmp.mapping.preset.insert({
         ["<Tab>"] = cmp.mapping.select_next_item({ behavoir = 'select' }),
         ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavoir = 'select' }),
-        ['<CR>'] = cmp.mapping.confirm({ select = false }),
+        ["<CR>"] = cmp.mapping.confirm({ select = false }),
     }),
     snippet = {
         expand = function(args)

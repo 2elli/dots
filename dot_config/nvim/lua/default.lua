@@ -2,23 +2,25 @@
 vim.g.mapleader = " "
 
 vim.opt.nu=true
+vim.opt.relativenumber = true
+
 vim.opt.tabstop=4
 vim.opt.expandtab=true
 vim.opt.shiftwidth=4
+
+vim.opt.wrap = false
+vim.opt.scrolloff=8
+
+vim.opt.ignorecase=true
 
 vim.opt.autoindent=true
 vim.opt.copyindent=true
 vim.opt.clipboard="unnamedplus"
 
-vim.opt.scrolloff=8
-
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undofile = true
 vim.opt.undodir = os.getenv("HOME") .. "/.nvim/undodir"
-vim.opt.relativenumber = true
-
-vim.opt.ignorecase=true
 
 ---- keybinds ----
 vim.keymap.set("n", "<SPACE>", "<Nop>")
