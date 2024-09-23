@@ -1,4 +1,4 @@
--- disabled netrw for neo-tree
+-- disabled netrw for nvim tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
@@ -20,9 +20,9 @@ require("lazy").setup({
     -- dep
     { "nvim-lua/plenary.nvim" },
     -- treesitter
-    { "nvim-treesitter/nvim-treesitter",  dependencies = { "JoosepAlviste/nvim-ts-context-commentstring", }, },
+    { "nvim-treesitter/nvim-treesitter", dependencies = { "JoosepAlviste/nvim-ts-context-commentstring", }, },
     -- lsp
-    { "VonHeikemen/lsp-zero.nvim",        branch = "v4.x" },
+    { "VonHeikemen/lsp-zero.nvim", branch = "v4.x" },
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
     { "neovim/nvim-lspconfig" },
@@ -31,13 +31,10 @@ require("lazy").setup({
         "ray-x/lsp_signature.nvim",
         event = "VeryLazy",
         opts = {},
-        config = function(_, opts) require 'lsp_signature'.setup(opts) end
+        config = function(_, opts) require("lsp_signature").setup(opts) end
     },
     -- snippets
-    {
-        "L3MON4D3/LuaSnip",
-        dependencies = { "rafamadriz/friendly-snippets" },
-    },
+    { "L3MON4D3/LuaSnip", dependencies = { "rafamadriz/friendly-snippets" }, },
     { "chrisgrieser/nvim-scissors", },
     -- autocomplete
     { "hrsh7th/cmp-nvim-lsp" },
@@ -45,37 +42,13 @@ require("lazy").setup({
     { "hrsh7th/nvim-cmp" },
     { "saadparwaiz1/cmp_luasnip" },
     -- code action
-    {
-        "folke/trouble.nvim",
-        opts = {}, -- for default options, refer to the configuration section for custom setup.
-        cmd = "Trouble",
-        keys = {
-            {
-                "<leader>xx",
-                "<cmd>Trouble diagnostics toggle<cr>",
-                desc = "Diagnostics (Trouble)",
-            },
-            {
-                "<leader>xX",
-                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-                desc = "Buffer Diagnostics (Trouble)",
-            },
-        },
-    },
+    { "folke/trouble.nvim", opts = {}, cmd = "Trouble", },
     -- ui
     { "stevearc/dressing.nvim" },
-    {
-        "j-hui/fidget.nvim",
-        opts = {
-            -- options
-        },
-    },
+    { "j-hui/fidget.nvim", opts = {}, },
     { "nvim-lualine/lualine.nvim" },
     -- files
-    {
-        "ThePrimeagen/harpoon",
-        branch = "harpoon2",
-    },
+    { "ThePrimeagen/harpoon", branch = "harpoon2", },
     {
         "nvim-tree/nvim-tree.lua",
         version = "*",
@@ -84,23 +57,15 @@ require("lazy").setup({
             "nvim-tree/nvim-web-devicons",
         },
         config = function()
-            require("nvim-tree").setup {}
+            require("nvim-tree").setup({})
         end,
     },
     -- format
     { "lukas-reineke/indent-blankline.nvim", main = "ibl",  opts = {} },
-    {
-        "windwp/nvim-autopairs",
-        event = "InsertEnter",
-        opts = {},
-    },
+    { "windwp/nvim-autopairs", event = "InsertEnter", opts = {}, },
     -- aux
-    { "nvim-telescope/telescope.nvim",       tag = "0.1.6", },
-    {
-        "chentoast/marks.nvim",
-        event = "VeryLazy",
-        opts = {},
-    },
+    { "nvim-telescope/telescope.nvim", tag = "0.1.6", },
+    { "chentoast/marks.nvim", event = "VeryLazy", opts = {}, },
     { "RRethy/vim-illuminate" },
     { "numToStr/Comment.nvim",  lazy = false, },
     { "lewis6991/gitsigns.nvim" },
@@ -137,7 +102,7 @@ local lsp_zero = require("lsp-zero")
 
 local lsp_attach = function(client, bufnr)
     -- lsp_zero.default_keymaps({ buffer = bufnr })
-    local opts = {buffer = bufnr}
+    local opts = { buffer = bufnr }
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
     vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
@@ -169,9 +134,9 @@ require("mason-lspconfig").setup({
 
 local null_ls = require('null-ls')
 null_ls.setup({
-  sources = {
-    null_ls.builtins.formatting.yapf,
-  }
+    sources = {
+        null_ls.builtins.formatting.yapf,
+    }
 })
 
 require("lsp_signature").setup()
@@ -233,6 +198,10 @@ vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
 vim.keymap.set("n", "<leader>f", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 vim.keymap.set("n", "<C-n>", function() harpoon:list():next() end)
 vim.keymap.set("n", "<C-p>", function() harpoon:list():prev() end)
+
+-- trouble
+vim.keymap.set("n", "<leader>xx", ":Trouble diagnostics toggle filter.buf=0<cr>")
+vim.keymap.set("n", "<leader>xX", ":Trouble diagnostics toggle<cr>")
 
 -- scissors
 vim.keymap.set("n", "<leader>se", function() require("scissors").editSnippet() end)
