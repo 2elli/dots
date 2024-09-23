@@ -1,8 +1,5 @@
 -- default.lua , neovim config file 2elli 
 vim.g.mapleader = " "
-vim.keymap.set("n", "<SPACE>", "<Nop>")
-vim.keymap.set("n", "<leader>w", ":w<cr>")
-vim.keymap.set("n", "<leader>q", ":q<cr>")
 
 vim.opt.nu=true
 vim.opt.tabstop=4
@@ -24,6 +21,9 @@ vim.opt.relativenumber = true
 vim.opt.ignorecase=true
 
 ---- keybinds ----
+vim.keymap.set("n", "<SPACE>", "<Nop>")
+vim.keymap.set("n", "<leader>w", ":w<cr>")
+vim.keymap.set("n", "<leader>q", ":q<cr>")
 -- append next line
 vim.keymap.set("n", "J", "mzJ`z")
 -- keep page dwn + up centered
