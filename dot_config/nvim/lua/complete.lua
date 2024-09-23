@@ -32,10 +32,17 @@ require("lazy").setup({
         opts = {},
         config = function(_, opts) require 'lsp_signature'.setup(opts) end
     },
+    -- snippets
+    {
+        "L3MON4D3/LuaSnip",
+        dependencies = { "rafamadriz/friendly-snippets" },
+    },
+    { "chrisgrieser/nvim-scissors", },
     -- autocomplete
     { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/cmp-buffer" },
     { "hrsh7th/nvim-cmp" },
+    { "saadparwaiz1/cmp_luasnip" },
     -- code action
     {
         "folke/trouble.nvim",
@@ -94,7 +101,7 @@ require("lazy").setup({
         opts = {},
     },
     { "RRethy/vim-illuminate" },
-    { "numToStr/Comment.nvim",               lazy = false, },
+    { "numToStr/Comment.nvim",  lazy = false, },
     { "lewis6991/gitsigns.nvim" },
     -- persistence
     {
@@ -152,9 +159,15 @@ require("lsp_signature").setup({})
 --- autocomplete ---
 local cmp = require("cmp")
 
+require('luasnip.loaders.from_vscode').lazy_load()
+require('luasnip.loaders.from_vscode').lazy_load({
+    paths = { vim.fn.expand(vim.fn.stdpath("config") .. "/snippets/"), }
+})
+
 cmp.setup({
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
+        { name = 'luasnip' },
         { name = 'buffer' },
         { name = 'path' },
     }),
@@ -205,6 +218,10 @@ vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
 vim.keymap.set("n", "<leader>f", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 vim.keymap.set("n", "<C-n>", function() harpoon:list():next() end)
 vim.keymap.set("n", "<C-p>", function() harpoon:list():prev() end)
+
+-- scissors
+vim.keymap.set("n", "<leader>se", function() require("scissors").editSnippet() end)
+vim.keymap.set({ "n", "x" }, "<leader>sa", function() require("scissors").addNewSnippet() end)
 
 -- file tree
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
