@@ -26,6 +26,7 @@ require("lazy").setup({
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
     { "neovim/nvim-lspconfig" },
+    { "nvimtools/none-ls.nvim" },
     {
         "ray-x/lsp_signature.nvim",
         event = "VeryLazy",
@@ -165,9 +166,17 @@ require("mason-lspconfig").setup({
         end,
     },
 })
-require("lsp_signature").setup({})
 
---- autocomplete ---
+local null_ls = require('null-ls')
+null_ls.setup({
+  sources = {
+    null_ls.builtins.formatting.yapf,
+  }
+})
+
+require("lsp_signature").setup()
+
+--- autocomplete & snippets ---
 local cmp = require("cmp")
 
 require('luasnip.loaders.from_vscode').lazy_load()
