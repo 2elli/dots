@@ -16,8 +16,8 @@ set $mod Mod4
 workspace_layout default
 
 # Set inner/outer gaps
-gaps inner 6
-gaps outer 3
+gaps inner 2
+gaps outer 2
 for_window [class=".*"] border pixel 2
 
 #no mouse focus 
@@ -74,7 +74,7 @@ mode "resize" {
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
 
-      	bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
@@ -85,7 +85,7 @@ mode "resize" {
         bindsym Shift+k resize shrink height 60 px or 60 ppt
         bindsym Shift+l resize grow width 60 px or 60 ppt
 
-       	bindsym Shift+Left resize shrink width 60 px or 60 ppt
+        bindsym Shift+Left resize shrink width 60 px or 60 ppt
         bindsym Shift+Down resize grow height 60 px or 60 ppt
         bindsym Shift+Up resize shrink height 60 px or 60 ppt
         bindsym Shift+Right resize grow width 60 px or 60 ppt
@@ -95,7 +95,7 @@ mode "resize" {
         bindsym $mod+space focus mode_toggle
 
 # back to normal: Enter, Escape, or mod+r 
-      	bindsym Return mode "default"
+        bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
