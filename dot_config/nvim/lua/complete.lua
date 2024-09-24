@@ -113,7 +113,7 @@ local lsp_attach = function(client, bufnr)
     vim.keymap.set("n", "go", function() vim.lsp.buf.type_definition() end, opts)
     vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "gs", function() vim.lsp.buf.signature_help() end, opts)
-    vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format() end, opts)
+    vim.keymap.set({"n", "v"}, "<leader>lf", function() vim.lsp.buf.format() end, opts)
     vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.rename() end, opts)
 end
