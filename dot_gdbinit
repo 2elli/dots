@@ -1,0 +1,9 @@
+set debuginfod enabled on
+
+define init_gef
+    source ~/gdb/.gef-.py
+end
+
+define init_pwndbg
+    source ~/gdb/pwndbg/gdbinit.py
+end
