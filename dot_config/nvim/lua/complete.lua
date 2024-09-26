@@ -42,6 +42,7 @@ require("lazy").setup({
     { "hrsh7th/cmp-path" },
     { "hrsh7th/nvim-cmp" },
     { "saadparwaiz1/cmp_luasnip" },
+    { "onsails/lspkind.nvim" },
     -- code action
     { "folke/trouble.nvim", opts = {}, cmd = "Trouble", },
     -- ui
@@ -84,8 +85,6 @@ require("lazy").setup({
     },
     -- theme
     { "EdenEast/nightfox.nvim" },
-    -- other
-    { "ThePrimeagen/vim-be-good" },
 })
 
 vim.opt.background = "dark"
@@ -137,6 +136,25 @@ require("mason-lspconfig").setup({
         function(server_name)
             require('lspconfig')[server_name].setup({})
         end,
+
+        -- custom handlers
+        lua_ls = function()
+            require('lspconfig').lua_ls.setup({
+                settings = { Lua = { diagnostics = { globals = { "vim" }, } } }  -- editing 
+            })
+        end,
+
+        clangd = function()
+            require('lspconfig').clangd.setup({
+                settings = {
+                    clangd = {
+                        UseTab = "Always",
+                        IndentWidth = "4",
+                        TabWidth = "4",
+                    }
+                }
+            })
+        end,
     },
 })
 
@@ -151,6 +169,7 @@ require("lsp_signature").setup()
 
 --- autocomplete & snippets ---
 local cmp = require("cmp")
+local lspkind = require("lspkind")
 
 require('luasnip.loaders.from_vscode').lazy_load()
 require('luasnip.loaders.from_vscode').lazy_load({
@@ -174,13 +193,21 @@ cmp.setup({
             vim.snippet.expand(args.body)
         end,
     },
+    formatting = {
+        format = lspkind.cmp_format({
+            mode = 'symbol_text',  -- show only symbol annotations
+            maxwidth = 80,  -- max width of popup
+            ellipsis_char = '...',
+            show_labelDetails = true,
+        })
+    },
 })
 
+--- aux ---
 -- harpoon
 local harpoon = require("harpoon")
 harpoon:setup()
 
--- ui
 require("dressing").setup()
 require("nvim-tree").setup()
 require("lualine").setup({
