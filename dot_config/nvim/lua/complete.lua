@@ -199,13 +199,7 @@ cmp.setup({
 --- aux ---
 -- harpoon
 local harpoon = require("harpoon")
-harpoon:setup({
-    settings = {
-        key = function()
-            return vim.api.nvim_get_current_tabpage() .. "/" .. vim.loop.cwd()  -- use tabpage id in harpoon key. multiple tabs multiple harpoons
-        end,
-    }
-})
+harpoon:setup()
 
 require("dressing").setup()
 require("nvim-tree").setup()
