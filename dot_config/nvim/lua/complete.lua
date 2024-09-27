@@ -1,7 +1,6 @@
--- disabled netrw for nvim tree
+-- disable netrw for nvim tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-vim.opt.termguicolors = true
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -106,15 +105,7 @@ local lsp_attach = function(client, bufnr)
     -- lsp_zero.default_keymaps({ buffer = bufnr })
     local opts = { buffer = bufnr }
     -- lsp keybinds
-    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
-    vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
-    vim.keymap.set("n", "go", function() vim.lsp.buf.type_definition() end, opts)
-    vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set("n", "gs", function() vim.lsp.buf.signature_help() end, opts)
-    vim.keymap.set({"n", "v"}, "<leader>lf", function() vim.lsp.buf.format() end, opts)
-    vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.rename() end, opts)
+    require("keymaps").lsp_binds(opts)
 end
 
 lsp_zero.extend_lspconfig({
@@ -140,19 +131,7 @@ require("mason-lspconfig").setup({
         -- custom handlers
         lua_ls = function()
             require('lspconfig').lua_ls.setup({
-                settings = { Lua = { diagnostics = { globals = { "vim" }, } } }  -- editing 
-            })
-        end,
-
-        clangd = function()
-            require('lspconfig').clangd.setup({
-                settings = {
-                    clangd = {
-                        UseTab = "Always",
-                        IndentWidth = "4",
-                        TabWidth = "4",
-                    }
-                }
+                settings = { Lua = { diagnostics = { globals = { "vim" }, } } }
             })
         end,
     },
@@ -219,7 +198,7 @@ require("lualine").setup({
 })
 
 -- fzf
-local builtin = require("telescope.builtin")
+local telescope_builtin = require("telescope.builtin")
 
 -- other
 require("Comment").setup()
@@ -227,30 +206,6 @@ require("nvim-autopairs").setup()
 require("ibl").setup({ scope = { enabled = false } })
 require("gitsigns").setup()
 
----- keybinds ----
--- harpoon
-vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
-vim.keymap.set("n", "<leader>f", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-vim.keymap.set("n", "<C-n>", function() harpoon:list():next() end)
-vim.keymap.set("n", "<C-p>", function() harpoon:list():prev() end)
-
--- trouble
-vim.keymap.set("n", "<leader>xx", ":Trouble diagnostics toggle filter.buf=0<cr>")
-vim.keymap.set("n", "<leader>xX", ":Trouble diagnostics toggle<cr>")
-
--- scissors
-vim.keymap.set("n", "<leader>se", function() require("scissors").editSnippet() end)
-vim.keymap.set({ "n", "x" }, "<leader>sa", function() require("scissors").addNewSnippet() end)
-
--- file tree
-vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
-
--- fzf
-vim.keymap.set("n", "<leader>/", builtin.live_grep, {})
-
--- persistence
-vim.keymap.set("n", "<leader>Sc", function() require("persistence").load() end)
-vim.keymap.set("n", "<leader>Sl", function() require("persistence").load({ last = true }) end)
-vim.keymap.set("n", "<leader>Sq", function() require("persistence").stop() end)
-vim.keymap.set("n", "<leader>SS", function() require("persistence").select() end)
+---- plugin keybinds ----
+require("keymaps").plugin_binds({harpoon = harpoon, telescope_builtin = telescope_builtin})
 ------------------
