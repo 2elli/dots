@@ -1,5 +1,4 @@
 ---- keybinds ----
--- FOR ADDING DESCRIPTION opts = {desc="", ...}
 
 ---Loads default keymaps that do not require plugins
 local function builtin_binds()
