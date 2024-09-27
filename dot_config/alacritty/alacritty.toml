@@ -4,7 +4,7 @@ import = ["/home/morgan/.config/alacritty/carbonfox/carbonfox.toml"]
 TERM = "xterm-256color"
 
 [font]
-size = 9.0
+size = 8.0
 
 [font.normal]
 family = "JetBrainsMono Nerd Font"
