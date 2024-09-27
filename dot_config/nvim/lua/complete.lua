@@ -131,7 +131,18 @@ require("mason-lspconfig").setup({
         -- custom handlers
         lua_ls = function()
             require('lspconfig').lua_ls.setup({
+                -- ignore global "vim"
                 settings = { Lua = { diagnostics = { globals = { "vim" }, } } }
+            })
+        end,
+
+        clangd = function()
+            require('lspconfig').clangd.setup({
+                -- dont format with clangd
+                on_attach = function(client)
+                    client.server_capabilities.documentFormattingProvider = false
+                    client.server_capabilities.documentFormattingRangeProvider = false
+                end
             })
         end,
     },
@@ -141,6 +152,9 @@ local null_ls = require('null-ls')
 null_ls.setup({
     sources = {
         null_ls.builtins.formatting.yapf,
+        null_ls.builtins.formatting.clang_format.with({
+            extra_args = { "--style={UseTab: Always, IndentWidth: 4, TabWidth: 4}" }
+        }),
     }
 })
 
