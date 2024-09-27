@@ -21,9 +21,11 @@ local function builtin_binds()
     vim.keymap.set("v", "<M-k>", ":m '<-2<CR>gv=gv")
     vim.keymap.set("n", "<M-j>", ":m .+1<CR>==")
     vim.keymap.set("n", "<M-k>", ":m .-2<CR>==")
-    -- yank to system clipboard
+    -- yank/paste to system clipboard
     vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
     vim.keymap.set("n", "<leader>Y", [["+Y]])
+    vim.keymap.set({ "n", "v" }, "<leader>p", [["+p]])
+    vim.keymap.set("n", "<leader>P", [["+P]])
     -- delete without copying to register
     vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 end
