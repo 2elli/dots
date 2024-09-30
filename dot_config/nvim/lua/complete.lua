@@ -2,6 +2,7 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- setup lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
@@ -15,6 +16,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+---- install plugins ----
 require("lazy").setup({
     -- dep
     { "nvim-lua/plenary.nvim" },
@@ -89,7 +91,7 @@ require("lazy").setup({
 vim.opt.background = "dark"
 vim.cmd.colorscheme "carbonfox"
 
---- treesitter ---
+---- treesitter ----
 require("nvim-treesitter.configs").setup({
     ensure_installed = { "c", "cpp", "python", "lua", "bash" },
     auto_install = true,
@@ -98,16 +100,18 @@ require("nvim-treesitter.configs").setup({
     },
 })
 
---- LSP ---
+---- LSP ----
 local lsp_zero = require("lsp-zero")
 
+-- lsp function for when buffer is attached to lsp
 local lsp_attach = function(client, bufnr)
-    -- lsp_zero.default_keymaps({ buffer = bufnr })
+    -- default keybinds -> lsp_zero.default_keymaps({ buffer = bufnr })
+    -- create keybinds
     local opts = { buffer = bufnr }
-    -- lsp keybinds
     require("keymaps").lsp_binds(opts)
 end
 
+-- setup lsp zero capabilities and defaults
 lsp_zero.extend_lspconfig({
     capabilities = require('cmp_nvim_lsp').default_capabilities(),
     lsp_attach = lsp_attach,
@@ -120,10 +124,13 @@ lsp_zero.extend_lspconfig({
     },
 })
 
+-- setup and install lsp binaries
 require("mason").setup({})
 require("mason-lspconfig").setup({
-    ensure_installed = { "pyright", "lua_ls", "rust_analyzer", "clangd" },
+    ensure_installed = { "pyright", "lua_ls", "clangd", "ts_ls" },
+    -- handlers for different lsp's
     handlers = {
+        -- generic handler
         function(server_name)
             require('lspconfig')[server_name].setup({})
         end,
@@ -148,27 +155,31 @@ require("mason-lspconfig").setup({
     },
 })
 
+-- setup null-ls sources  (this is used for adding functionality, like formatting, that may not be in an lsp)
 local null_ls = require('null-ls')
 null_ls.setup({
     sources = {
-        null_ls.builtins.formatting.yapf,
+        null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.clang_format.with({
             extra_args = { "--style={UseTab: Always, IndentWidth: 4, TabWidth: 4}" }
         }),
     }
 })
 
+-- show lsp signatures when typing
 require("lsp_signature").setup()
 
---- autocomplete & snippets ---
+---- autocomplete & snippets ----
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 
+-- load snippets
 require('luasnip.loaders.from_vscode').lazy_load()
 require('luasnip.loaders.from_vscode').lazy_load({
     paths = { vim.fn.expand(vim.fn.stdpath("config") .. "/snippets/"), }
 })
 
+-- setup autocomplete
 cmp.setup({
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
@@ -196,13 +207,15 @@ cmp.setup({
     },
 })
 
---- aux ---
--- harpoon
+---- aux ----
 local harpoon = require("harpoon")
 harpoon:setup()
 
+-- improve ui
 require("dressing").setup()
+-- file tree
 require("nvim-tree").setup()
+-- bottom status line
 require("lualine").setup({
     options = {
         theme = "auto",
@@ -214,12 +227,14 @@ require("lualine").setup({
 -- fzf
 local telescope_builtin = require("telescope.builtin")
 
--- other
-require("Comment").setup()
+-- formatting
 require("nvim-autopairs").setup()
 require("ibl").setup({ scope = { enabled = false } })
+
+-- other
+require("Comment").setup()
 require("gitsigns").setup()
 
 ---- plugin keybinds ----
 require("keymaps").plugin_binds({harpoon = harpoon, telescope_builtin = telescope_builtin})
-------------------
+-------------------------
