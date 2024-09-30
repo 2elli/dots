@@ -20,6 +20,7 @@ export PATH=/home/morgan/.cargo/bin:$PATH
 
 ##### ENVIRON VARS
 export SYSTEMD_EDITOR=nvim
+export EDITOR=nvim
 ##### 
 
 ##### ALIAS
