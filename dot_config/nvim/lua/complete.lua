@@ -209,8 +209,12 @@ cmp.setup({
 
 ---- aux ----
 local harpoon = require("harpoon")
-harpoon:setup()
-
+harpoon:setup({
+    settings = {
+        save_on_toggle = true,
+        sync_on_ui_close = true,
+    }
+})
 -- improve ui
 require("dressing").setup()
 -- file tree
