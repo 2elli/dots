@@ -106,3 +106,9 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=blue,underline
 ZSH_HIGHLIGHT_STYLES[precommand]=fg=blue,underline
 ZSH_HIGHLIGHT_STYLES[arg0]=fg=blue
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
