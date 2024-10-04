@@ -76,6 +76,19 @@ local function plugin_binds(plugins)
     vim.keymap.set("n", "<leader>Sl", function() require("persistence").load({ last = true }) end)
     vim.keymap.set("n", "<leader>Sq", function() require("persistence").stop() end)
     vim.keymap.set("n", "<leader>SS", function() require("persistence").select() end)
+
+    --[[ automatically setup binds for Comment.nvim
+    NORMAL
+    `gcc` - Toggles the current line using linewise comment
+    `gbc` - Toggles the current line using blockwise comment
+    `[count]gcc` - Toggles the number of line given as a prefix-count using linewise
+    `[count]gbc` - Toggles the number of line given as a prefix-count using blockwise
+    `gc[count]{motion}` - (Op-pending) Toggles the region using linewise comment
+    `gb[count]{motion}` - (Op-pending) Toggles the region using blockwise comment
+    VISUAL
+    `gc` - Toggles the region using linewise comment
+    `gb` - Toggles the region using blockwise comment
+    ]]
 end
 
 return { builtin_binds = builtin_binds, lsp_binds = lsp_binds, plugin_binds = plugin_binds }
