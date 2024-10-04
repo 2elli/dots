@@ -67,7 +67,8 @@ local function plugin_binds(plugins)
     -- file tree
     vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
 
-    -- telescope fzf
+    -- telescope and fzf
+    vim.keymap.set("n", "<leader>T", telescope_builtin.builtin, {})
     vim.keymap.set("n", "<leader>/", telescope_builtin.live_grep, {})
 
     -- persistence
