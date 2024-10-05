@@ -72,18 +72,6 @@ require("lazy").setup({
     { "RRethy/vim-illuminate" },
     { "numToStr/Comment.nvim",  lazy = false, },
     { "lewis6991/gitsigns.nvim" },
-    -- persistence
-    {
-        "folke/persistence.nvim",
-        event = "BufReadPre",
-        lazy = true,
-        config = function()
-            require("persistence").setup {
-                dir = vim.fn.expand(vim.fn.stdpath "config" .. "/session/"),
-                options = { "buffers", "curdir", "tabpages", "winsize" },
-            }
-        end,
-    },
     -- theme
     { "EdenEast/nightfox.nvim" },
 })

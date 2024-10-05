@@ -71,12 +71,6 @@ local function plugin_binds(plugins)
     vim.keymap.set("n", "<leader>T", telescope_builtin.builtin, {})
     vim.keymap.set("n", "<leader>/", telescope_builtin.live_grep, {})
 
-    -- persistence
-    vim.keymap.set("n", "<leader>Sc", function() require("persistence").load() end)
-    vim.keymap.set("n", "<leader>Sl", function() require("persistence").load({ last = true }) end)
-    vim.keymap.set("n", "<leader>Sq", function() require("persistence").stop() end)
-    vim.keymap.set("n", "<leader>SS", function() require("persistence").select() end)
-
     --[[ automatically setup binds for Comment.nvim
     NORMAL
     `gcc` - Toggles the current line using linewise comment
