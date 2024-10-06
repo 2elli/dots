@@ -1,35 +1,27 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# Lines configured by zsh-newuser-install
+# zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=500
 SAVEHIST=500
 bindkey -e
-# End of lines configured by zsh-newuser-install
 
-##### PATHS
-export PATH=/home/morgan/.local/bin/tex:$PATH
-export PATH=/home/morgan/.local/bin:$PATH
-export PATH=/home/morgan/.cargo/bin:$PATH
-##### 
+##### paths
+export PATH=~/.local/bin/tex:$PATH
+export PATH=~/.local/bin:$PATH
+export PATH=~/.cargo/bin:$PATH
 
-##### ENVIRON VARS
+##### env vars
 export SYSTEMD_EDITOR=nvim
 export EDITOR=nvim
-##### 
 
-##### ALIAS
+##### alias
 alias xsc="xclip -selection clipboard"
 alias ls="lsd"
 alias tree="lsd --tree"
-#####
 
-##### KEYS
+##### add warp dir [https://github.com/mfaerevaag/wd]
+wd() { . ~/.config/zsh/wd/wd.sh }
+
+##### keybinds
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
 typeset -g -A key
@@ -79,36 +71,30 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
-#####
 
-##### other sources
-#fzf
+##### fzf
 source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
 
-##### AUTO GEN
-# p10k theme
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# The following lines were added by compinstall
+##### compinstall
 zstyle :compinstall filename '/home/morgan/.zshrc'
-
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
 
-# zsh syntax highlighting
+##### syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # custom colors
 ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=blue,underline
 ZSH_HIGHLIGHT_STYLES[precommand]=fg=blue,underline
 ZSH_HIGHLIGHT_STYLES[arg0]=fg=blue
 
-# pyenv
+##### pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+##### prompt
+export VIRTUAL_ENV_DISABLE_PROMPT=1  # disable env prompt for this theme
+export STARSHIP_CONFIG=~/.config/zsh/starship.toml  # starship theme
+eval "$(starship init zsh)"
