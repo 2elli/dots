@@ -69,6 +69,7 @@ local function plugin_binds(plugins)
 
     -- telescope and fzf
     vim.keymap.set("n", "<leader>T", telescope_builtin.builtin, {})
+    vim.keymap.set("n", "<leader>\"", telescope_builtin.registers, {})
     vim.keymap.set("n", "<leader>/", telescope_builtin.live_grep, {})
 
     --[[ automatically setup binds for Comment.nvim
