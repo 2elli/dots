@@ -5,7 +5,6 @@ SAVEHIST=500
 bindkey -e
 
 ##### paths
-export PATH=~/.local/bin/tex:$PATH
 export PATH=~/.local/bin:$PATH
 export PATH=~/.cargo/bin:$PATH
 
