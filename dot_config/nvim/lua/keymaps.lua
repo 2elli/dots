@@ -71,6 +71,7 @@ local function plugin_binds(plugins)
     vim.keymap.set("n", "<leader>T", telescope_builtin.builtin, {})
     vim.keymap.set("n", "<leader>\"", telescope_builtin.registers, {})
     vim.keymap.set("n", "<leader>/", telescope_builtin.live_grep, {})
+    vim.keymap.set("n", "<leader>F", telescope_builtin.find_files, {})
 
     --[[ automatically setup binds for Comment.nvim
     NORMAL
