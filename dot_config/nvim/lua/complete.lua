@@ -21,7 +21,7 @@ require("lazy").setup({
     -- dep
     { "nvim-lua/plenary.nvim" },
     -- treesitter
-    { "nvim-treesitter/nvim-treesitter", dependencies = { "JoosepAlviste/nvim-ts-context-commentstring", }, },
+    { "nvim-treesitter/nvim-treesitter", dependencies = { "JoosepAlviste/nvim-ts-context-commentstring", }, build = ":TSUpdate" },
     -- lsp
     { "VonHeikemen/lsp-zero.nvim", branch = "v4.x" },
     { "williamboman/mason.nvim" },
