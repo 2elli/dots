@@ -26,6 +26,7 @@ local function builtin_binds()
     vim.keymap.set("n", "<leader>Y", [["+Y]])
     vim.keymap.set({ "n", "v" }, "<leader>p", [["+p]])
     vim.keymap.set("n", "<leader>P", [["+P]])
+
     -- delete without copying to register
     vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 end
