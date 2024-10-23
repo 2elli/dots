@@ -34,6 +34,7 @@ require("lazy").setup({
         opts = {},
         config = function(_, opts) require("lsp_signature").setup(opts) end
     },
+    { "SmiteshP/nvim-navic" },
     -- snippets
     { "L3MON4D3/LuaSnip", dependencies = { "rafamadriz/friendly-snippets" }, },
     { "chrisgrieser/nvim-scissors", },
@@ -91,12 +92,19 @@ require("nvim-treesitter.configs").setup({
 ---- LSP ----
 local lsp_zero = require("lsp-zero")
 
+local navic = require("nvim-navic")
+
 -- lsp function for when buffer is attached to lsp
 local lsp_attach = function(client, bufnr)
     -- default keybinds -> lsp_zero.default_keymaps({ buffer = bufnr })
     -- create keybinds
     local opts = { buffer = bufnr }
     require("keymaps").lsp_binds(opts)
+
+    if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
+        vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+    end
 end
 
 -- setup lsp zero capabilities and defaults
