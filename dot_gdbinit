@@ -1,5 +1,4 @@
-set debuginfod enabled on
-
+# set debuginfod enabled on
 define init_gef
     source ~/gdb/.gef-.py
 end
