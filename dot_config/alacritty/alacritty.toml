@@ -1,3 +1,4 @@
+[general]
 import = ["/home/morgan/.config/alacritty/carbonfox/carbonfox.toml"]
 
 [env]
