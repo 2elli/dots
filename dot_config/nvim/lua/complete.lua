@@ -37,7 +37,12 @@ require("lazy").setup({
     { "SmiteshP/nvim-navic" },
     -- snippets
     { "L3MON4D3/LuaSnip", dependencies = { "rafamadriz/friendly-snippets" }, },
-    { "chrisgrieser/nvim-scissors", },
+    {
+        "chrisgrieser/nvim-scissors",
+        opts = {
+            snippetDir = vim.fn.expand(vim.fn.stdpath("config") .. "/snippets/"),
+        }
+    },
     -- autocomplete
     { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/cmp-buffer" },
