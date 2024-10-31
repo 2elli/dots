@@ -23,8 +23,5 @@ vim.opt.undodir = os.getenv("HOME") .. "/.nvim/undodir"
 
 vim.opt.termguicolors = true
 
--- python startup time fix
-vim.g.python3_host_prog = "/sbin/python"
-
 -- use default keybinds
 require("keymaps").builtin_binds()
