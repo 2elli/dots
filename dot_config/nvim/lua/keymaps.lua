@@ -74,6 +74,15 @@ local function plugin_binds(plugins)
     vim.keymap.set("n", "<leader>/", telescope_builtin.live_grep, {})
     vim.keymap.set("n", "<leader>F", telescope_builtin.find_files, {})
 
+    -- git
+    vim.keymap.set("n", "<leader>gg", ":Gitsigns<cr>")
+    vim.keymap.set("n", "<leader>gb", ":Gitsigns blame_line<cr>")
+    vim.keymap.set("n", "<leader>gB", ":Gitsigns blame<cr>")
+    vim.keymap.set("n", "<leader>gd", ":vert rightb Gitsigns diffthis<cr>")
+
+    -- marks
+    vim.keymap.set("n", "<leader>m", ":MarksListAll<cr>")
+
     --[[ automatically setup binds for Comment.nvim
     NORMAL
     `gcc` - Toggles the current line using linewise comment
