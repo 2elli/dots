@@ -73,7 +73,7 @@ require("lazy").setup({
     { "lukas-reineke/indent-blankline.nvim", main = "ibl",  opts = {} },
     { "windwp/nvim-autopairs", event = "InsertEnter", opts = {}, },
     -- aux
-    { "nvim-telescope/telescope.nvim", tag = "0.1.6", },
+    { "nvim-telescope/telescope.nvim", branch = "0.1.x", },
     { "chentoast/marks.nvim", event = "VeryLazy", opts = {}, },
     { "RRethy/vim-illuminate" },
     { "numToStr/Comment.nvim",  lazy = false, },
