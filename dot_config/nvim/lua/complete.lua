@@ -65,9 +65,6 @@ require("lazy").setup({
         dependencies = {
             "nvim-tree/nvim-web-devicons",
         },
-        config = function()
-            require("nvim-tree").setup({})
-        end,
     },
     -- format
     { "lukas-reineke/indent-blankline.nvim", main = "ibl",  opts = {} },
@@ -96,10 +93,9 @@ require("nvim-treesitter.configs").setup({
 
 ---- LSP ----
 local lsp_zero = require("lsp-zero")
-
 local navic = require("nvim-navic")
 
--- lsp function for when buffer is attached to lsp
+-- shared lsp function for when buffer is attached to lsp
 local lsp_attach = function(client, bufnr)
     -- default keybinds -> lsp_zero.default_keymaps({ buffer = bufnr })
     -- create keybinds
@@ -181,6 +177,7 @@ require('luasnip.loaders.from_vscode').lazy_load({
 })
 
 -- setup autocomplete
+local cmp_action = lsp_zero.cmp_action()
 cmp.setup({
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
@@ -189,8 +186,8 @@ cmp.setup({
         { name = 'path' },
     }),
     mapping = cmp.mapping.preset.insert({
-        ["<Tab>"] = cmp.mapping.select_next_item({ behavoir = 'select' }),
-        ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavoir = 'select' }),
+        ["<Tab>"] = cmp_action.luasnip_supertab(),
+        ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
     }),
     snippet = {
