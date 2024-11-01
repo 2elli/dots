@@ -21,7 +21,7 @@ require("lazy").setup({
     -- dep
     { "nvim-lua/plenary.nvim" },
     -- treesitter
-    { "nvim-treesitter/nvim-treesitter", dependencies = { "JoosepAlviste/nvim-ts-context-commentstring", }, build = ":TSUpdate" },
+    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
     -- lsp
     { "VonHeikemen/lsp-zero.nvim", branch = "v4.x" },
     { "williamboman/mason.nvim" },
@@ -53,8 +53,9 @@ require("lazy").setup({
     -- code action
     { "folke/trouble.nvim", opts = {}, cmd = "Trouble", },
     -- ui
-    { "stevearc/dressing.nvim" },
+    { "stevearc/dressing.nvim", opts = {} },
     { "j-hui/fidget.nvim", opts = {}, },
+    { "nvim-tree/nvim-web-devicons", opts = {} },
     { "nvim-lualine/lualine.nvim" },
     -- files
     { "ThePrimeagen/harpoon", branch = "harpoon2", },
@@ -62,19 +63,21 @@ require("lazy").setup({
         "nvim-tree/nvim-tree.lua",
         version = "*",
         lazy = false,
-        dependencies = {
-            "nvim-tree/nvim-web-devicons",
-        },
+        opts = {},
     },
     -- format
-    { "lukas-reineke/indent-blankline.nvim", main = "ibl",  opts = {} },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        opts = { scope = { enabled = false } },
+    },
     { "windwp/nvim-autopairs", event = "InsertEnter", opts = {}, },
     -- aux
     { "nvim-telescope/telescope.nvim", branch = "0.1.x", },
     { "chentoast/marks.nvim", event = "VeryLazy", opts = {}, },
     { "RRethy/vim-illuminate" },
-    { "numToStr/Comment.nvim",  lazy = false, },
-    { "lewis6991/gitsigns.nvim" },
+    { "numToStr/Comment.nvim", opts = {} },
+    { "lewis6991/gitsigns.nvim", opts = {} },
     -- theme
     { "EdenEast/nightfox.nvim" },
 })
@@ -163,9 +166,6 @@ null_ls.setup({
     }
 })
 
--- show lsp signatures when typing
-require("lsp_signature").setup()
-
 ---- autocomplete & snippets ----
 local cmp = require("cmp")
 local lspkind = require("lspkind")
@@ -206,17 +206,6 @@ cmp.setup({
 })
 
 ---- aux ----
-local harpoon = require("harpoon")
-harpoon:setup({
-    settings = {
-        save_on_toggle = true,
-        sync_on_ui_close = true,
-    }
-})
--- improve ui
-require("dressing").setup()
--- file tree
-require("nvim-tree").setup()
 -- bottom status line
 require("lualine").setup({
     options = {
@@ -226,16 +215,17 @@ require("lualine").setup({
     },
 })
 
+-- harpoon marks
+local harpoon = require("harpoon")
+harpoon:setup({
+    settings = {
+        save_on_toggle = true,
+        sync_on_ui_close = true,
+    }
+})
+
 -- fzf
 local telescope_builtin = require("telescope.builtin")
-
--- formatting
-require("nvim-autopairs").setup()
-require("ibl").setup({ scope = { enabled = false } })
-
--- other
-require("Comment").setup()
-require("gitsigns").setup()
 
 ---- plugin keybinds ----
 require("keymaps").plugin_binds({harpoon = harpoon, telescope_builtin = telescope_builtin})
