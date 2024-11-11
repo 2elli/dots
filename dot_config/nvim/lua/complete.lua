@@ -82,6 +82,7 @@ require("lazy").setup({
     { "EdenEast/nightfox.nvim" },
 })
 
+-- colors
 vim.opt.background = "dark"
 vim.cmd.colorscheme "carbonfox"
 
@@ -138,8 +139,21 @@ require("mason-lspconfig").setup({
         -- custom handlers
         lua_ls = function()
             require('lspconfig').lua_ls.setup({
-                -- ignore global "vim"
-                settings = { Lua = { diagnostics = { globals = { "vim" }, } } }
+                -- ignore global "vim" and dont align tables
+                settings = {
+                    Lua =
+                    {
+                        format = {
+                            enable = true,
+                            defaultConfig = {
+                                align_continuous_assign_statement = "false",
+                                align_continuous_rect_table_field = "false",
+                                align_array_table = "false"
+                            }
+                        },
+                        diagnostics = { globals = { "vim" }, },
+                    }
+                }
             })
         end,
 
@@ -197,8 +211,8 @@ cmp.setup({
     },
     formatting = {
         format = lspkind.cmp_format({
-            mode = 'symbol_text',  -- show only symbol annotations
-            maxwidth = 80,  -- max width of popup
+            mode = 'symbol_text', -- show only symbol annotations
+            maxwidth = 80,        -- max width of popup
             ellipsis_char = '...',
             show_labelDetails = true,
         })
@@ -228,7 +242,7 @@ harpoon:setup({
 local telescope_builtin = require("telescope.builtin")
 
 ---- plugin keybinds ----
-require("keymaps").plugin_binds({harpoon = harpoon, telescope_builtin = telescope_builtin})
+require("keymaps").plugin_binds({ harpoon = harpoon, telescope_builtin = telescope_builtin })
 -------------------------
 
 ---- autocmds ----
