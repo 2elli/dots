@@ -230,3 +230,7 @@ local telescope_builtin = require("telescope.builtin")
 ---- plugin keybinds ----
 require("keymaps").plugin_binds({harpoon = harpoon, telescope_builtin = telescope_builtin})
 -------------------------
+
+---- autocmds ----
+require("autocmd")
+------------------
