@@ -19,7 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 ---- install plugins ----
 require("lazy").setup({
     -- dep
-    { "nvim-lua/plenary.nvim" },
+    { "nvim-lua/plenary.nvim", lazy = true },
     -- treesitter
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
     -- lsp
