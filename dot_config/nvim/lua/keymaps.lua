@@ -5,7 +5,7 @@ local function builtin_binds()
     vim.g.mapleader = " "
     vim.keymap.set("n", "<SPACE>", "<Nop>")
     vim.keymap.set("n", "<leader>w", ":w<cr>")
-    vim.keymap.set("n", "<leader>q", ":q<cr>")
+    vim.keymap.set("n", "<leader>q", ":x<cr>")
     -- append next line
     vim.keymap.set("n", "J", "mzJ`z")
     -- keep page dwn + up centered
