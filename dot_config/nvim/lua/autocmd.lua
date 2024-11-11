@@ -1,8 +1,7 @@
 -- from https://github.com/ppwwyyxx
--- closes nvim tree if it is the last window
+-- closes nvim tree if it's the last window
 vim.api.nvim_create_autocmd("QuitPre", {
   callback = function()
-    vim.notify("ARHRAHRGAHRAGGHAHAH")
     local invalid_win = {}
     local wins = vim.api.nvim_list_wins()
     for _, w in ipairs(wins) do
