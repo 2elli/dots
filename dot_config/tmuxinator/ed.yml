@@ -1,0 +1,17 @@
+# ~/.config/tmuxinator/ed.yml
+
+name: ed
+root: .
+
+windows:
+  - editor:
+      panes:
+        - nvim .
+  - test:
+      layout: even-horizontal
+      panes:
+        - ~
+        - ~
+  - git:
+      panes:
+        - ~

@@ -1,0 +1,11 @@
+# ~/.config/tmuxinator/nvim.yml
+
+name: nvim
+
+windows:
+  - editor:
+      panes:
+        - nvim: wd nvim && nvim .
+  - test:
+      panes:
+        - wd nvim

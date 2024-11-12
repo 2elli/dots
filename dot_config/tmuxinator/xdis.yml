@@ -1,0 +1,17 @@
+# ~/.config/tmuxinator/xdis.yml
+
+name: xdis
+root: ~/dev/python-xdis/
+
+windows:
+  - editor:
+      panes:
+        - nvim: nvim .
+  - test:
+      layout: main-vertical
+      panes:
+        - ~
+        - ~
+  - git:
+      panes:
+        - git:
