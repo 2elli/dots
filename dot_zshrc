@@ -5,8 +5,10 @@ SAVEHIST=500
 bindkey -e
 
 ##### paths
-export PATH=~/.local/bin:$PATH
-export PATH=~/.cargo/bin:$PATH
+export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/.cargo/bin
+export PATH=$PATH:~/go/bin
+export PATH=$PATH:~/.local/share/gem/ruby/3.3.0/bin
 
 ##### env vars
 export SYSTEMD_EDITOR=nvim
@@ -16,6 +18,7 @@ export EDITOR=nvim
 alias xsc="xclip -selection clipboard"
 alias ls="lsd"
 alias tree="lsd --tree"
+alias mux="tmuxinator"
 
 ##### add warp dir [https://github.com/mfaerevaag/wd]
 wd() { . ~/.config/zsh/wd/wd.sh }
