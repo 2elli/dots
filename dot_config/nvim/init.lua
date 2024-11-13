@@ -1,2 +1,2 @@
 require("default")
-require("complete")
+require("plugins")
