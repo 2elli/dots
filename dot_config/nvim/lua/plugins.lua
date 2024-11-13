@@ -114,14 +114,14 @@ end
 
 -- setup lsp zero capabilities and defaults
 lsp_zero.extend_lspconfig({
-    capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
     lsp_attach = lsp_attach,
-    float_border = 'rounded',
+    float_border = "rounded",
     sign_text = {
-        error = '✘',
-        warn = '▲',
-        hint = '⚑',
-        info = ''
+        error = "✘",
+        warn = "▲",
+        hint = "⚑",
+        info = ""
     },
 })
 
@@ -133,12 +133,12 @@ require("mason-lspconfig").setup({
     handlers = {
         -- generic handler
         function(server_name)
-            require('lspconfig')[server_name].setup({})
+            require("lspconfig")[server_name].setup({})
         end,
 
         -- custom handlers
         lua_ls = function()
-            require('lspconfig').lua_ls.setup({
+            require("lspconfig").lua_ls.setup({
                 -- ignore global "vim" and dont align tables
                 settings = {
                     Lua =
@@ -158,7 +158,7 @@ require("mason-lspconfig").setup({
         end,
 
         clangd = function()
-            require('lspconfig').clangd.setup({
+            require("lspconfig").clangd.setup({
                 -- dont format with clangd
                 on_attach = function(client)
                     client.server_capabilities.documentFormattingProvider = false
@@ -170,7 +170,7 @@ require("mason-lspconfig").setup({
 })
 
 -- setup null-ls sources  (this is used for adding functionality, like formatting, that may not be in an lsp)
-local null_ls = require('null-ls')
+local null_ls = require("null-ls")
 null_ls.setup({
     sources = {
         null_ls.builtins.formatting.black,
@@ -185,8 +185,8 @@ local cmp = require("cmp")
 local lspkind = require("lspkind")
 
 -- load snippets
-require('luasnip.loaders.from_vscode').lazy_load()
-require('luasnip.loaders.from_vscode').lazy_load({
+require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_vscode").lazy_load({
     paths = { vim.fn.expand(vim.fn.stdpath("config") .. "/snippets/"), }
 })
 
@@ -194,10 +194,10 @@ require('luasnip.loaders.from_vscode').lazy_load({
 local cmp_action = lsp_zero.cmp_action()
 cmp.setup({
     sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-        { name = 'buffer' },
-        { name = 'path' },
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "buffer" },
+        { name = "path" },
     }),
     mapping = cmp.mapping.preset.insert({
         ["<Tab>"] = cmp_action.luasnip_supertab(),
@@ -211,9 +211,9 @@ cmp.setup({
     },
     formatting = {
         format = lspkind.cmp_format({
-            mode = 'symbol_text', -- show only symbol annotations
+            mode = "symbol_text", -- show only symbol annotations
             maxwidth = 80,        -- max width of popup
-            ellipsis_char = '...',
+            ellipsis_char = "...",
             show_labelDetails = true,
         })
     },
