@@ -50,7 +50,7 @@ require("lazy").setup({
     { "hrsh7th/nvim-cmp" },
     { "saadparwaiz1/cmp_luasnip" },
     { "onsails/lspkind.nvim" },
-    -- code action
+    -- diagnostics
     { "folke/trouble.nvim", opts = {}, cmd = "Trouble", },
     -- ui
     { "stevearc/dressing.nvim", opts = {} },
