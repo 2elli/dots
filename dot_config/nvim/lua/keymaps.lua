@@ -26,9 +26,13 @@ local function builtin_binds()
     vim.keymap.set("n", "<leader>Y", [["+Y]])
     vim.keymap.set({ "n", "v" }, "<leader>p", [["+p]])
     vim.keymap.set("n", "<leader>P", [["+P]])
-
     -- delete without copying to register
     vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+    -- tabs
+    vim.keymap.set("n", "<leader>bn", ":tabn<CR>")
+    vim.keymap.set("n", "<leader>bb", ":tabp<CR>")
+    vim.keymap.set("n", "<leader>be", ":tabe<CR>")
+    vim.keymap.set("n", "<leader>bc", ":tabc<CR>")
 end
 
 ---Loads all lsp keybindings
@@ -38,11 +42,11 @@ local function lsp_binds(opts)
     vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
     vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
     vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set("n", "gh", function() vim.lsp.buf.signature_help() end, opts)
-    vim.keymap.set({ "n", "v" }, "<leader>lf", function() vim.lsp.buf.format() end, opts)
-    vim.keymap.set("n", "<leader>lt", function() vim.lsp.buf.type_definition() end, opts)
+    vim.keymap.set("n", "gt", function() vim.lsp.buf.type_definition() end, opts)
+    vim.keymap.set("n", "<leader>lh", function() vim.lsp.buf.signature_help() end, opts)
     vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.rename() end, opts)
+    vim.keymap.set({ "n", "v" }, "<leader>lf", function() vim.lsp.buf.format() end, opts)
 end
 
 ---loads keybinds for plugins
