@@ -87,6 +87,12 @@ local function plugin_binds(plugins)
     -- marks
     vim.keymap.set("n", "<leader>m", ":MarksListAll<cr>")
 
+    -- sessions
+    vim.keymap.set("n", "<leader>Sc", function() require("persistence").load() end)
+    vim.keymap.set("n", "<leader>Sl", function() require("persistence").load({ last = true }) end)
+    vim.keymap.set("n", "<leader>SS", function() require("persistence").select() end)
+    vim.keymap.set("n", "<leader>Sq", function() require("persistence").stop() end)
+
     --[[ automatically setup binds for Comment.nvim
     NORMAL
     `gcc` - Toggles the current line using linewise comment

@@ -78,6 +78,8 @@ require("lazy").setup({
     { "RRethy/vim-illuminate" },
     { "numToStr/Comment.nvim", opts = {} },
     { "lewis6991/gitsigns.nvim", opts = {} },
+    -- session
+    { "folke/persistence.nvim", event = "BufReadPre", opts = { dir = vim.fn.stdpath("state") .. "/sessions/" } },
     -- theme
     { "EdenEast/nightfox.nvim" },
 })
