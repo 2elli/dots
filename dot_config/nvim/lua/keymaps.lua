@@ -29,10 +29,10 @@ local function builtin_binds()
     -- delete without copying to register
     vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
     -- tabs
-    vim.keymap.set("n", "<leader>bn", ":tabn<CR>")
-    vim.keymap.set("n", "<leader>bb", ":tabp<CR>")
-    vim.keymap.set("n", "<leader>be", ":tabe<CR>")
-    vim.keymap.set("n", "<leader>bc", ":tabc<CR>")
+    vim.keymap.set("n", "<leader>tn", ":tabn<CR>")
+    vim.keymap.set("n", "<leader>tb", ":tabp<CR>")
+    vim.keymap.set("n", "<leader>te", ":tabe<CR>")
+    vim.keymap.set("n", "<leader>tc", ":tabc<CR>")
 end
 
 ---Loads all lsp keybindings
