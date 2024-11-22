@@ -132,7 +132,7 @@ lsp_zero.extend_lspconfig({
 -- setup and install lsp binaries
 require("mason").setup({})
 require("mason-lspconfig").setup({
-    ensure_installed = { "pyright", "lua_ls", "clangd", "ts_ls" },
+    ensure_installed = { "basedpyright", "lua_ls", "clangd", "ts_ls" },
     -- handlers for different lsp's
     handlers = {
         -- generic handler
@@ -141,6 +141,18 @@ require("mason-lspconfig").setup({
         end,
 
         -- custom handlers
+        basedpyright = function()
+            require("lspconfig").basedpyright.setup({
+                settings = {
+                    basedpyright = {
+                        analysis = {
+                            typeCheckingMode = "basic",
+                        }
+                    }
+                }
+            })
+        end,
+
         lua_ls = function()
             require("lspconfig").lua_ls.setup({
                 -- ignore global "vim" and dont align tables
