@@ -167,7 +167,12 @@ require("mason-lspconfig").setup({
                 on_attach = function(client)
                     client.server_capabilities.documentFormattingProvider = false
                     client.server_capabilities.documentFormattingRangeProvider = false
-                end
+                end,
+                cmd = {
+                    "clangd",
+                    "--offset-encoding=utf-16",
+                },
+
             })
         end,
     },
