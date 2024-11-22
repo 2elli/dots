@@ -6,7 +6,7 @@ root: ~/dev/python-xdis/
 windows:
   - editor:
       panes:
-        - nvim: nvim .
+        - nvim: nvim
   - test:
       layout: main-vertical
       panes:
