@@ -18,3 +18,11 @@ vim.api.nvim_create_autocmd("QuitPre", {
     end
 })
 
+-- USER COMMANDS
+vim.api.nvim_create_user_command(
+    "Venv",
+    function()
+        vim.print(require("venv-selector").venv())
+    end,
+    { desc = "Get Current Python Venv", }
+)
