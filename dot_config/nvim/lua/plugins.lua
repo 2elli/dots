@@ -2,6 +2,9 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- session options
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 -- setup lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -87,7 +90,6 @@ require("lazy").setup({
 -- colors
 vim.opt.background = "dark"
 vim.cmd.colorscheme "carbonfox"
-
 ---- treesitter ----
 require("nvim-treesitter.configs").setup({
     ensure_installed = { "c", "cpp", "python", "lua", "bash" },
