@@ -44,6 +44,12 @@ require("lazy").setup({
         "chrisgrieser/nvim-scissors",
         opts = {
             snippetDir = vim.fn.expand(vim.fn.stdpath("config") .. "/snippets/"),
+            editSnippetPopup = {
+                keymaps = {
+                    deleteSnippet = "<M-BS>", -- change to meta+backspace to fix key code issues
+                },
+            },
+            jsonFormatter = "jq",
         }
     },
     -- autocomplete
