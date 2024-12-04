@@ -5,10 +5,10 @@ SAVEHIST=500
 bindkey -e
 
 ##### paths
-export PATH=$PATH:~/.local/bin
-export PATH=$PATH:~/.cargo/bin
-export PATH=$PATH:~/go/bin
-export PATH=$PATH:~/.local/share/gem/ruby/3.3.0/bin
+export PATH=~/.local/bin:$PATH
+export PATH=~/.cargo/bin:$PATH
+export PATH=~/go/bin:$PATH
+export PATH=~/.local/share/gem/ruby/3.3.0/bin:$PATH
 
 ##### env vars
 export SYSTEMD_EDITOR=nvim
