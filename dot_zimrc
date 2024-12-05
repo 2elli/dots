@@ -1,0 +1,27 @@
+##### modules
+# Sets sane Zsh built-in environment options.
+zmodule environment
+# Applies correct bindkeys for input events.
+zmodule 2elli/zim-input
+# prompt-pwd for theme
+zmodule prompt-pwd
+# utils
+zmodule utility
+
+##### prompt
+# theme
+zmodule s1ck94
+# Exposes to prompts how long the last command took to execute, used by asciiship.
+zmodule duration-info
+# Exposes git repository status information to prompts, used by asciiship.
+zmodule git-info
+
+##### completion
+zmodule zsh-users/zsh-completions --fpath src
+zmodule completion
+
+##### modules that must be initialized last
+# syntax highlighting for Zsh.
+zmodule zsh-users/zsh-syntax-highlighting
+# autosuggestions for Zsh.
+zmodule zsh-users/zsh-autosuggestions
