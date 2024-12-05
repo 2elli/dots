@@ -83,6 +83,8 @@ local function plugin_binds(plugins)
     vim.keymap.set("n", "<leader>gb", ":Gitsigns blame_line<cr>")
     vim.keymap.set("n", "<leader>gB", ":Gitsigns blame<cr>")
     vim.keymap.set("n", "<leader>gd", ":vert rightb Gitsigns diffthis<cr>")
+    vim.keymap.set("n", "<leader>gn", ":Gitsigns next_hunk<cr>")
+    vim.keymap.set("n", "<leader>gp", ":Gitsigns prev_hunk<cr>")
 
     -- marks
     vim.keymap.set("n", "<leader>m", ":MarksListAll<cr>")
