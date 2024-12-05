@@ -11,9 +11,9 @@ zmodule utility
 ##### prompt
 # theme
 zmodule s1ck94
-# Exposes to prompts how long the last command took to execute, used by asciiship.
+# Exposes to prompts how long the last command took to execute
 zmodule duration-info
-# Exposes git repository status information to prompts, used by asciiship.
+# Exposes git repository status information to prompts
 zmodule git-info
 
 ##### completion

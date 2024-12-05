@@ -9,6 +9,7 @@ HISTFILE=~/.histfile
 HISTSIZE=500
 SAVEHIST=500
 
+# set key
 bindkey -e
 
 ##### add warp dir [https://github.com/mfaerevaag/wd]
@@ -29,7 +30,6 @@ alias xsc="xclip -selection clipboard"
 alias ls="lsd"
 alias tree="lsd --tree"
 alias mux="tmuxinator"
-
 
 # -----------------
 # Zim config
