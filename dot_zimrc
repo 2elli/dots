@@ -9,10 +9,8 @@ zmodule prompt-pwd
 zmodule utility
 
 ##### prompt
-# theme
+# prompt theme
 zmodule s1ck94
-# Exposes to prompts how long the last command took to execute
-zmodule duration-info
 # Exposes git repository status information to prompts
 zmodule git-info
 
