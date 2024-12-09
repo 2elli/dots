@@ -77,6 +77,9 @@ source ${ZIM_HOME}/init.zsh
 # Post-init module configuration
 # ------------------------------
 
+# set number of chars to show of directory in prompt, 0 = all chars
+zstyle ':zim:prompt-pwd:fish-style' dir-length 0
+
 ##### pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
