@@ -30,7 +30,7 @@ local function builtin_binds()
     vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
     -- tabs
     vim.keymap.set("n", "<leader>tn", ":tabn<CR>")
-    vim.keymap.set("n", "<leader>tb", ":tabp<CR>")
+    vim.keymap.set("n", "<leader>tp", ":tabp<CR>")
     vim.keymap.set("n", "<leader>te", ":tabe<CR>")
     vim.keymap.set("n", "<leader>tc", ":tabc<CR>")
 end
