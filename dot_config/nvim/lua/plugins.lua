@@ -24,6 +24,8 @@ vim.opt.rtp:prepend(lazypath)
 
 ---- install plugins ----
 require("lazy").setup({
+    -- plugin install settings
+    install = { missing = true, colorscheme = { "carbonfox" }, },
     -- dep
     { "nvim-lua/plenary.nvim", lazy = true },
     -- treesitter
