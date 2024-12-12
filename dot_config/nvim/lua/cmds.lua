@@ -1,6 +1,25 @@
 -- auto commands --
--- from https://github.com/ppwwyyxx
+-- setup lsp keymaps
+vim.api.nvim_create_autocmd("LspAttach", {
+    desc = "LSP actions and keymaps",
+    callback =
+        function(event)
+            local client = vim.lsp.get_client_by_id(event.data.client_id)
+            local bufnr = event.buf
+
+            -- map lsp keybinds
+            require("keymaps").lsp_binds({ buffer = bufnr })
+
+            -- add navic status
+            if client.server_capabilities.documentSymbolProvider then
+                require("nvim-navic").attach(client, bufnr)
+                vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+            end
+        end,
+})
+
 -- closes nvim tree if it's the last window
+-- from https://github.com/ppwwyyxx
 vim.api.nvim_create_autocmd("QuitPre", {
     callback = function()
         local invalid_win = {}
@@ -26,3 +45,6 @@ vim.api.nvim_create_user_command(
     end,
     { desc = "Get Current Python Venv", }
 )
+
+-- get lsp capabilities
+-- vim.print(vim.lsp.get_clients()[1].server_capabilities)

@@ -33,7 +33,6 @@ require("lazy").setup({
     -- treesitter
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
     -- lsp
-    { "VonHeikemen/lsp-zero.nvim", branch = "v4.x" },
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
     { "neovim/nvim-lspconfig" },
@@ -102,6 +101,7 @@ require("lazy").setup({
 -- colors
 vim.opt.background = "dark"
 vim.cmd.colorscheme "carbonfox"
+
 ---- treesitter ----
 require("nvim-treesitter.configs").setup({
     ensure_installed = { "c", "cpp", "python", "lua", "bash" },
@@ -112,36 +112,27 @@ require("nvim-treesitter.configs").setup({
 })
 
 ---- LSP ----
-local lsp_zero = require("lsp-zero")
-local navic = require("nvim-navic")
+local lspconfig_defaults = require("lspconfig").util.default_config
+lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+    "force",
+    lspconfig_defaults.capabilities,
+    require("cmp_nvim_lsp").default_capabilities()
+)
 
--- shared lsp function for when buffer is attached to lsp
-local lsp_attach = function(client, bufnr)
-    -- default keybinds -> lsp_zero.default_keymaps({ buffer = bufnr })
-    -- create keybinds
-    local opts = { buffer = bufnr }
-    require("keymaps").lsp_binds(opts)
-
-    if client.server_capabilities.documentSymbolProvider then
-        navic.attach(client, bufnr)
-        vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
-    end
-end
-
--- setup lsp zero capabilities and defaults
-lsp_zero.extend_lspconfig({
-    capabilities = require("cmp_nvim_lsp").default_capabilities(),
-    lsp_attach = lsp_attach,
-    float_border = "rounded",
-    sign_text = {
-        error = "✘",
-        warn = "▲",
-        hint = "⚑",
-        info = ""
+-- diagnostic signs
+vim.diagnostic.config({
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "✘",
+            [vim.diagnostic.severity.WARN] = "▲",
+            [vim.diagnostic.severity.HINT] = "⚑",
+            [vim.diagnostic.severity.INFO] = ""
+        },
     },
 })
 
--- setup and install lsp binaries
+-- setup and install lsp's
+-- note: LspAttach is configured in cmds.lua
 require("mason").setup({})
 require("mason-lspconfig").setup({
     ensure_installed = { "basedpyright", "bashls", "lua_ls", "clangd", "ts_ls" },
@@ -224,18 +215,12 @@ require("luasnip.loaders.from_vscode").lazy_load({
 })
 
 -- setup autocomplete
-local cmp_action = lsp_zero.cmp_action()
 cmp.setup({
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "buffer" },
         { name = "path" },
-    }),
-    mapping = cmp.mapping.preset.insert({
-        ["<Tab>"] = cmp_action.luasnip_supertab(),
-        ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
-        ["<CR>"] = cmp.mapping.confirm({ select = false }),
     }),
     snippet = {
         expand = function(args)
@@ -250,6 +235,7 @@ cmp.setup({
             show_labelDetails = true,
         })
     },
+    mapping = cmp.mapping.preset.insert(require("keymaps").cmp_binds(cmp)),
 })
 
 ---- aux ----
