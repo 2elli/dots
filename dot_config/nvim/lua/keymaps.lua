@@ -1,6 +1,5 @@
----- keybinds ----
-
----Loads default keymaps that do not require plugins
+-- keybinds --
+---Sets default keymaps that do not require plugins
 local function builtin_binds()
     vim.g.mapleader = " "
     vim.keymap.set("n", "<SPACE>", "<Nop>")
@@ -35,7 +34,7 @@ local function builtin_binds()
     vim.keymap.set("n", "<leader>tc", ":tabc<CR>")
 end
 
----Loads all lsp keybindings
+---Sets all lsp keybindings
 ---@param opts table  # "opts" table with buffer to be used in keymap
 local function lsp_binds(opts)
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
@@ -49,7 +48,7 @@ local function lsp_binds(opts)
     vim.keymap.set({ "n", "v" }, "<leader>lf", function() vim.lsp.buf.format() end, opts)
 end
 
----loads keybinds for plugins
+---Sets keybinds for all plugins
 ---@param plugins {harpoon: table, telescope_builtin: table}  # table of any plugins that need to be called directly in keymaps
 local function plugin_binds(plugins)
     local harpoon = plugins.harpoon
@@ -89,7 +88,7 @@ local function plugin_binds(plugins)
     -- marks
     vim.keymap.set("n", "<leader>m", ":MarksListAll<cr>")
 
-    --[[ automatically setup binds for Comment.nvim
+    --[[ binds automatically setup by Comment.nvim
     NORMAL
     `gcc` - Toggles the current line using linewise comment
     `gbc` - Toggles the current line using blockwise comment

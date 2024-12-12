@@ -1,4 +1,4 @@
--- AUTOCOMMANDS
+-- auto commands --
 -- from https://github.com/ppwwyyxx
 -- closes nvim tree if it's the last window
 vim.api.nvim_create_autocmd("QuitPre", {
@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd("QuitPre", {
     end
 })
 
--- USER COMMANDS
+-- user commands --
 vim.api.nvim_create_user_command(
     "Venv",
     function()
