@@ -71,6 +71,7 @@ require("lazy").setup({
     { "j-hui/fidget.nvim", opts = {}, },
     { "nvim-tree/nvim-web-devicons", opts = {} },
     { "nvim-lualine/lualine.nvim" },
+    { "sphamba/smear-cursor.nvim", opts = { stiffness = 0.8, trailing_stiffness = 0.5, distance_stop_animating = 0.5, hide_target_hack = false, }, },
     -- files
     { "ThePrimeagen/harpoon", branch = "harpoon2", },
     {
