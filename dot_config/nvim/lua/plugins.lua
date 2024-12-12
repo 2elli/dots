@@ -138,7 +138,7 @@ lsp_zero.extend_lspconfig({
 -- setup and install lsp binaries
 require("mason").setup({})
 require("mason-lspconfig").setup({
-    ensure_installed = { "basedpyright", "lua_ls", "clangd", "ts_ls" },
+    ensure_installed = { "basedpyright", "bashls", "lua_ls", "clangd", "ts_ls" },
     -- handlers for different lsp's
     handlers = {
         -- generic handler
