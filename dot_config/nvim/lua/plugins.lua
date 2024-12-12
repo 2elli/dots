@@ -26,6 +26,8 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     -- plugin install settings
     install = { missing = true, colorscheme = { "carbonfox" }, },
+    -- theme
+    { "EdenEast/nightfox.nvim" },
     -- dep
     { "nvim-lua/plenary.nvim", lazy = true },
     -- treesitter
@@ -67,11 +69,12 @@ require("lazy").setup({
     -- diagnostics
     { "folke/trouble.nvim", opts = {}, cmd = "Trouble", },
     -- ui
-    { "stevearc/dressing.nvim", opts = {} },
+    { "stevearc/dressing.nvim", opts = {}, },
     { "j-hui/fidget.nvim", opts = {}, },
-    { "nvim-tree/nvim-web-devicons", opts = {} },
+    { "nvim-tree/nvim-web-devicons", opts = {}, },
     { "nvim-lualine/lualine.nvim" },
     { "sphamba/smear-cursor.nvim", opts = { stiffness = 0.8, trailing_stiffness = 0.5, distance_stop_animating = 0.5, hide_target_hack = false, }, },
+    { "RRethy/vim-illuminate" },
     -- files
     { "ThePrimeagen/harpoon", branch = "harpoon2", },
     {
@@ -89,14 +92,11 @@ require("lazy").setup({
     { "windwp/nvim-autopairs", event = "InsertEnter", opts = {}, },
     -- aux
     { "nvim-telescope/telescope.nvim", branch = "0.1.x", },
+    { "numToStr/Comment.nvim", opts = {}, },
+    { "lewis6991/gitsigns.nvim", opts = {}, },
     { "chentoast/marks.nvim", event = "VeryLazy", opts = {}, },
-    { "RRethy/vim-illuminate" },
-    { "numToStr/Comment.nvim", opts = {} },
-    { "lewis6991/gitsigns.nvim", opts = {} },
     -- python
-    { "linux-cultist/venv-selector.nvim", branch = "regexp", lazy = false, opts = {} },
-    -- theme
-    { "EdenEast/nightfox.nvim" },
+    { "linux-cultist/venv-selector.nvim", branch = "regexp", lazy = false, opts = {}, },
 })
 
 -- colors
