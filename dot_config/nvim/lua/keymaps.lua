@@ -107,33 +107,35 @@ end
 local function cmp_binds(cmp)
     return {
         -- Super tab
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            local luasnip = require("luasnip")
-            local col = vim.fn.col(".") - 1
+        ["<Tab>"] = cmp.mapping(
+            function(fallback)
+                local luasnip = require("luasnip")
+                local col = vim.fn.col(".") - 1
 
-            if cmp.visible() then
-                cmp.select_next_item({ behavior = "select" })
-            elseif luasnip.expand_or_locally_jumpable() then
-                luasnip.expand_or_jump()
-            elseif col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
-                fallback()
-            else
-                cmp.complete()
-            end
-        end, { "i", "s" }),
+                if cmp.visible() then
+                    cmp.select_next_item()
+                elseif luasnip.expand_or_locally_jumpable() then
+                    luasnip.expand_or_jump()
+                elseif col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
+                    fallback()
+                else
+                    cmp.complete()
+                end
+            end, { "i", "s" }),
 
         -- Super shift tab
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-            local luasnip = require("luasnip")
+        ["<S-Tab>"] = cmp.mapping(
+            function(fallback)
+                local luasnip = require("luasnip")
 
-            if cmp.visible() then
-                cmp.select_prev_item({ behavior = "select" })
-            elseif luasnip.locally_jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
+                if cmp.visible() then
+                    cmp.select_prev_item()
+                elseif luasnip.locally_jumpable(-1) then
+                    luasnip.jump(-1)
+                else
+                    fallback()
+                end
+            end, { "i", "s" }),
 
         -- enter to confirm selection
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
