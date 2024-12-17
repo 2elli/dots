@@ -83,17 +83,18 @@ require("lazy").setup({
         opts = {},
     },
     -- format
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        opts = { scope = { enabled = false } },
-    },
     { "windwp/nvim-autopairs", event = "InsertEnter", opts = {}, },
     -- aux
     { "nvim-telescope/telescope.nvim", branch = "0.1.x", },
     { "numToStr/Comment.nvim", opts = {}, },
     { "lewis6991/gitsigns.nvim", opts = {}, },
     { "chentoast/marks.nvim", event = "VeryLazy", opts = {}, },
+    {
+        "folke/snacks.nvim",
+        opts = {
+            indent = { animate = { enabled = false } },
+        }
+    },
     -- python
     { "linux-cultist/venv-selector.nvim", branch = "regexp", lazy = false, opts = {}, },
 })
