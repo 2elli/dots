@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             require("keymaps").lsp_binds({ buffer = bufnr })
 
             -- add navic status
-            if client.server_capabilities.documentSymbolProvider then
+            if client ~= nil and client.server_capabilities.documentSymbolProvider then
                 require("nvim-navic").attach(client, bufnr)
                 vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
             end

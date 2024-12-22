@@ -34,15 +34,8 @@ require("lazy").setup({
     { "williamboman/mason-lspconfig.nvim" },
     { "neovim/nvim-lspconfig" },
     { "nvimtools/none-ls.nvim" },
-    {
-        "ray-x/lsp_signature.nvim",
-        event = "VeryLazy",
-        opts = {},
-        config = function(_, opts) require("lsp_signature").setup(opts) end
-    },
     { "SmiteshP/nvim-navic" },
     -- snippets
-    { "L3MON4D3/LuaSnip", dependencies = { "rafamadriz/friendly-snippets" }, },
     {
         "chrisgrieser/nvim-scissors",
         opts = {
@@ -56,12 +49,34 @@ require("lazy").setup({
         }
     },
     -- autocomplete
-    { "hrsh7th/cmp-nvim-lsp" },
-    { "hrsh7th/cmp-buffer" },
-    { "hrsh7th/cmp-path" },
-    { "hrsh7th/nvim-cmp" },
-    { "saadparwaiz1/cmp_luasnip" },
-    { "onsails/lspkind.nvim" },
+    {
+        "saghen/blink.cmp",
+        dependencies = "rafamadriz/friendly-snippets",
+        version = "*",
+        opts = {
+            sources = {
+                default = { "lazydev", "lsp", "snippets", "path", "buffer" },
+                providers = {
+                    lazydev = {
+                        name = "LazyDev",
+                        module = "lazydev.integrations.blink",
+                        score_offset = 100,
+                    },
+                },
+            },
+            keymap = { preset = "default" },
+            appearance = {
+                nerd_font_variant = "mono"
+            },
+            signature = { enabled = true },
+            completion = {
+                documentation = {
+                    auto_show = true,
+                    auto_show_delay_ms = 0,
+                },
+            },
+        },
+    },
     -- diagnostics
     { "folke/trouble.nvim", opts = {}, cmd = "Trouble", },
     -- ui
@@ -110,13 +125,6 @@ require("nvim-treesitter.configs").setup({
 })
 
 ---- LSP ----
-local lspconfig_defaults = require("lspconfig").util.default_config
-lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-    "force",
-    lspconfig_defaults.capabilities,
-    require("cmp_nvim_lsp").default_capabilities()
-)
-
 -- diagnostic signs
 vim.diagnostic.config({
     signs = {
@@ -131,19 +139,22 @@ vim.diagnostic.config({
 
 -- setup and install lsp's
 -- note: LspAttach is configured in cmds.lua
-require("mason").setup({})
+require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = { "basedpyright", "bashls", "lua_ls", "clangd", "ts_ls" },
     -- handlers for different lsp's
     handlers = {
         -- generic handler
         function(server_name)
-            require("lspconfig")[server_name].setup({})
+            require("lspconfig")[server_name].setup(
+                { capabilities = require("blink.cmp").get_lsp_capabilities(), }
+            )
         end,
 
         -- custom handlers
         basedpyright = function()
             require("lspconfig").basedpyright.setup({
+                capabilities = require("blink.cmp").get_lsp_capabilities(),
                 settings = {
                     basedpyright = {
                         analysis = {
@@ -157,6 +168,7 @@ require("mason-lspconfig").setup({
         lua_ls = function()
             require("lspconfig").lua_ls.setup({
                 -- ignore global "vim" and dont align tables
+                capabilities = require("blink.cmp").get_lsp_capabilities(),
                 settings = {
                     Lua =
                     {
@@ -176,6 +188,7 @@ require("mason-lspconfig").setup({
 
         clangd = function()
             require("lspconfig").clangd.setup({
+                capabilities = require("blink.cmp").get_lsp_capabilities(),
                 -- dont format with clangd
                 on_attach = function(client)
                     client.server_capabilities.documentFormattingProvider = false
@@ -191,6 +204,7 @@ require("mason-lspconfig").setup({
     },
 })
 
+
 -- setup null-ls sources  (this is used for adding functionality, like formatting, that may not be in an lsp)
 local null_ls = require("null-ls")
 null_ls.setup({
@@ -200,40 +214,6 @@ null_ls.setup({
             extra_args = { "--style={UseTab: Always, IndentWidth: 4, TabWidth: 4, ColumnLimit: 200}" }
         }),
     }
-})
-
----- autocomplete & snippets ----
-local cmp = require("cmp")
-local lspkind = require("lspkind")
-
--- load snippets
-require("luasnip.loaders.from_vscode").lazy_load()
-require("luasnip.loaders.from_vscode").lazy_load({
-    paths = { vim.fn.expand(vim.fn.stdpath("config") .. "/snippets/"), }
-})
-
--- setup autocomplete
-cmp.setup({
-    sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "buffer" },
-        { name = "path" },
-    }),
-    snippet = {
-        expand = function(args)
-            vim.snippet.expand(args.body)
-        end,
-    },
-    formatting = {
-        format = lspkind.cmp_format({
-            mode = "symbol_text", -- show only symbol annotations
-            maxwidth = 80,        -- max width of popup
-            ellipsis_char = "...",
-            show_labelDetails = true,
-        })
-    },
-    mapping = cmp.mapping.preset.insert(require("keymaps").cmp_binds(cmp)),
 })
 
 ---- aux ----
