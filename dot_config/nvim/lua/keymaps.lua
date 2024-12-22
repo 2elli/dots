@@ -3,8 +3,8 @@
 local function builtin_binds()
     vim.g.mapleader = " "
     vim.keymap.set("n", "<SPACE>", "<Nop>")
-    vim.keymap.set("n", "<leader>w", ":w<cr>")
-    vim.keymap.set("n", "<leader>q", ":x<cr>")
+    vim.keymap.set("n", "<leader>w", "<CMD>w<cr>")
+    vim.keymap.set("n", "<leader>q", "<CMD>x<cr>")
     -- append next line
     vim.keymap.set("n", "J", "mzJ`z")
     -- keep page dwn + up centered
@@ -16,10 +16,10 @@ local function builtin_binds()
     -- no highlight
     vim.keymap.set("n", "<leader>h", ":noh<CR>")
     -- meta + j|k to move selection
-    vim.keymap.set("v", "<M-j>", ":m '>+1<CR>gv=gv")
-    vim.keymap.set("v", "<M-k>", ":m '<-2<CR>gv=gv")
-    vim.keymap.set("n", "<M-j>", ":m .+1<CR>==")
-    vim.keymap.set("n", "<M-k>", ":m .-2<CR>==")
+    vim.keymap.set("v", "<M-j>", "<CMD>m '>+1<CR>gv=gv")
+    vim.keymap.set("v", "<M-k>", "<CMD>m '<-2<CR>gv=gv")
+    vim.keymap.set("n", "<M-j>", "<CMD>m .+1<CR>==")
+    vim.keymap.set("n", "<M-k>", "<CMD>m .-2<CR>==")
     -- yank/paste to system clipboard
     vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
     vim.keymap.set("n", "<leader>Y", [["+Y]])
@@ -28,10 +28,10 @@ local function builtin_binds()
     -- delete without copying to register
     vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
     -- tabs
-    vim.keymap.set("n", "<leader>tn", ":tabn<CR>")
-    vim.keymap.set("n", "<leader>tp", ":tabp<CR>")
-    vim.keymap.set("n", "<leader>te", ":tabe<CR>")
-    vim.keymap.set("n", "<leader>tc", ":tabc<CR>")
+    vim.keymap.set("n", "<leader>tn", "<CMD>tabn<CR>")
+    vim.keymap.set("n", "<leader>tp", "<CMD>tabp<CR>")
+    vim.keymap.set("n", "<leader>te", "<CMD>tabe<CR>")
+    vim.keymap.set("n", "<leader>tc", "<CMD>tabc<CR>")
 end
 
 ---Sets all lsp keybindings
@@ -61,8 +61,8 @@ local function plugin_binds(plugins)
     vim.keymap.set("n", "<C-p>", function() harpoon:list():prev() end)
 
     -- trouble
-    vim.keymap.set("n", "<leader>xx", ":Trouble diagnostics toggle filter.buf=0<cr>")
-    vim.keymap.set("n", "<leader>xX", ":Trouble diagnostics toggle<cr>")
+    vim.keymap.set("n", "<leader>xx", "<CMD>Trouble diagnostics toggle filter.buf=0<cr>")
+    vim.keymap.set("n", "<leader>xX", "<CMD>Trouble diagnostics toggle<cr>")
 
     -- scissors
     vim.keymap.set("n", "<leader>se", function() require("scissors").editSnippet() end)
@@ -78,15 +78,15 @@ local function plugin_binds(plugins)
     vim.keymap.set("n", "<leader>F", telescope_builtin.find_files, {})
 
     -- git
-    vim.keymap.set("n", "<leader>gg", ":Gitsigns<cr>")
-    vim.keymap.set("n", "<leader>gb", ":Gitsigns blame_line<cr>")
-    vim.keymap.set("n", "<leader>gB", ":Gitsigns blame<cr>")
-    vim.keymap.set("n", "<leader>gd", ":vert rightb Gitsigns diffthis<cr>")
-    vim.keymap.set("n", "<leader>gn", ":Gitsigns next_hunk<cr>")
-    vim.keymap.set("n", "<leader>gp", ":Gitsigns prev_hunk<cr>")
+    vim.keymap.set("n", "<leader>gg", "<CMD>Gitsigns<cr>")
+    vim.keymap.set("n", "<leader>gb", "<CMD>Gitsigns blame_line<cr>")
+    vim.keymap.set("n", "<leader>gB", "<CMD>Gitsigns blame<cr>")
+    vim.keymap.set("n", "<leader>gd", "<CMD>vert rightb Gitsigns diffthis<cr>")
+    vim.keymap.set("n", "<leader>gn", "<CMD>Gitsigns next_hunk<cr>")
+    vim.keymap.set("n", "<leader>gp", "<CMD>Gitsigns prev_hunk<cr>")
 
     -- marks
-    vim.keymap.set("n", "<leader>m", ":MarksListAll<cr>")
+    vim.keymap.set("n", "<leader>m", "<CMD>MarksListAll<cr>")
 
     --[[ binds automatically setup by Comment.nvim
     NORMAL
