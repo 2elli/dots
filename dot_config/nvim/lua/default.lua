@@ -23,5 +23,10 @@ vim.opt.undodir = os.getenv("HOME") .. "/.nvim/undodir"
 
 vim.opt.termguicolors = true
 
+vim.g.have_nerd_font = true
+
+-- session options
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 -- use default keybinds
 require("keymaps").builtin_binds()
