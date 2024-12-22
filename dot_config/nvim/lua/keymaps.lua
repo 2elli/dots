@@ -13,8 +13,8 @@ local function builtin_binds()
     -- keep searching dwn + up centered
     vim.keymap.set("n", "n", "nzzzv")
     vim.keymap.set("n", "N", "Nzzzv")
-    -- no highlight
-    vim.keymap.set("n", "<leader>h", ":noh<CR>")
+    -- clear search highlight
+    vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
     -- meta + j|k to move selection
     vim.keymap.set("v", "<M-j>", "<CMD>m '>+1<CR>gv=gv")
     vim.keymap.set("v", "<M-k>", "<CMD>m '<-2<CR>gv=gv")
