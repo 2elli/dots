@@ -68,8 +68,8 @@ local function plugin_binds(plugins)
     vim.keymap.set("n", "<leader>se", function() require("scissors").editSnippet() end)
     vim.keymap.set({ "n", "x" }, "<leader>sa", function() require("scissors").addNewSnippet() end)
 
-    -- oil file tree
-    vim.keymap.set("n", "<leader>e", "<CMD>Oil<CR>")
+    -- toggle oil file "tree"
+    vim.keymap.set("n", "<leader>e", function() vim.cmd((vim.bo.filetype == 'oil') and 'bd' or 'Oil') end)
 
     -- telescope and fzf
     vim.keymap.set("n", "<leader>T", telescope_builtin.builtin, {})
