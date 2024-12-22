@@ -98,10 +98,11 @@ require("lazy").setup({
     {
         "folke/snacks.nvim",
         opts = {
-            indent = { animate = { enabled = false } },
-        }
+            -- show indent lines
+            indent = { animate = { enabled = false }, },
+        },
     },
-    { "folke/todo-comments.nvim", opts = {} },
+    { "folke/todo-comments.nvim", opts = {}, },
     -- python
     { "linux-cultist/venv-selector.nvim", branch = "regexp", lazy = false, opts = {}, },
     -- neovim development
@@ -111,7 +112,7 @@ require("lazy").setup({
         opts = {
             library = {
                 -- Load luvit types when the `vim.uv` word is found
-                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+                { path = "${3rd}/luv/library", words = { "vim%.uv" }, },
             },
             -- only load if lazydev_enabled is set
             enabled = function(root_dir)
@@ -190,7 +191,6 @@ require("mason-lspconfig").setup({
                                 align_array_table = "false"
                             }
                         },
-                        diagnostics = { globals = { "vim" }, },
                     }
                 }
             })
