@@ -103,6 +103,21 @@ require("lazy").setup({
     },
     -- python
     { "linux-cultist/venv-selector.nvim", branch = "regexp", lazy = false, opts = {}, },
+    -- neovim development
+    {
+        "folke/lazydev.nvim",
+        ft = "lua", -- only load on lua files
+        opts = {
+            library = {
+                -- Load luvit types when the `vim.uv` word is found
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+            -- only load if lazydev_enabled is set
+            enabled = function(root_dir)
+                return vim.g.lazydev_enabled == nil and false or vim.g.lazydev_enabled
+            end,
+        },
+    },
 })
 
 -- colors
