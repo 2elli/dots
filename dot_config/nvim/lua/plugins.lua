@@ -101,6 +101,7 @@ require("lazy").setup({
             indent = { animate = { enabled = false } },
         }
     },
+    { "folke/todo-comments.nvim", opts = {} },
     -- python
     { "linux-cultist/venv-selector.nvim", branch = "regexp", lazy = false, opts = {}, },
     -- neovim development
