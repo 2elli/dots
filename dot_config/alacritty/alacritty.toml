@@ -2,7 +2,7 @@
 import = ["/home/morgan/.config/alacritty/carbonfox/carbonfox.toml"]
 
 [env]
-TERM = "xterm-256color"
+TERM = "screen-256color"
 WINIT_X11_SCALE_FACTOR = "1"
 
 [font]
