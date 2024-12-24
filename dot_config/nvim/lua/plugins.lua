@@ -51,7 +51,7 @@ require("lazy").setup({
         version = "*",
         opts = {
             sources = {
-                default = { "lazydev", "lsp", "snippets", "path", "buffer" },
+                default = { "lazydev", "snippets", "lsp", "path", "buffer" },
                 providers = {
                     lazydev = {
                         name = "LazyDev",
