@@ -34,9 +34,9 @@ export EDITOR=nvim
 
 ##### alias
 alias xsc="xclip -selection clipboard"
-alias ls="lsd"
 alias tree="lsd --tree"
 alias mux="tmuxinator"
+alias cvim="nvim --clean"
 
 # -----------------
 # Zim config
