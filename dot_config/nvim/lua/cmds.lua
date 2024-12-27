@@ -26,6 +26,3 @@ vim.api.nvim_create_user_command(
     end,
     { desc = "Get Current Python Venv", }
 )
-
--- get lsp capabilities
--- vim.print(vim.lsp.get_clients()[1].server_capabilities)

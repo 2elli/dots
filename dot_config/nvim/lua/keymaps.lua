@@ -1,6 +1,7 @@
 -- keybinds --
+local M = {}
 ---Sets default keymaps that do not require plugins
-local function builtin_binds()
+M.builtin_binds = function()
     vim.g.mapleader = " "
     vim.keymap.set("n", "<SPACE>", "<Nop>")
     vim.keymap.set("n", "<leader>w", "<CMD>w<cr>")
@@ -36,7 +37,7 @@ end
 
 ---Sets all lsp keybindings
 ---@param opts table  # "opts" table with buffer to be used in keymap
-local function lsp_binds(opts)
+M.lsp_binds = function(opts)
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
     vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
     vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
@@ -50,7 +51,7 @@ end
 
 ---Sets keybinds for all plugins
 ---@param plugins {harpoon: table, telescope_builtin: table}  # table of any plugins that need to be called directly in keymaps
-local function plugin_binds(plugins)
+M.plugin_binds = function(plugins)
     local harpoon = plugins.harpoon
     local telescope_builtin = plugins.telescope_builtin
 
@@ -103,3 +104,5 @@ local function plugin_binds(plugins)
 end
 
 return { builtin_binds = builtin_binds, lsp_binds = lsp_binds, plugin_binds = plugin_binds }
+
+return M
