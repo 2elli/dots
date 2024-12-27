@@ -103,6 +103,16 @@ M.plugin_binds = function(plugins)
     ]]
 end
 
-return { builtin_binds = builtin_binds, lsp_binds = lsp_binds, plugin_binds = plugin_binds }
+---Returns table used by blink to set cmp keybinds
+M.blink_binds = function()
+    return {
+        -- use default keys as base
+        preset = "default",
+        -- add "super-tab" like actions
+        ["<CR>"] = { "accept", "fallback" },
+        ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+        ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+    }
+end
 
 return M

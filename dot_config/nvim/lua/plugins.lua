@@ -60,7 +60,7 @@ require("lazy").setup({
                     },
                 },
             },
-            keymap = { preset = "default" },
+            keymap = require("keymaps").blink_binds(),
             appearance = {
                 nerd_font_variant = "mono"
             },
@@ -70,6 +70,7 @@ require("lazy").setup({
                     auto_show = true,
                     auto_show_delay_ms = 0,
                 },
+                list = { selection = "manual", },
             },
         },
     },
