@@ -1,24 +1,29 @@
-##### modules
+##### modules #####
 # Sets sane Zsh built-in environment options.
 zmodule environment
 # Applies correct bindkeys for input events.
-zmodule 2elli/zim-input
+zmodule input
 # prompt-pwd for theme
 zmodule prompt-pwd
 # utils
 zmodule utility
+# searching
+zmodule fzf
 
-##### prompt
+##### prompt #####
 # prompt theme
 zmodule s1ck94
 # Exposes git repository status information to prompts
 zmodule git-info
 
-##### completion
+##### completion #####
+# additional zsh autocomplete definitions
 zmodule zsh-users/zsh-completions --fpath src
+# smart completion and better loading (has to be loaded after any modules that add autocomplete)
 zmodule completion
 
-##### modules that must be initialized last
+##### last #####
+# (modules that must be loaded last)
 # syntax highlighting for Zsh.
 zmodule zsh-users/zsh-syntax-highlighting
 # autosuggestions for Zsh.
