@@ -1,6 +1,9 @@
-# -----------------
-# Zsh configuration
-# -----------------
+# zmodload zsh/zprof
+# uncomment first and last line to benchmark
+
+##################
+### zsh config ###
+##################
 
 ##### history
 # Remove older command from the history if a duplicate is to be added.
@@ -11,16 +14,6 @@ SAVEHIST=500
 
 # set key
 bindkey -e
-
-##### add warp dir [https://github.com/mfaerevaag/wd]
-wd() { . ~/.config/zsh/wd/wd.sh }
-
-# clear zsh hist
-function clear_history() {
-    :>!$HISTFILE
-    history -p
-    clear
-}
 
 ##### paths
 export PATH=~/.local/bin:$PATH
@@ -38,9 +31,33 @@ alias tree="lsd --tree"
 alias mux="tmuxinator"
 alias cvim="nvim --clean"
 
-# -----------------
-# Zim config
-# -----------------
+##### functions
+# clear clipboard
+function clear_clip() {
+    xsc < /dev/null
+}
+
+# clear zsh hist
+function clear_history() {
+    :>!$HISTFILE
+    history -p
+    clear
+}
+
+# clear clipboard and history
+function clean() {
+    clear_clip
+    clear_history
+}
+
+##### keybinds
+# ctrl + backspace and ctrl + del to delete word before and after respectively
+bindkey '^H' backward-delete-word
+bindkey '5~' delete-word
+
+##################
+### zim config ###
+##################
 
 # --------------------
 # Module config
@@ -92,3 +109,5 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - --no-rehash zsh)"
 eval "$(pyenv virtualenv-init -)"
+
+# zprof
