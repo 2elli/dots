@@ -16,6 +16,10 @@ zmodule s1ck94
 # Exposes git repository status information to prompts
 zmodule git-info
 
+##### custom #####
+# warp dir
+zmodule mfaerevaag/wd -s wd.plugin.zsh --fpath .
+
 ##### completion #####
 # additional zsh autocomplete definitions
 zmodule zsh-users/zsh-completions --fpath src
