@@ -62,15 +62,25 @@ require("lazy").setup({
             },
             keymap = require("keymaps").blink_binds(),
             appearance = {
+                -- fix color theme compatability
+                use_nvim_cmp_as_default = true,
                 nerd_font_variant = "mono"
             },
-            signature = { enabled = true },
+            signature = { enabled = true }, -- show signature help
             completion = {
+                -- show lsp docs of option
                 documentation = {
                     auto_show = true,
                     auto_show_delay_ms = 0,
                 },
-                list = { selection = "manual", },
+                -- list selection behavior
+                list = { selection = { preselect = false, auto_insert = false }, },
+                -- menu appearance
+                menu = {
+                    draw = {
+                        columns = { { "label", "label_description", gap = 1 }, { "kind" }, { "kind_icon" }, },
+                    },
+                },
             },
         },
     },
