@@ -256,11 +256,8 @@ harpoon:setup({
     }
 })
 
--- fzf
-local telescope_builtin = require("telescope.builtin")
-
 ---- plugin keybinds ----
-require("keymaps").plugin_binds({ harpoon = harpoon, telescope_builtin = telescope_builtin })
+require("keymaps").plugin_binds(harpoon, require("oil"), require("scissors"), require("telescope.builtin"))
 -------------------------
 
 ---- cmds and autocmds ----
