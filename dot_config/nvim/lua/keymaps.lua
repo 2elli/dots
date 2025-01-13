@@ -24,8 +24,6 @@ M.builtin_binds = function()
     -- delete without copying to register
     vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
     -- tabs
-    vim.keymap.set("n", "<leader>tn", "<CMD>tabn<CR>")
-    vim.keymap.set("n", "<leader>tp", "<CMD>tabp<CR>")
     vim.keymap.set("n", "<leader>te", "<CMD>tabe<CR>")
     vim.keymap.set("n", "<leader>tc", "<CMD>tabc<CR>")
 end
@@ -37,7 +35,7 @@ M.lsp_binds = function(opts)
     vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
     vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
     vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set("n", "gt", function() vim.lsp.buf.type_definition() end, opts)
+    vim.keymap.set("n", "gy", function() vim.lsp.buf.type_definition() end, opts)
     vim.keymap.set("n", "<leader>lh", function() vim.lsp.buf.signature_help() end, opts)
     vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.rename() end, opts)
