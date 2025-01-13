@@ -20,7 +20,7 @@ require("lazy").setup({
     -- theme
     { "EdenEast/nightfox.nvim" },
     -- dep
-    { "nvim-lua/plenary.nvim", lazy = true },
+    { "nvim-lua/plenary.nvim" },
     -- treesitter
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
     -- lsp
@@ -40,7 +40,7 @@ require("lazy").setup({
                 },
             },
             jsonFormatter = "jq",
-        }
+        },
     },
     -- autocomplete
     {
@@ -62,7 +62,7 @@ require("lazy").setup({
             appearance = {
                 -- fix color theme compatability
                 use_nvim_cmp_as_default = true,
-                nerd_font_variant = "mono"
+                nerd_font_variant = "mono",
             },
             signature = { enabled = true }, -- show signature help
             completion = {
@@ -72,50 +72,50 @@ require("lazy").setup({
                     auto_show_delay_ms = 0,
                 },
                 -- list selection behavior
-                list = { selection = { preselect = false, auto_insert = false }, },
+                list = { selection = { preselect = false, auto_insert = false } },
                 -- menu appearance
                 menu = {
                     draw = {
-                        columns = { { "label", "label_description", gap = 1 }, { "kind" }, { "kind_icon" }, },
+                        columns = { { "label", "label_description", gap = 1 }, { "kind" }, { "kind_icon" } },
                     },
                 },
             },
         },
     },
     -- diagnostics
-    { "folke/trouble.nvim", opts = {}, cmd = "Trouble", },
+    { "folke/trouble.nvim", opts = {}, cmd = "Trouble" },
     -- ui
-    { "stevearc/dressing.nvim", opts = {}, },
-    { "j-hui/fidget.nvim", opts = {}, },
-    { "nvim-tree/nvim-web-devicons", opts = {}, },
+    { "stevearc/dressing.nvim", opts = {} },
+    { "j-hui/fidget.nvim", opts = {} },
+    { "nvim-tree/nvim-web-devicons", opts = {} },
     { "nvim-lualine/lualine.nvim" },
-    { "sphamba/smear-cursor.nvim", opts = { stiffness = 0.8, trailing_stiffness = 0.5, distance_stop_animating = 0.5, hide_target_hack = false, }, },
+    { "sphamba/smear-cursor.nvim", opts = { stiffness = 0.8, trailing_stiffness = 0.5, distance_stop_animating = 0.5, hide_target_hack = false } },
     { "RRethy/vim-illuminate" },
     -- files
-    { "ThePrimeagen/harpoon", branch = "harpoon2", },
+    { "ThePrimeagen/harpoon", branch = "harpoon2" },
     {
         "stevearc/oil.nvim",
         opts = {},
     },
     -- format
-    { "windwp/nvim-autopairs", event = "InsertEnter", opts = {}, },
+    { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
     -- sessions
-    { "olimorris/persisted.nvim", opts = { autostart = false }, },
+    { "olimorris/persisted.nvim", opts = { autostart = false } },
     -- aux
-    { "nvim-telescope/telescope.nvim", branch = "0.1.x", },
-    { "numToStr/Comment.nvim", opts = {}, },
-    { "lewis6991/gitsigns.nvim", opts = {}, },
-    { "chentoast/marks.nvim", event = "VeryLazy", opts = {}, },
+    { "nvim-telescope/telescope.nvim", branch = "0.1.x" },
+    { "numToStr/Comment.nvim", opts = {} },
+    { "lewis6991/gitsigns.nvim", opts = {} },
+    { "chentoast/marks.nvim", event = "VeryLazy", opts = {} },
     {
         "folke/snacks.nvim",
         opts = {
             -- show indent lines
-            indent = { animate = { enabled = false }, },
+            indent = { animate = { enabled = false } },
         },
     },
-    { "folke/todo-comments.nvim", opts = {}, },
+    { "folke/todo-comments.nvim", opts = {} },
     -- python
-    { "linux-cultist/venv-selector.nvim", branch = "regexp", lazy = false, opts = {}, },
+    { "linux-cultist/venv-selector.nvim", branch = "regexp", lazy = false, opts = {} },
     -- neovim development
     {
         "folke/lazydev.nvim",
@@ -123,7 +123,7 @@ require("lazy").setup({
         opts = {
             library = {
                 -- Load luvit types when the `vim.uv` word is found
-                { path = "${3rd}/luv/library", words = { "vim%.uv" }, },
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
             },
             -- only load if lazydev_enabled is set
             enabled = function(root_dir)
@@ -154,7 +154,7 @@ vim.diagnostic.config({
             [vim.diagnostic.severity.ERROR] = "✘",
             [vim.diagnostic.severity.WARN] = "▲",
             [vim.diagnostic.severity.HINT] = "⚑",
-            [vim.diagnostic.severity.INFO] = ""
+            [vim.diagnostic.severity.INFO] = "",
         },
     },
 })
@@ -169,7 +169,7 @@ require("mason-lspconfig").setup({
         -- generic handler
         function(server_name)
             require("lspconfig")[server_name].setup(
-                { capabilities = require("blink.cmp").get_lsp_capabilities(), }
+                { capabilities = require("blink.cmp").get_lsp_capabilities() }
             )
         end,
 
@@ -181,9 +181,9 @@ require("mason-lspconfig").setup({
                     basedpyright = {
                         analysis = {
                             typeCheckingMode = "basic",
-                        }
-                    }
-                }
+                        },
+                    },
+                },
             })
         end,
 
@@ -197,13 +197,12 @@ require("mason-lspconfig").setup({
                         format = {
                             enable = true,
                             defaultConfig = {
-                                align_continuous_assign_statement = "false",
-                                align_continuous_rect_table_field = "false",
-                                align_array_table = "false"
-                            }
+                                align_array_table = "false",
+                                trailing_table_separator = "smart",
+                            },
                         },
-                    }
-                }
+                    },
+                },
             })
         end,
 
@@ -232,9 +231,9 @@ null_ls.setup({
     sources = {
         null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.clang_format.with({
-            extra_args = { "--style={UseTab: Always, IndentWidth: 4, TabWidth: 4, ColumnLimit: 200}" }
+            extra_args = { "--style={UseTab: Always, IndentWidth: 4, TabWidth: 4, ColumnLimit: 200}" },
         }),
-    }
+    },
 })
 
 ---- aux ----
@@ -253,7 +252,7 @@ harpoon:setup({
     settings = {
         save_on_toggle = true,
         sync_on_ui_close = true,
-    }
+    },
 })
 
 -- telescope extensions
