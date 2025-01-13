@@ -17,8 +17,6 @@ vim.opt.rtp:prepend(lazypath)
 
 ---- install plugins ----
 require("lazy").setup({
-    -- plugin install settings
-    install = { missing = true, colorscheme = { "carbonfox" }, },
     -- theme
     { "EdenEast/nightfox.nvim" },
     -- dep
@@ -101,6 +99,8 @@ require("lazy").setup({
     },
     -- format
     { "windwp/nvim-autopairs", event = "InsertEnter", opts = {}, },
+    -- sessions
+    { "olimorris/persisted.nvim", opts = { autostart = false }, },
     -- aux
     { "nvim-telescope/telescope.nvim", branch = "0.1.x", },
     { "numToStr/Comment.nvim", opts = {}, },
@@ -255,6 +255,9 @@ harpoon:setup({
         sync_on_ui_close = true,
     }
 })
+
+-- telescope extensions
+require("telescope").load_extension("persisted")
 
 ---- plugin keybinds ----
 require("keymaps").plugin_binds(harpoon, require("oil"), require("scissors"), require("telescope.builtin"))

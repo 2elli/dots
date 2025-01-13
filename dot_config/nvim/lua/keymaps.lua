@@ -70,6 +70,12 @@ M.plugin_binds = function(harpoon, oil, scissors, telescope_builtin)
     vim.keymap.set("n", "<leader>tq", telescope_builtin.quickfix, {})
     vim.keymap.set("n", "<leader>tj", telescope_builtin.jumplist, {})
 
+    -- sessions
+    vim.keymap.set("n", "<leader>sw", "<CMD>SessionSave<CR>")
+    vim.keymap.set("n", "<leader>ss", "<CMD>Telescope persisted<CR>")
+    vim.keymap.set("n", "<leader>sc", "<CMD>SessionLoad<CR>")
+    vim.keymap.set("n", "<leader>sl", "<CMD>SessionLoadLast<CR>")
+
     -- trouble
     vim.keymap.set("n", "<leader>xx", "<CMD>Trouble diagnostics toggle filter.buf=0<CR>")
     vim.keymap.set("n", "<leader>xX", "<CMD>Trouble diagnostics toggle<CR>")
