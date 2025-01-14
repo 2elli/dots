@@ -27,7 +27,7 @@ vim.opt.ignorecase = true
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undofile = true
-vim.opt.undodir = os.getenv("HOME") .. "/.nvim/undodir"
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
 
 -- term defaults
 vim.opt.termguicolors = true
