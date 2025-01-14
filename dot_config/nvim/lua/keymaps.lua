@@ -6,8 +6,6 @@ M.builtin_binds = function()
     vim.keymap.set("n", "<SPACE>", "<Nop>")
     vim.keymap.set("n", "<leader>w", "<CMD>w<CR>")
     vim.keymap.set("n", "<leader>q", "<CMD>x<CR>")
-    -- append next line
-    vim.keymap.set("n", "J", "mzJ`z")
     -- keep page dwn + up centered
     vim.keymap.set("n", "<C-d>", "<C-d>zz")
     vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -21,6 +19,10 @@ M.builtin_binds = function()
     vim.keymap.set("v", "<M-k>", ":m '<-2<CR>gv=gv")
     vim.keymap.set("n", "<M-j>", ":m .+1<CR>==")
     vim.keymap.set("n", "<M-k>", ":m .-2<CR>==")
+    -- append next line
+    vim.keymap.set("n", "J", "mzJ`z")
+    -- append this line to next
+    vim.keymap.set("n", "<M-J>", "mzj:m .-2<CR>==J`z")
     -- delete without copying to register
     vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
     -- tabs
