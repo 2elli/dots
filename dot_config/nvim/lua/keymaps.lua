@@ -41,6 +41,7 @@ M.lsp_binds = function(opts)
     vim.keymap.set("n", "gy", function() vim.lsp.buf.type_definition() end, opts)
     vim.keymap.set("n", "<leader>lh", function() vim.lsp.buf.signature_help() end, opts)
     vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end, opts)
+    vim.keymap.set("v", "<leader>la", ":lua vim.lsp.buf.code_action()<CR>", opts)
     vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set({ "n", "v" }, "<leader>lf", function() vim.lsp.buf.format() end, opts)
 end
