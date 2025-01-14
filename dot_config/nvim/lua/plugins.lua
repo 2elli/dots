@@ -1,4 +1,4 @@
--- Bootstrap lazy.nvim
+---- bootstrap lazy.nvim ----
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
     local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -15,12 +15,14 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
----- install plugins ----
+---- lazy plugins ----
 require("lazy").setup({
+    -- plugins are setup here if they include "opts"
     -- theme
     { "EdenEast/nightfox.nvim" },
-    -- dep
+    -- deps
     { "nvim-lua/plenary.nvim" },
+    { "nvim-tree/nvim-web-devicons", opts = {} },
     -- treesitter
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
     -- lsp
@@ -35,9 +37,7 @@ require("lazy").setup({
         opts = {
             snippetDir = vim.fn.expand(vim.fn.stdpath("config") .. "/snippets/"),
             editSnippetPopup = {
-                keymaps = {
-                    deleteSnippet = "<M-BS>", -- change to meta+backspace to fix key code issues
-                },
+                keymaps = { deleteSnippet = "<M-BS>" },
             },
             jsonFormatter = "jq",
         },
@@ -59,11 +59,7 @@ require("lazy").setup({
                 },
             },
             keymap = require("keymaps").blink_binds(),
-            appearance = {
-                -- fix color theme compatability
-                use_nvim_cmp_as_default = true,
-                nerd_font_variant = "mono",
-            },
+            appearance = { use_nvim_cmp_as_default = true, nerd_font_variant = "mono" },
             signature = { enabled = true }, -- show signature help
             completion = {
                 -- show lsp docs of option
@@ -85,18 +81,22 @@ require("lazy").setup({
     -- diagnostics
     { "folke/trouble.nvim", opts = {}, cmd = "Trouble" },
     -- ui
+    { "RRethy/vim-illuminate" },
     { "stevearc/dressing.nvim", opts = {} },
     { "j-hui/fidget.nvim", opts = {} },
-    { "nvim-tree/nvim-web-devicons", opts = {} },
-    { "nvim-lualine/lualine.nvim" },
+    {
+        "nvim-lualine/lualine.nvim",
+        opts = {
+            options = {
+                component_separators = { left = "|", right = "|" },
+                section_separators = { left = "", right = "" },
+            },
+        },
+    },
     { "sphamba/smear-cursor.nvim", opts = { stiffness = 0.8, trailing_stiffness = 0.5, distance_stop_animating = 0.5, hide_target_hack = false } },
-    { "RRethy/vim-illuminate" },
     -- files
     { "ThePrimeagen/harpoon", branch = "harpoon2" },
-    {
-        "stevearc/oil.nvim",
-        opts = {},
-    },
+    { "stevearc/oil.nvim", opts = {} },
     -- format
     { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
     -- sessions
@@ -113,7 +113,6 @@ require("lazy").setup({
             indent = { animate = { enabled = false } },
         },
     },
-    { "folke/todo-comments.nvim", opts = {} },
     -- python
     { "linux-cultist/venv-selector.nvim", branch = "regexp", lazy = false, opts = {} },
     -- neovim development
@@ -126,14 +125,14 @@ require("lazy").setup({
                 { path = "${3rd}/luv/library", words = { "vim%.uv" } },
             },
             -- only load if lazydev_enabled is set
-            enabled = function(root_dir)
+            enabled = function(_)
                 return vim.g.lazydev_enabled == nil and false or vim.g.lazydev_enabled
             end,
         },
     },
 })
 
--- colors
+---- colors ----
 vim.opt.background = "dark"
 vim.cmd.colorscheme "carbonfox"
 
@@ -147,7 +146,6 @@ require("nvim-treesitter.configs").setup({
 })
 
 ---- LSP ----
--- diagnostic signs
 vim.diagnostic.config({
     signs = {
         text = {
@@ -159,11 +157,11 @@ vim.diagnostic.config({
     },
 })
 
--- setup and install lsp's
+---- setup and install lsp's ----
 -- note: LspAttach is configured in cmds.lua
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = { "basedpyright", "bashls", "lua_ls", "clangd", "ts_ls" },
+    ensure_installed = { "lua_ls", "basedpyright", "bashls", "clangd", "jdtls", "rust_analyzer", "ts_ls", "jsonls" },
     -- handlers for different lsp's
     handlers = {
         -- generic handler
@@ -224,29 +222,22 @@ require("mason-lspconfig").setup({
     },
 })
 
-
 -- setup null-ls sources  (this is used for adding functionality, like formatting, that may not be in an lsp)
 local null_ls = require("null-ls")
 null_ls.setup({
     sources = {
+        null_ls.builtins.diagnostics.codespell,
+        -- python
         null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.usort,
+        -- c / c++
         null_ls.builtins.formatting.clang_format.with({
             extra_args = { "--style={UseTab: Always, IndentWidth: 4, TabWidth: 4, ColumnLimit: 200}" },
         }),
     },
 })
 
----- aux ----
--- bottom status line
-require("lualine").setup({
-    options = {
-        theme = "auto",
-        component_separators = { left = "|", right = "|" },
-        section_separators = { left = "", right = "" },
-    },
-})
-
--- harpoon marks
+-- harpoon
 local harpoon = require("harpoon")
 harpoon:setup({
     settings = {
@@ -259,9 +250,7 @@ harpoon:setup({
 require("telescope").load_extension("persisted")
 
 ---- plugin keybinds ----
-require("keymaps").plugin_binds(harpoon, require("oil"), require("scissors"), require("telescope.builtin"))
--------------------------
+require("keymaps").plugin_binds()
 
 ---- cmds and autocmds ----
-require("cmds")
----------------------------
+require("cmds").setup_cmds()

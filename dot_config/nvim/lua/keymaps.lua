@@ -1,5 +1,6 @@
 -- keybinds --
 local M = {}
+
 ---Sets default keymaps that do not require plugins
 M.builtin_binds = function()
     vim.g.mapleader = " "
@@ -47,25 +48,25 @@ M.lsp_binds = function(opts)
 end
 
 ---Sets keybinds for all plugins, params are plugins that need to be required and passed in for calls
----@param harpoon table
----@param oil table
----@param scissors table
----@param telescope_builtin table  # require("telescope.builtin")
-M.plugin_binds = function(harpoon, oil, scissors, telescope_builtin)
-    -- harpoon
+M.plugin_binds = function()
+    -- harpoon marks
+    local harpoon = require("harpoon")
     vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
     vim.keymap.set("n", "<leader>f", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
     vim.keymap.set("n", "<C-n>", function() harpoon:list():next() end)
     vim.keymap.set("n", "<C-p>", function() harpoon:list():prev() end)
 
-    -- scissors
+    -- snippets
+    local scissors = require("scissors")
     vim.keymap.set("n", "<leader>se", function() scissors.editSnippet() end)
     vim.keymap.set({ "n", "x" }, "<leader>sa", function() scissors.addNewSnippet() end)
 
     -- toggle oil file "tree"
+    local oil = require("oil")
     vim.keymap.set("n", "<leader>e", function() oil.toggle_float() end)
 
-    -- telescope and fzf
+    -- telescope fzf
+    local telescope_builtin = require("telescope.builtin")
     vim.keymap.set("n", "<leader>/", telescope_builtin.live_grep, {})
     vim.keymap.set("n", "<leader>F", telescope_builtin.find_files, {})
     vim.keymap.set("n", "<leader>tt", telescope_builtin.builtin, {})
