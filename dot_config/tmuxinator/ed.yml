@@ -10,8 +10,6 @@ windows:
   - test:
       layout: even-horizontal
       panes:
-        - ~
-        - ~
+        -
+        -
   - git:
-      panes:
-        - ~

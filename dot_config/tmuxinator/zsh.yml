@@ -1,7 +1,7 @@
-# ~/.config/tmuxinator/nvim.yml
+# /home/morgan/.config/tmuxinator/zsh.yml
 
-name: nvim
-root: ~/.config/nvim
+name: zsh
+root: ~/
 
 windows:
   - editor:
