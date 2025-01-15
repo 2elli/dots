@@ -31,6 +31,7 @@ require("lazy").setup({
     { "neovim/nvim-lspconfig" },
     -- format
     { "stevearc/conform.nvim" },
+    { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
     -- lint
     { "mfussenegger/nvim-lint" },
     -- snippets
@@ -100,8 +101,6 @@ require("lazy").setup({
     -- files
     { "ThePrimeagen/harpoon", branch = "harpoon2" },
     { "stevearc/oil.nvim", opts = {} },
-    -- format
-    { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
     -- sessions
     { "olimorris/persisted.nvim", opts = { autostart = false } },
     -- aux
@@ -137,7 +136,7 @@ require("lazy").setup({
 
 ---- colors ----
 vim.opt.background = "dark"
-vim.cmd.colorscheme "carbonfox"
+vim.cmd.colorscheme("carbonfox")
 
 ---- treesitter ----
 require("nvim-treesitter.configs").setup({
@@ -219,7 +218,6 @@ require("mason-lspconfig").setup({
                     "clangd",
                     "--offset-encoding=utf-16",
                 },
-
             })
         end,
     },
