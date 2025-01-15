@@ -98,9 +98,15 @@ M.plugin_binds = function()
     -- marks
     vim.keymap.set("n", "<leader>m", "<CMD>MarksListAll<CR>")
 
-    --[[ binds automatically setup by Comment.nvim
     -- undo tree
     vim.keymap.set("n", "<leader>u", "<CMD>UndotreeToggle<CR>")
+
+    -- scratch files
+    vim.keymap.set("n", "<leader>bb", function() Snacks.scratch() end)
+    vim.keymap.set("n", "<leader>bs", function() Snacks.scratch.select() end)
+
+    ---- some automatically setup binds ----
+    --[[ Comment.nvim
     NORMAL
     `gcc` - Toggles the current line using linewise comment
     `gbc` - Toggles the current line using blockwise comment

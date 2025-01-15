@@ -114,6 +114,10 @@ require("lazy").setup({
         opts = {
             -- show indent lines
             indent = { animate = { enabled = false } },
+            -- disable some things for big files
+            bigfile = {},
+            -- scratch buffer
+            scratch = {},
         },
     },
     -- python
