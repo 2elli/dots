@@ -104,11 +104,20 @@ require("lazy").setup({
     -- sessions
     { "olimorris/persisted.nvim", opts = { autostart = false } },
     -- aux
-    { "nvim-telescope/telescope.nvim", branch = "0.1.x" },
     { "mbbill/undotree", cmd = "UndotreeToggle" },
     { "numToStr/Comment.nvim", opts = {} },
     { "lewis6991/gitsigns.nvim", opts = {} },
     { "chentoast/marks.nvim", event = "VeryLazy", opts = {} },
+    {
+        "nvim-telescope/telescope.nvim",
+        branch = "0.1.x",
+        dependencies = {
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
+            },
+        },
+    },
     {
         "folke/snacks.nvim",
         opts = {
@@ -264,6 +273,7 @@ harpoon:setup({
 })
 
 -- telescope extensions
+require("telescope").load_extension("fzf")
 require("telescope").load_extension("persisted")
 
 ---- plugin keybinds ----
