@@ -44,7 +44,8 @@ M.lsp_binds = function(opts)
     vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set("v", "<leader>la", ":lua vim.lsp.buf.code_action()<CR>", opts)
     vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set({ "n", "v" }, "<leader>lf", function() vim.lsp.buf.format() end, opts)
+    local conform = require("conform")
+    vim.keymap.set({ "n", "v" }, "<leader>lf", function() conform.format({ bufnr = opts.buffer }) end, opts)
 end
 
 ---Sets keybinds for all plugins, params are plugins that need to be required and passed in for calls

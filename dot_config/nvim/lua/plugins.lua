@@ -29,8 +29,10 @@ require("lazy").setup({
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
     { "neovim/nvim-lspconfig" },
-    { "nvimtools/none-ls.nvim" },
-    { "SmiteshP/nvim-navic" },
+    -- format
+    { "stevearc/conform.nvim" },
+    -- lint
+    { "mfussenegger/nvim-lint" },
     -- snippets
     {
         "chrisgrieser/nvim-scissors",
@@ -83,6 +85,7 @@ require("lazy").setup({
     -- ui
     { "RRethy/vim-illuminate" },
     { "stevearc/dressing.nvim", opts = {} },
+    { "SmiteshP/nvim-navic" },
     { "j-hui/fidget.nvim", opts = {} },
     {
         "nvim-lualine/lualine.nvim",
@@ -222,20 +225,31 @@ require("mason-lspconfig").setup({
     },
 })
 
--- setup null-ls sources  (this is used for adding functionality, like formatting, that may not be in an lsp)
-local null_ls = require("null-ls")
-null_ls.setup({
-    sources = {
-        null_ls.builtins.diagnostics.codespell,
-        -- python
-        null_ls.builtins.formatting.black,
-        null_ls.builtins.formatting.usort,
-        -- c / c++
-        null_ls.builtins.formatting.clang_format.with({
-            extra_args = { "--style={UseTab: Always, IndentWidth: 4, TabWidth: 4, ColumnLimit: 200}" },
-        }),
+-- formatting
+require("conform").setup({
+    notify_no_formatters = true,
+    default_format_opts = {
+        lsp_format = "fallback",
+    },
+    formatters_by_ft = {
+        python = { "black", "docformatter", "usort" },
+        c = { "clangformat" },
+        cpp = { "clangformat" },
+    },
+    formatters = {
+        clangformat = {
+            command = "clang-format",
+            args = "--style=\"{UseTab: Always, IndentWidth: 4, TabWidth: 4, ColumnLimit: 200}\"",
+        },
     },
 })
+
+-- linting
+require("lint").linters_by_ft = {
+    bash = { "shellcheck" },
+}
+-- linters that will be used by all file types
+_G.global_linters = { "typos" }
 
 -- harpoon
 local harpoon = require("harpoon")

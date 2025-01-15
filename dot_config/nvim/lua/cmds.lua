@@ -19,10 +19,36 @@ M.setup_autocmds = function()
             end
         end,
     })
+
+    -- auto linting
+    vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
+        callback = function()
+            local lint = require("lint")
+            -- lint with linters for filetype
+            lint.try_lint()
+
+            -- try lint with global linters
+            for _, linter in ipairs(_G.global_linters or {}) do
+                lint.try_lint(linter)
+            end
+        end,
+    })
 end
 
 -- user commands --
 M.setup_usercmds = function()
+    -- get any linters available for ft
+    vim.api.nvim_create_user_command("Linters", function()
+        local linters = {}
+        linters.file = require("lint").linters_by_ft[vim.bo.filetype] or nil
+        linters.global = _G.global_linters or nil
+
+        local fmt_file = "File: " .. (linters.file and table.concat(linters.file, " ") or "No linters")
+        local fmt_global = "Global: " .. (linters.global and table.concat(linters.global, " ") or "No linters")
+        vim.print(fmt_file .. ", " .. fmt_global)
+    end, {})
+
+    -- get python venv
     vim.api.nvim_create_user_command(
         "Venv",
         function()
