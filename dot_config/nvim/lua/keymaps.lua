@@ -6,7 +6,6 @@ M.builtin_binds = function()
     vim.g.mapleader = " "
     vim.keymap.set("n", "<SPACE>", "<Nop>")
     vim.keymap.set("n", "<leader>w", "<CMD>w<CR>")
-    vim.keymap.set("n", "<leader>q", "<CMD>x<CR>")
     -- keep page dwn + up centered
     vim.keymap.set("n", "<C-d>", "<C-d>zz")
     vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -29,6 +28,8 @@ M.builtin_binds = function()
     -- tabs
     vim.keymap.set("n", "<leader>te", "<CMD>tabe<CR>")
     vim.keymap.set("n", "<leader>tc", "<CMD>tabc<CR>")
+    vim.keymap.set("n", "<leader>>", "<CMD>+tabm<CR>")
+    vim.keymap.set("n", "<leader><", "<CMD>-tabm<CR>")
 end
 
 ---Sets all lsp keybindings
@@ -108,6 +109,23 @@ M.plugin_binds = function()
     VISUAL
     `gc` - Toggles the region using linewise comment
     `gb` - Toggles the region using blockwise comment
+    ]]
+
+    --[[ marks.nvim
+    mx         Set mark x
+    m,         Set the next available alphabetical (lowercase) mark
+    m;         Toggle the next available mark at the current line
+    dmx        Delete mark x
+    dm-        Delete all marks on the current line
+    dm<space>  Delete all marks in the current buffer
+    m]         Move to next mark
+    m[         Move to previous mark
+    m:         Preview mark. This will prompt you for a specific mark to preview; press <cr> to preview the next mark.
+    m[0-9]     Add a bookmark from bookmark group[0-9].
+    dm[0-9]    Delete all bookmarks from bookmark group[0-9].
+    m}         Move to the next bookmark having the same type as the bookmark under the cursor. Works across buffers.
+    m{         Move to the previous bookmark having the same type as the bookmark under the cursor. Works across buffers.
+    dm=        Delete the bookmark under the cursor.
     ]]
 end
 
