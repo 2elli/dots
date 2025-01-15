@@ -105,6 +105,7 @@ require("lazy").setup({
     { "olimorris/persisted.nvim", opts = { autostart = false } },
     -- aux
     { "nvim-telescope/telescope.nvim", branch = "0.1.x" },
+    { "mbbill/undotree", cmd = "UndotreeToggle" },
     { "numToStr/Comment.nvim", opts = {} },
     { "lewis6991/gitsigns.nvim", opts = {} },
     { "chentoast/marks.nvim", event = "VeryLazy", opts = {} },

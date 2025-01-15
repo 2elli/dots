@@ -99,6 +99,8 @@ M.plugin_binds = function()
     vim.keymap.set("n", "<leader>m", "<CMD>MarksListAll<CR>")
 
     --[[ binds automatically setup by Comment.nvim
+    -- undo tree
+    vim.keymap.set("n", "<leader>u", "<CMD>UndotreeToggle<CR>")
     NORMAL
     `gcc` - Toggles the current line using linewise comment
     `gbc` - Toggles the current line using blockwise comment
