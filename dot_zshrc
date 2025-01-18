@@ -1,6 +1,11 @@
 # zmodload zsh/zprof
 # uncomment first and last line to benchmark
 
+# p10k instant prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 ##################
 ### zsh config ###
 ##################
@@ -24,12 +29,14 @@ export PATH=~/.local/share/gem/ruby/3.3.0/bin:$PATH
 ##### env vars
 export SYSTEMD_EDITOR=nvim
 export EDITOR=nvim
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 ##### alias
 alias xsc="xclip -selection clipboard"
 alias tree="lsd --tree"
 alias mux="tmuxinator"
 alias cvim="nvim --clean"
+alias nvims="nvim -c \"SessionLoad\""
 
 ##### functions
 # clear clipboard
@@ -62,6 +69,9 @@ bindkey '5~' delete-word
 # --------------------
 # Module config
 # --------------------
+
+# use degit for faster and lighter module install
+zstyle ':zim:zmodule' use 'degit'
 
 ##### autosuggestions
 # Disable automatic widget re-binding on each precmd. This can be set when
@@ -107,7 +117,10 @@ zstyle ':zim:prompt-pwd:fish-style' dir-length 0
 ##### pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - --no-rehash zsh)"
-eval "$(pyenv virtualenv-init -)"
+zsh-defer _evalcache "$(pyenv init - zsh)"
+zsh-defer _evalcache "$(pyenv virtualenv-init -)"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # zprof

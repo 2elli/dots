@@ -1,34 +1,31 @@
 ##### modules #####
-# Sets sane Zsh built-in environment options.
-zmodule environment
-# Applies correct bindkeys for input events.
-zmodule input
-# prompt-pwd for theme
-zmodule prompt-pwd
-# utils
-zmodule utility
-# searching
+# custom modules
+zmodule mroth/evalcache
+zmodule romkatv/zsh-defer
+
+# builtin modules
+zmodule environment  # sane env vars
+zmodule input  # sane input keybinds
+zmodule utility  # aliases and color for ls, grep, less
 zmodule fzf
 
 ##### prompt #####
-# prompt theme
-zmodule s1ck94
-# Exposes git repository status information to prompts
-zmodule git-info
+# theme
+zmodule romkatv/powerlevel10k
+# zmodule 2elli/lean
+# enhance
+# zmodule duration-info
+# zmodule git-info
+# zmodule prompt-pwd
 
 ##### custom #####
 # warp dir
 zmodule mfaerevaag/wd -s wd.plugin.zsh --fpath .
 
 ##### completion #####
-# additional zsh autocomplete definitions
-zmodule zsh-users/zsh-completions --fpath src
-# smart completion and better loading (has to be loaded after any modules that add autocomplete)
+zmodule zsh-users/zsh-completions --fpath src  # additional autocompletes
 zmodule completion
 
-##### last #####
-# (modules that must be loaded last)
-# syntax highlighting for Zsh.
+##### last (modules that must be loaded last) #####
 zmodule zsh-users/zsh-syntax-highlighting
-# autosuggestions for Zsh.
 zmodule zsh-users/zsh-autosuggestions
