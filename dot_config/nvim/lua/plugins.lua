@@ -17,7 +17,6 @@ vim.opt.rtp:prepend(lazypath)
 
 ---- lazy plugins ----
 require("lazy").setup({
-    -- plugins are setup here if they include "opts"
     -- theme
     { "EdenEast/nightfox.nvim" },
     -- deps
@@ -39,9 +38,7 @@ require("lazy").setup({
         "chrisgrieser/nvim-scissors",
         opts = {
             snippetDir = vim.fn.expand(vim.fn.stdpath("config") .. "/snippets/"),
-            editSnippetPopup = {
-                keymaps = { deleteSnippet = "<M-BS>" },
-            },
+            editSnippetPopup = { keymaps = { deleteSnippet = "<M-BS>" } },
             jsonFormatter = "jq",
         },
     },
@@ -53,31 +50,18 @@ require("lazy").setup({
         opts = {
             sources = {
                 default = { "lazydev", "snippets", "lsp", "path", "buffer" },
-                providers = {
-                    lazydev = {
-                        name = "LazyDev",
-                        module = "lazydev.integrations.blink",
-                        score_offset = 100,
-                    },
-                },
+                providers = { lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 } },
             },
             keymap = require("keymaps").blink_binds(),
             appearance = { use_nvim_cmp_as_default = true, nerd_font_variant = "mono" },
             signature = { enabled = true }, -- show signature help
             completion = {
                 -- show lsp docs of option
-                documentation = {
-                    auto_show = true,
-                    auto_show_delay_ms = 0,
-                },
+                documentation = { auto_show = true, auto_show_delay_ms = 0 },
                 -- list selection behavior
                 list = { selection = { preselect = false, auto_insert = false } },
                 -- menu appearance
-                menu = {
-                    draw = {
-                        columns = { { "label", "label_description", gap = 1 }, { "kind" }, { "kind_icon" } },
-                    },
-                },
+                menu = { draw = { columns = { { "label", "label_description", gap = 1 }, { "kind" }, { "kind_icon" } } } },
             },
         },
     },
@@ -85,8 +69,8 @@ require("lazy").setup({
     { "folke/trouble.nvim", opts = {}, cmd = "Trouble" },
     -- ui
     { "RRethy/vim-illuminate" },
-    { "stevearc/dressing.nvim", opts = {} },
     { "SmiteshP/nvim-navic" },
+    { "stevearc/dressing.nvim", opts = {} },
     { "j-hui/fidget.nvim", opts = {} },
     {
         "nvim-lualine/lualine.nvim",
@@ -112,10 +96,7 @@ require("lazy").setup({
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
         dependencies = {
-            {
-                "nvim-telescope/telescope-fzf-native.nvim",
-                build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
-            },
+            { "nvim-telescope/telescope-fzf-native.nvim", build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release" },
         },
     },
     {
@@ -136,10 +117,7 @@ require("lazy").setup({
         "folke/lazydev.nvim",
         ft = "lua", -- only load on lua files
         opts = {
-            library = {
-                -- Load luvit types when the `vim.uv` word is found
-                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-            },
+            library = { { path = "${3rd}/luv/library", words = { "vim%.uv" } } },
             -- only load if lazydev_enabled is set
             enabled = function(_)
                 return vim.g.lazydev_enabled == nil and false or vim.g.lazydev_enabled
@@ -156,12 +134,11 @@ vim.cmd.colorscheme("carbonfox")
 require("nvim-treesitter.configs").setup({
     ensure_installed = { "c", "cpp", "python", "lua", "bash" },
     auto_install = true,
-    highlight = {
-        enable = true,
-    },
+    highlight = { enable = true },
 })
 
 ---- LSP ----
+-- diagnostic symbols
 vim.diagnostic.config({
     signs = {
         text = {
@@ -193,9 +170,7 @@ require("mason-lspconfig").setup({
                 capabilities = require("blink.cmp").get_lsp_capabilities(),
                 settings = {
                     basedpyright = {
-                        analysis = {
-                            typeCheckingMode = "basic",
-                        },
+                        analysis = { typeCheckingMode = "basic" },
                     },
                 },
             })
@@ -206,8 +181,7 @@ require("mason-lspconfig").setup({
                 -- ignore global "vim" and dont align tables
                 capabilities = require("blink.cmp").get_lsp_capabilities(),
                 settings = {
-                    Lua =
-                    {
+                    Lua = {
                         format = {
                             enable = true,
                             defaultConfig = {
@@ -228,10 +202,7 @@ require("mason-lspconfig").setup({
                     client.server_capabilities.documentFormattingProvider = false
                     client.server_capabilities.documentFormattingRangeProvider = false
                 end,
-                cmd = {
-                    "clangd",
-                    "--offset-encoding=utf-16",
-                },
+                cmd = { "clangd", "--offset-encoding=utf-16" },
             })
         end,
     },
@@ -239,14 +210,13 @@ require("mason-lspconfig").setup({
 
 -- formatting
 require("conform").setup({
-    notify_no_formatters = true,
-    default_format_opts = {
-        lsp_format = "fallback",
-    },
+    default_format_opts = { lsp_format = "fallback" },
     formatters_by_ft = {
         python = { "black", "docformatter", "usort" },
         c = { "clangformat" },
         cpp = { "clangformat" },
+        sh = { "shfmt" },
+        bash = { "shfmt" },
     },
     formatters = {
         clangformat = {
@@ -258,6 +228,7 @@ require("conform").setup({
 
 -- linting
 require("lint").linters_by_ft = {
+    sh = { "shellcheck" },
     bash = { "shellcheck" },
 }
 -- linters that will be used by all file types

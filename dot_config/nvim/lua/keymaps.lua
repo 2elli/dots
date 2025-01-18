@@ -1,7 +1,7 @@
 -- keybinds --
 local M = {}
 
----Sets default keymaps that do not require plugins
+--- Sets default keymaps that do not require plugins
 M.builtin_binds = function()
     vim.g.mapleader = " "
     vim.keymap.set("n", "<SPACE>", "<Nop>")
@@ -32,7 +32,7 @@ M.builtin_binds = function()
     vim.keymap.set("n", "<leader><", "<CMD>-tabm<CR>")
 end
 
----Sets all lsp keybindings
+--- Sets all lsp keybindings
 ---@param opts table  # "opts" table with buffer to be used in keymap
 M.lsp_binds = function(opts)
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
@@ -49,7 +49,7 @@ M.lsp_binds = function(opts)
     vim.keymap.set({ "n", "v" }, "<leader>lf", function() conform.format({ bufnr = opts.buffer }) end, opts)
 end
 
----Sets keybinds for all plugins, params are plugins that need to be required and passed in for calls
+--- Sets keybinds for all plugins
 M.plugin_binds = function()
     -- harpoon marks
     local harpoon = require("harpoon")
@@ -107,33 +107,33 @@ M.plugin_binds = function()
 
     ---- some automatically setup binds ----
     --[[ Comment.nvim
-    NORMAL
-    `gcc` - Toggles the current line using linewise comment
-    `gbc` - Toggles the current line using blockwise comment
-    `[count]gcc` - Toggles the number of line given as a prefix-count using linewise
-    `[count]gbc` - Toggles the number of line given as a prefix-count using blockwise
-    `gc[count]{motion}` - (Op-pending) Toggles the region using linewise comment
-    `gb[count]{motion}` - (Op-pending) Toggles the region using blockwise comment
-    VISUAL
-    `gc` - Toggles the region using linewise comment
-    `gb` - Toggles the region using blockwise comment
+    -- NORMAL --
+    gcc               - Toggles the current line using linewise comment
+    gbc               - Toggles the current line using blockwise comment
+    [count]gcc        - Toggles the number of line given as a prefix-count using linewise
+    [count]gbc        - Toggles the number of line given as a prefix-count using blockwise
+    gc[count]{motion} - (Op-pending) Toggles the region using linewise comment
+    gb[count]{motion} - (Op-pending) Toggles the region using blockwise comment
+    -- VISUAL --
+    gc                - Toggles the region using linewise comment
+    gb                - Toggles the region using blockwise comment
     ]]
 
     --[[ marks.nvim
-    mx         Set mark x
-    m,         Set the next available alphabetical (lowercase) mark
-    m;         Toggle the next available mark at the current line
-    dmx        Delete mark x
-    dm-        Delete all marks on the current line
-    dm<space>  Delete all marks in the current buffer
-    m]         Move to next mark
-    m[         Move to previous mark
-    m:         Preview mark. This will prompt you for a specific mark to preview; press <cr> to preview the next mark.
-    m[0-9]     Add a bookmark from bookmark group[0-9].
-    dm[0-9]    Delete all bookmarks from bookmark group[0-9].
-    m}         Move to the next bookmark having the same type as the bookmark under the cursor. Works across buffers.
-    m{         Move to the previous bookmark having the same type as the bookmark under the cursor. Works across buffers.
-    dm=        Delete the bookmark under the cursor.
+    mx                - Set mark x
+    m,                - Set the next available alphabetical (lowercase) mark
+    m;                - Toggle the next available mark at the current line
+    dmx               - Delete mark x
+    dm-               - Delete all marks on the current line
+    dm<space>         - Delete all marks in the current buffer
+    m]                - Move to next mark
+    m[                - Move to previous mark
+    m:                - Preview mark. This will prompt you for a specific mark to preview; press <cr> to preview the next mark.
+    m[0-9]            - Add a bookmark from bookmark group[0-9].
+    dm[0-9]           - Delete all bookmarks from bookmark group[0-9].
+    m}                - Move to the next bookmark having the same type as the bookmark under the cursor. Works across buffers.
+    m{                - Move to the previous bookmark having the same type as the bookmark under the cursor. Works across buffers.
+    dm=               - Delete the bookmark under the cursor.
     ]]
 end
 
