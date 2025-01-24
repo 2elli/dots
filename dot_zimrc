@@ -5,8 +5,8 @@ zmodule romkatv/zsh-defer
 
 # builtin modules
 zmodule environment  # sane env vars
-zmodule input  # sane input keybinds
-zmodule utility  # aliases and color for ls, grep, less
+zmodule input        # sane input keybinds
+zmodule utility      # aliases and color for ls, grep, less
 zmodule fzf
 
 ##### prompt #####
