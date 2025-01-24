@@ -84,7 +84,10 @@ require("lazy").setup({
     { "sphamba/smear-cursor.nvim", opts = { stiffness = 0.8, trailing_stiffness = 0.5, distance_stop_animating = 0.5, hide_target_hack = false } },
     -- files
     { "ThePrimeagen/harpoon", branch = "harpoon2" },
-    { "stevearc/oil.nvim", opts = {} },
+    {
+        "stevearc/oil.nvim",
+        opts = { keymaps = { ["q"] = { "actions.close", mode = "n" }, } }
+    },
     -- sessions
     { "olimorris/persisted.nvim", opts = { autostart = false } },
     -- aux
@@ -101,14 +104,7 @@ require("lazy").setup({
     },
     {
         "folke/snacks.nvim",
-        opts = {
-            -- show indent lines
-            indent = { animate = { enabled = false } },
-            -- disable some things for big files
-            bigfile = {},
-            -- scratch buffer
-            scratch = {},
-        },
+        opts = { indent = { animate = { enabled = false } }, bigfile = {}, scratch = {}, },
     },
     -- python
     { "linux-cultist/venv-selector.nvim", branch = "regexp", lazy = false, opts = {} },

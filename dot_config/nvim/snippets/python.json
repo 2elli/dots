@@ -25,7 +25,7 @@
     ]
   },
   "pdbp": {
-    "body": "import pdbp; breakpoint()",
+    "body": "__import__(\"pdbp\").set_trace()",
     "prefix": "pdbp"
   }
 }
