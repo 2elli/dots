@@ -35,7 +35,7 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 alias xsc="xclip -selection clipboard"
 alias tree="lsd --tree"
 alias mux="tmuxinator"
-alias cvim="nvim --clean"
+alias nvimc="nvim --clean"
 alias nvims="nvim -c \"SessionLoad\""
 
 ##### functions
