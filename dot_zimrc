@@ -13,7 +13,6 @@ zmodule fzf
 # theme
 zmodule romkatv/powerlevel10k
 # zmodule 2elli/lean
-# enhance
 # zmodule duration-info
 # zmodule git-info
 # zmodule prompt-pwd
@@ -21,6 +20,8 @@ zmodule romkatv/powerlevel10k
 ##### custom #####
 # warp dir
 zmodule mfaerevaag/wd -s wd.plugin.zsh --fpath .
+# mise
+zmodule joke/zim-mise
 
 ##### completion #####
 zmodule zsh-users/zsh-completions --fpath src  # additional autocompletes
