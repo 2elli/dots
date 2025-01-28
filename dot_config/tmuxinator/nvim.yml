@@ -8,6 +8,6 @@ windows:
       panes:
         - nvims
   - test:
-  - chezmoi:
+  - git:
       panes:
-        - chezmoi cd
+        - git status
