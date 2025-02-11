@@ -7,15 +7,10 @@ zmodule romkatv/zsh-defer
 zmodule environment  # sane env vars
 zmodule input        # sane input keybinds
 zmodule utility      # aliases and color for ls, grep, less
-zmodule fzf
+zmodule fzf          # auto fzf integration, (ctrl+f, **<tab>)
 
 ##### prompt #####
-# theme
 zmodule romkatv/powerlevel10k
-# zmodule 2elli/lean
-# zmodule duration-info
-# zmodule git-info
-# zmodule prompt-pwd
 
 ##### custom #####
 # warp dir
