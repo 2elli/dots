@@ -26,15 +26,22 @@ export PATH=~/.local/bin:$PATH
 ##### env vars
 export EDITOR=nvim
 export SYSTEMD_EDITOR=nvim
+export TERMINAL=alacritty
 
 ##### alias
-alias xsc="xclip -selection clipboard"
 alias tree="lsd --tree"
 alias mux="tmuxinator"
 alias nvimc="nvim --clean"
 alias nvims="nvim -c \"SessionLoad\""
+alias xsc="xclip -selection clipboard"
+alias info="info --vi-keys"
 
 ##### functions
+# copy pwd
+function cpwd() {
+    pwd | tr -d '\n' | xsc
+}
+
 # clear clipboard
 function clear_clip() {
     xsc < /dev/null
