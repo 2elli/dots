@@ -253,7 +253,7 @@ client.urgent            $red      $base $text  $background  $cyan
 
 ##################################################################### bar
 bar {
-        font pango:JetBrainsMono Nerd Font 10
+        font pango:JetBrainsMono Nerd Font 9
 		status_command i3status --config ~/.config/i3/i3status.conf
 	    position bottom
 		tray_output primary
