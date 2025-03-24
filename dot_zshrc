@@ -3,7 +3,7 @@
 
 # p10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 ##################
@@ -17,11 +17,16 @@ HISTFILE=~/.histfile
 HISTSIZE=500
 SAVEHIST=500
 
+##### keybinds
 # set key
 bindkey -e
+# ctrl + backspace and ctrl + del to delete word before and after respectively
+bindkey '^H' backward-delete-word
+bindkey '5~' delete-word
 
 ##### paths
 export PATH=~/.local/bin:$PATH
+export PATH=$PATH:~/.pdtm/go/bin
 
 ##### env vars
 export EDITOR=nvim
@@ -38,39 +43,65 @@ alias info="info --vi-keys"
 
 ##### functions
 # copy pwd
-function cpwd() {
+function cpwd {
     pwd | tr -d '\n' | xsc
 }
 
 # clear clipboard
-function clear_clip() {
+function clear_clip {
     xsc < /dev/null
 }
 
 # clear zsh hist
-function clear_history() {
+function clear_history {
     :>!$HISTFILE
     history -p
     clear
 }
 
 # clear clipboard and history
-function clean() {
+function clean {
     clear_clip
     clear_history
 }
 
 # clear _evalcache
-function clear_evalcache() {
+function clear_evalcache {
     if [[ -n ZSH_EVALCACHE_DIR ]]; then
         rm "$ZSH_EVALCACHE_DIR"/*
     fi
 }
 
-##### keybinds
-# ctrl + backspace and ctrl + del to delete word before and after respectively
-bindkey '^H' backward-delete-word
-bindkey '5~' delete-word
+# update some shell utils
+function update_builtins {
+    # print helper
+    function _print_with_af {
+        if [[ $# -eq 2 ]]; then
+            tput bold
+            tput setaf $1
+            echo $2
+            tput sgr0
+            echo
+        fi
+    }
+
+    # zim
+    zimfw upgrade &&
+    zimfw update &&
+    zimfw build &&
+    _print_with_af 2 "zimfw updated" || _print_with_af 1 "zimfw update failed"
+
+    # mise
+    mise self-update &&
+    mise upgrade &&
+    _print_with_af 2 "mise updated" || _print_with_af 1 "mise update failed"
+
+    # tmux tpm
+    ~/.config/tmux/plugins/tpm/scripts/install_plugins.sh &&
+    ~/.config/tmux/plugins/tpm/scripts/clean_plugins.sh &&
+    _print_with_af 2 "tmux updated" || _print_with_af 1 "tmux update failed"
+}
+
 
 ##################
 ### zim config ###
@@ -102,17 +133,17 @@ ZSH_HIGHLIGHT_STYLES[arg0]=fg=blue
 ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
 # Download zimfw plugin manager if missing.
 if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
-  if (( ${+commands[curl]} )); then
-    curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
-        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
-  else
-    mkdir -p ${ZIM_HOME} && wget -nv -O ${ZIM_HOME}/zimfw.zsh \
-        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
-  fi
+    if (( ${+commands[curl]} )); then
+        curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
+            https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+    else
+        mkdir -p ${ZIM_HOME} && wget -nv -O ${ZIM_HOME}/zimfw.zsh \
+            https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+    fi
 fi
 # Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
 if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
-  source ${ZIM_HOME}/zimfw.zsh init -q
+    source ${ZIM_HOME}/zimfw.zsh init -q
 fi
 # Initialize modules.
 source ${ZIM_HOME}/init.zsh
