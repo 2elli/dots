@@ -26,7 +26,7 @@ bindkey '5~' delete-word
 
 ##### paths
 export PATH=~/.local/bin:$PATH
-export PATH=$PATH:~/.pdtm/go/bin
+export PATH=~/.pdtm/go/bin:$PATH
 
 ##### env vars
 export EDITOR=nvim
