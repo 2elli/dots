@@ -1,4 +1,0 @@
-[submodule "dot_config/nvim"]
-	path = dot_config/external_nvim
-	url = git@github.com:2elli/nvim.git
-    update = merge
