@@ -1,0 +1,23 @@
+[settings]
+experimental = true
+idiomatic_version_file_disable_tools = ["python"]
+
+[tools]
+### langs ###
+node = "latest"
+rust = "latest"
+zig = "latest"
+go = "latest"
+java = "latest"
+ruby = "latest"
+### for autocomplete ###
+usage = "latest"
+### cli tools ###
+# cargo
+"cargo:typst-live" = "latest"
+"cargo:monolith" = "latest"
+# gem
+"gem:tmuxinator" = "latest"
+# go
+"go:github.com/boyter/scc/v3" = "latest"
+"go:github.com/caarlos0/svu" = "latest"
