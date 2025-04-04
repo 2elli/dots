@@ -97,6 +97,7 @@ function update_builtins {
     # mise
     mise self-update &&
     mise upgrade &&
+    mise prune &&
     _print_with_af 2 "mise updated" || _print_with_af 1 "mise update failed"
 
     # tmux tpm
