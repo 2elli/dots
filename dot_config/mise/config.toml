@@ -21,3 +21,5 @@ usage = "latest"
 # go
 "go:github.com/boyter/scc/v3" = "latest"
 "go:github.com/caarlos0/svu" = "latest"
+# npm
+"npm:tree-sitter-cli" = "latest"
