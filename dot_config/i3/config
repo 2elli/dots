@@ -112,7 +112,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 #############################################################
 
-################################################# keybindings
+################################################# i3 keybinds
 bindsym $mod+Return exec --no-startup-id alacritty
 
 bindsym $mod+Shift+q kill
@@ -167,18 +167,31 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+s sticky toggle
 #############################################################
 
-###################
-### OTHER BINDS ###
-###################
 
-# Pulse Audio controls
+#############
+### BINDS ###
+#############
+
+########################################## rofi
+bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun
+bindsym $mod+period exec --no-startup-id rofimoji -a copy
+###############################################
+
+####################################################################### audio
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+#############################################################################
 
-# Screen brightness controls
+############################ screen brightness
 bindsym XF86MonBrightnessUp exec light -A 10
 bindsym XF86MonBrightnessDown exec light -U 10
+##############################################
+
+############################ applications
+bindsym $mod+Ctrl+f exec firefox
+#########################################
+
 
 #############
 ### EXECS ###
@@ -197,10 +210,6 @@ exec --no-startup-id nm-applet
 exec --no-startup-id dex --autostart --environment i3
 #####################################################
 
-########################################## rofi
-bindsym $mod+d exec rofi -modi drun -show drun
-bindsym $mod+period exec rofimoji -a copy
-###############################################
 
 #############################
 ### FLOATING + WORKSPACES ###
