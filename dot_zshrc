@@ -79,6 +79,9 @@ function clear_evalcache {
 
 # update some shell utils
 function update_builtins {
+    # clear clear evalcache
+    clear_evalcache
+
     # print helper
     function _print_with_af {
         if [[ $# -eq 2 ]]; then
