@@ -1,8 +1,12 @@
 # set debuginfod enabled on
 define init_gef
-    source ~/gdb/.gef-.py
+    source ~/gdb/gef/gef.py
 end
 
 define init_pwndbg
-    source ~/gdb/pwndbg/gdbinit.py
+    source /usr/share/pwndbg/gdbinit.py
+end
+
+define update_gef_and_pwndbg
+    !bash ~/gdb/update.sh
 end
