@@ -43,6 +43,8 @@ alias nvimc="nvim --clean"
 alias nvims="nvim -c \"SessionLoad\""
 alias xsc="xclip -selection clipboard"
 alias info="info --vi-keys"
+alias gef="gdb -ex \"init_gef\""
+alias pwndbg="gdb -ex \"init_pwndbg\""
 
 ##### functions
 # copy pwd
