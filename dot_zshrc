@@ -73,7 +73,7 @@ function clean {
 # clear _evalcache
 function clear_evalcache {
     if [[ -n ZSH_EVALCACHE_DIR ]]; then
-        rm "$ZSH_EVALCACHE_DIR"/*
+        rm -f "$ZSH_EVALCACHE_DIR"/*
     fi
 }
 
