@@ -83,11 +83,19 @@ function update_builtins {
     clear_evalcache
 
     # print helper
-    function _print_with_af {
+    function _print_status {
+        # $1 : return status
+        # $2 : command string
         if [[ $# -eq 2 ]]; then
             tput bold
-            tput setaf $1
-            echo $2
+            # check return status
+            if [[ $1 -eq 0 ]]; then
+                tput setaf 2
+                echo "$2 updated"
+            else
+                tput setaf 1
+                echo "$2 update failed"
+            fi
             tput sgr0
             echo
         fi
@@ -96,19 +104,19 @@ function update_builtins {
     # zim
     zimfw upgrade &&
     zimfw update &&
-    zimfw build &&
-    _print_with_af 2 "zimfw updated" || _print_with_af 1 "zimfw update failed"
+    zimfw build
+    _print_status $? "zimfw"
 
     # mise
     mise self-update &&
     mise upgrade &&
-    mise prune &&
-    _print_with_af 2 "mise updated" || _print_with_af 1 "mise update failed"
+    mise prune
+    _print_status $? "mise"
 
     # tmux tpm
     ~/.config/tmux/plugins/tpm/scripts/install_plugins.sh &&
-    ~/.config/tmux/plugins/tpm/scripts/clean_plugins.sh &&
-    _print_with_af 2 "tmux updated" || _print_with_af 1 "tmux update failed"
+    ~/.config/tmux/plugins/tpm/scripts/clean_plugins.sh
+    _print_status $? "tmux tpm"
 }
 
 
