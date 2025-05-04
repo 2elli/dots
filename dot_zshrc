@@ -113,6 +113,11 @@ function update_builtins {
     mise prune
     _print_status $? "mise"
 
+    # pyenv
+    pyenv update &&
+    pyenv rehash
+    _print_status $? "pyenv"
+
     # tmux tpm
     ~/.config/tmux/plugins/tpm/scripts/install_plugins.sh &&
     ~/.config/tmux/plugins/tpm/scripts/clean_plugins.sh
