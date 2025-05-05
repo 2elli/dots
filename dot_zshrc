@@ -101,12 +101,6 @@ function update_builtins {
         fi
     }
 
-    # zim
-    zimfw upgrade &&
-    zimfw update &&
-    zimfw build
-    _print_status $? "zimfw"
-
     # mise
     mise self-update &&
     mise upgrade &&
@@ -122,6 +116,12 @@ function update_builtins {
     ~/.config/tmux/plugins/tpm/scripts/install_plugins.sh &&
     ~/.config/tmux/plugins/tpm/scripts/clean_plugins.sh
     _print_status $? "tmux tpm"
+
+    # zim
+    zimfw upgrade &&
+    zimfw update &&
+    zimfw build
+    _print_status $? "zimfw"
 }
 
 
