@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-#MISE dir="{{cwd}}"
-
-touch mise.toml
-mise config set env._.python.venv.path .venv -f mise.toml
