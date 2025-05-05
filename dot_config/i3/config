@@ -189,7 +189,8 @@ bindsym XF86MonBrightnessDown exec light -U 10
 ##############################################
 
 ############################ applications
-bindsym $mod+Ctrl+f exec firefox
+bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+e exec thunar
 #########################################
 
 
