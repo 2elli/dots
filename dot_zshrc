@@ -26,6 +26,8 @@ bindkey -e
 # ctrl + backspace and ctrl + del to delete word before and after respectively
 bindkey '^H' backward-delete-word
 bindkey '5~' delete-word
+# ctrl + y to accept auto complete suggestion
+bindkey '^Y' autosuggest-accept
 
 ##### paths
 export PATH=~/.local/bin:$PATH
