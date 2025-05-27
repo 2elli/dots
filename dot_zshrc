@@ -44,19 +44,24 @@ alias mux="tmuxinator"
 alias nvimc="nvim --clean"
 alias nvims="nvim -c \"SessionLoad\""
 alias xsc="xclip -selection clipboard"
+alias wlc="wl-copy"
+alias wlp="wl-paste"
 alias info="info --vi-keys"
 alias gef="gdb -ex \"init_gef\""
 alias pwndbg="gdb -ex \"init_pwndbg\""
 
-##### functions
-# copy pwd
-function cpwd {
-    pwd | tr -d '\n' | xsc
-}
+if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+    _copy_cmd="wl-copy"
+    _paste_cmd="wl-paste"
+else
+    _copy_cmd="xclip -selection clipboard"
+    _paste_cmd="xclip -selection clipboard"
+fi
 
+##### functions
 # clear clipboard
 function clear_clip {
-    xsc < /dev/null
+    $_copy_cmd < /dev/null
 }
 
 # clear zsh hist
