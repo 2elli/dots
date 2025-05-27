@@ -1,0 +1,56 @@
+[icons]
+icons = "awesome4"
+
+[theme.overrides]
+idle_bg = "#161616"
+idle_fg = "#f2f4f8"
+good_bg = "#161616"
+good_fg = "#be95ff"
+warning_bg = "#161616"
+warning_fg = "#08bdba"
+critical_bg = "#161616"
+critical_fg = "#ee5396"
+info_bg = "#161616"
+info_fg = "#f2f4f8"
+separator_bg = "#161616"
+separator_fg = "#f2f4f8"
+
+[[block]]
+block = "scratchpad"
+
+[[block]]
+block = "cpu"
+info_cpu = 20
+warning_cpu = 50
+critical_cpu = 90
+
+[[block]]
+block = "memory"
+format = " $icon $mem_total_used_percents.eng(w:2) "
+format_alt = " $icon_swap $swap_used_percents.eng(w:2) "
+
+[[block]]
+block = "battery"
+format = " $icon $percentage {$time_remaining.dur(hms:true, min_unit:m) |}"
+
+[[block]]
+block = "net"
+format = " $icon  $device {$signal_strength $ssid} "
+[[block.click]]
+button = "left"
+cmd = "alacritty -e nmtui"
+
+[[block]]
+block = "time"
+interval = 5
+format = " $timestamp.datetime(f:'%a %d/%m %r') "
+
+[[block]]
+block = "notify"
+driver = "swaync"
+[[block.click]]
+button = "left"
+action = "show"
+[[block.click]]
+button = "right"
+action = "toggle_paused"
