@@ -11,8 +11,8 @@ font pango:JetBrainsMono Nerd Font 10
 set $mod Mod4
 #############
 
-#################### i3 general
-# default i3 tiling mode:
+#################### general
+# default tiling mode:
 workspace_layout default
 
 # set inner/outer gaps
@@ -256,12 +256,9 @@ client.urgent            $red      $base $text  $background  $cyan
 ##################################################################### bar
 bar {
         font pango:JetBrainsMono Nerd Font 9
-	    icon_theme Flat-Remix-Black-Dark
 		status_command i3status-rs ~/.config/sway/i3status_rs.toml
 	    position bottom
-        tray_bindcode 272 Activate
-        tray_bindcode 273 ContextMenu
-        tray_bindcode 274 SecondaryActivate
+	    tray_output none
 
         colors {
             separator          $text
