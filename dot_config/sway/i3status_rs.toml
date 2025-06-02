@@ -31,11 +31,19 @@ format_alt = " $icon_swap $swap_used_percents.eng(w:2) "
 
 [[block]]
 block = "battery"
+full_threshold = 100
+empty_threshold = 0
+# check for battery
+if_command = "[[ -d /sys/class/power_supply/BAT0 ]]"
+# keep the same format for all states
 format = " $icon $percentage {$time_remaining.dur(hms:true, min_unit:m) |}"
+full_format = " $icon $percentage {$time_remaining.dur(hms:true, min_unit:m) |}"
+empty_format = " $icon $percentage {$time_remaining.dur(hms:true, min_unit:m) |}"
+not_charging_format = " $icon $percentage {$time_remaining.dur(hms:true, min_unit:m) |}"
 
 [[block]]
 block = "net"
-format = " $icon  $device {$signal_strength $ssid} "
+format = " $icon $device{ $signal_strength $ssid| $ip|} "
 [[block.click]]
 button = "left"
 cmd = "alacritty -e nmtui"
