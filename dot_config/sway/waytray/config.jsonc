@@ -1,0 +1,17 @@
+// -*- mode: jsonc -*-
+{
+    "position": "right",
+    "width": 24,
+    "margin-bottom": 2,
+    "margin-right": 2,
+    "spacing": 0,
+    "modules-left": [],
+    "modules-center": [],
+    "modules-right": [
+        "tray"
+    ],
+    "tray": {
+        "icon-size": 14,
+        "spacing": 14
+    }
+}

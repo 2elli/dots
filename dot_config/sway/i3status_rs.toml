@@ -62,3 +62,11 @@ action = "show"
 [[block.click]]
 button = "right"
 action = "toggle_paused"
+
+[[block]]
+block = "custom"
+interval = "once"
+command = "echo '\uf205'"
+[[block.click]]
+button = "left"
+cmd = "~/.config/sway/waytray/toggletray.sh"
