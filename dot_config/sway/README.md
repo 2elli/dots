@@ -5,6 +5,10 @@
 ## list outputs, inputs
 `swaymsg -t get_<outputs|inputs>`
 
+## bar
+`i3status-rust`
+and custom waybar for tray
+`waybar -c ~/.config/sway/waytray/config.jsonc -s ~/.config/sway/waytray/style.css`
 
 # daemons
 ## notifs
