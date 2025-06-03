@@ -25,6 +25,9 @@ focus_follows_mouse no
 
 #### mouse+$mod to drag windows
 floating_modifier $mod
+
+default_border none
+default_floating_border none
 ###############################
 
 ############################################### workspaces
@@ -255,21 +258,21 @@ client.urgent            $red      $base $text  $background  $cyan
 
 ##################################################################### bar
 bar {
-        font pango:JetBrainsMono Nerd Font 9
-		status_command i3status-rs ~/.config/sway/i3status_rs.toml
-	    position bottom
-	    tray_output none
+    font pango:JetBrainsMono Nerd Font 9
+    status_command i3status-rs ~/.config/sway/i3status_rs.toml
+    position bottom
+    tray_output none
 
-        colors {
-            separator          $text
-            background         $base
-            statusline         $text
+    colors {
+        separator          $text
+        background         $base
+        statusline         $text
 
-            focused_workspace	$purple $black $grey
-            active_workspace	$purple $purple $base
-            inactive_workspace	$black $black $text
-            urgent_workspace	$grey $red $text
-        }
+        focused_workspace	$purple $black $grey
+        active_workspace	$purple $purple $base
+        inactive_workspace	$black $black $text
+        urgent_workspace	$grey $red $text
+    }
 }
 #####################################################################
 
