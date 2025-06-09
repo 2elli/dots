@@ -282,5 +282,7 @@ bar {
 
 # inputs
 include ~/.config/sway/input.conf
+# outputs
+include ~/.config/sway/output.conf
 # auth
 include /etc/sway/config.d/50-systemd-user.conf
