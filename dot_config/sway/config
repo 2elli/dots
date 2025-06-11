@@ -180,7 +180,7 @@ bindsym $mod+minus scratchpad show
 #############
 
 ############################################ lock
-bindsym $mod+Ctrl+l exec --no-startup-id swaylock
+bindsym $mod+Ctrl+l exec --no-startup-id swaylock -c 000000
 #################################################
 
 ########################################## app runner
