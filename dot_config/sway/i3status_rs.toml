@@ -42,6 +42,14 @@ empty_format = " $icon $percentage {$time_remaining.dur(hms:true, min_unit:m) |}
 not_charging_format = " $icon $percentage {$time_remaining.dur(hms:true, min_unit:m) |}"
 
 [[block]]
+block = "vpn"
+driver = "mullvad"
+format_connected = " vpn $icon  "
+format_disconnected = " vpn $icon  "
+state_connected = "good"
+state_disconnected = "critical"
+
+[[block]]
 block = "net"
 format = " $icon $device{ $signal_strength $ssid| $ip|} "
 [[block.click]]
