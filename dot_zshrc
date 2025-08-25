@@ -35,7 +35,7 @@ export PATH=~/.pdtm/go/bin:$PATH
 
 ##### env vars
 export EDITOR=nvim
-export SYSTEMD_EDITOR=nvim
+export SYSTEM_EDITOR=nvim
 export TERMINAL=alacritty
 
 ##### alias
