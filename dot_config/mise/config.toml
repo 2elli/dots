@@ -19,6 +19,7 @@ usage = "latest"
 # gem
 "gem:tmuxinator" = "latest"
 # go
+"go:github.com/projectdiscovery/pdtm/cmd/pdtm" = "latest"
 "go:github.com/boyter/scc/v3" = "latest"
 "go:github.com/caarlos0/svu" = "latest"
 # npm
