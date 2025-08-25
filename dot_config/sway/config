@@ -189,7 +189,7 @@ bindsym $mod+period exec --no-startup-id rofimoji -a copy
 #####################################################
 
 ############################### screenshot
-bindsym $mod+p exec /usr/share/sway-contrib/grimshot save anything
+bindsym $mod+p exec grimshot save anything
 ##########################################
 
 ####################################################################### audio
