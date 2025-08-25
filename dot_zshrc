@@ -30,8 +30,9 @@ bindkey '5~' delete-word
 bindkey '^Y' autosuggest-accept
 
 ##### paths
-export PATH=~/.local/bin:$PATH
-export PATH=~/.pdtm/go/bin:$PATH
+path+=(~/.local/bin)
+path+=(~/.pdtm/go/bin)
+export PATH
 
 ##### env vars
 export EDITOR=nvim
