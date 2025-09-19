@@ -64,7 +64,7 @@ fi
 ##### functions
 # clear clipboard
 function clear_clip {
-    $_copy_cmd < /dev/null
+    :|$_copy_cmd
 }
 
 # clear zsh hist
