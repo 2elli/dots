@@ -83,6 +83,7 @@ function clean {
 # clear _evalcache
 function clear_evalcache {
     if [[ -n ZSH_EVALCACHE_DIR ]]; then
+        setopt localoptions rmstarsilent
         rm -f "$ZSH_EVALCACHE_DIR"/*
     fi
 }
