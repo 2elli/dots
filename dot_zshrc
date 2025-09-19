@@ -16,9 +16,11 @@ fpath+=~/.zfunc
 ##### history
 # Remove older command from the history if a duplicate is to be added.
 setopt HIST_IGNORE_ALL_DUPS
+# dont save hist for a command starting with a space (ex. setting api key)
+setopt HIST_IGNORE_SPACE
 HISTFILE=~/.histfile
 HISTSIZE=500
-SAVEHIST=500
+SAVEHIST=0
 
 ##### keybinds
 # set key
