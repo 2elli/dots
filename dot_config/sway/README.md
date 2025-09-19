@@ -7,7 +7,7 @@
 
 ## bar
 `i3status-rust`
-and custom waybar for tray
+and custom waybar for tray (toggled with switch furthest right in i3status-rust bar)
 `waybar -c ~/.config/sway/waytray/config.jsonc -s ~/.config/sway/waytray/style.css`
 
 # daemons
@@ -35,6 +35,9 @@ and custom waybar for tray
 `wl-copy` and `wl-paste`
 aliased to `wlc` and `wlp`
 
+## copy text from screen
+`normcap`
+
 
 # requirements
 ## pacman
@@ -46,9 +49,15 @@ nwg-displays
 autotiling-rs
 swaylock
 i3status-rust
+waybar
 ```
 
 ## aur
 ```
 tofi
+```
+
+## pipx
+```
+normcap
 ```
