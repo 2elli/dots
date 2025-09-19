@@ -116,8 +116,6 @@ bindsym $mod+r mode "resize"
 #############################################################
 
 ################################################# keybinds
-bindsym $mod+Return exec --no-startup-id alacritty
-
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
@@ -172,75 +170,57 @@ bindsym $mod+Shift+s sticky toggle
 # scratchpad
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
-#############################################################
 
+### exec binds ###
+# term
+bindsym $mod+Return exec --no-startup-id alacritty
 
-#############
-### BINDS ###
-#############
-
-############################################ lock
+# lock
 bindsym $mod+Ctrl+l exec --no-startup-id swaylock -c 000000
-#################################################
 
-########################################## app runner
+# app runner
 bindsym $mod+d exec --no-startup-id tofi-drun
 bindsym $mod+period exec --no-startup-id rofimoji -a copy
-#####################################################
 
-############################### screenshot
+# screenshot
 bindsym $mod+p exec grimshot save anything
-##########################################
+# grab text
+bindsym $mod+Shift+p exec ~/.local/bin/normcap
 
-####################################################################### audio
+# audio
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
-#############################################################################
 
-############################ screen brightness
+# screen brightness
 bindsym XF86MonBrightnessUp exec light -A 10
 bindsym XF86MonBrightnessDown exec light -U 10
-##############################################
-
-
-#############
-### EXECS ###
-#############
-
-####### notifs
-exec swaync
-##############
+#############################################################
 
 ############################ autostart
+# notifs
+exec swaync
+
+# auto tile h,v
 exec autotiling-rs
 ######################################
 
-
-##############
-### COLORS ###
-##############
-
 #################################################################### colors
-# Define colors variables:
-
+# base color vars:
 set $background #161616
 set $base       #161616
 set $foreground #f2f4f8
 set $text       #f2f4f8
 set $border     #7F78FF
-
-# Normal colors
+# colors
 set $black   #282828
+set $white   #dfdfe0
 set $red     #ee5396
 set $green   #25be6a
 set $yellow  #08bdba
 set $blue    #78a9ff
-set $magenta #be95ff
-set $pink    #be95ff
 set $purple  #be95ff
 set $cyan    #33b1ff
-set $white   #dfdfe0
 set $grey    #979797
 
 # define colors for windows:
@@ -250,10 +230,6 @@ client.unfocused         $black    $base $text  $background  $background
 client.focused_inactive  $purple   $base $text  $background  $background
 client.urgent            $red      $base $text  $background  $cyan
 ############################################################################
-
-###############
-### swaybar ###
-###############
 
 ##################################################################### bar
 bar {
@@ -275,14 +251,13 @@ bar {
 }
 #####################################################################
 
-
-############
-# includes #
-############
-
+###################################### includes
 # inputs
 include ~/.config/sway/input.conf
 # outputs
-include ~/.config/sway/output.conf
+include ~/.config/sway/outputs
+# workspaces
+include ~/.config/sway/workspaces
 # auth
 include /etc/sway/config.d/50-systemd-user.conf
+###############################################
