@@ -122,6 +122,10 @@ function update_builtins {
     pyenv rehash
     _print_status $? "pyenv"
 
+    # pipx
+    pipx upgrade-all
+    _print_status $? "pipx"
+
     # tmux tpm
     ~/.config/tmux/plugins/tpm/scripts/install_plugins.sh &&
     ~/.config/tmux/plugins/tpm/scripts/clean_plugins.sh
