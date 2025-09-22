@@ -38,6 +38,9 @@ aliased to `wlc` and `wlp`
 ## copy text from screen
 `normcap`
 
+## list xwayland apps (if xwayland enabled)
+`xlsclients`
+
 
 # requirements
 ## pacman
