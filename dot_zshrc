@@ -131,12 +131,11 @@ function update_builtins {
     _print_status $? "tmux tpm"
 
     # zim
+    zimfw clean &&
     zimfw upgrade &&
-    zimfw update &&
-    zimfw build
+    zimfw update
     _print_status $? "zimfw"
 }
-
 
 ##################
 ### zim config ###
