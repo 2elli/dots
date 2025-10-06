@@ -19,6 +19,17 @@
 [[ ! -o 'no_brace_expand' ]] || p10k_config_opts+=('no_brace_expand')
 'builtin' 'setopt' 'no_aliases' 'no_sh_glob' 'brace_expand'
 
+# Prompt colors.
+local grey='242'
+local darkgrey='0'
+local red='1'
+local green='2'
+local yellow='3'
+local blue='4'
+local magenta='5'
+local cyan='6'
+local white='7'
+
 () {
   emulate -L zsh -o extended_glob
 
@@ -28,15 +39,6 @@
 
   # Zsh >= 5.1 is required.
   [[ $ZSH_VERSION == (5.<1->*|<6->.*) ]] || return
-
-  # Prompt colors.
-  local grey='242'
-  local red='1'
-  local yellow='3'
-  local blue='4'
-  local magenta='5'
-  local cyan='6'
-  local white='7'
 
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
@@ -384,11 +386,11 @@
 
     if (( $1 )); then
       # Styling for up-to-date Git status.
-      local       meta='%f'   # default foreground
-      local      clean='%2F'  # green foreground
-      local   modified='%3F'  # yellow foreground
-      local  untracked='%4F'  # blue foreground
-      local conflicted='%1F'  # red foreground
+      local       meta="%f"           # default foreground
+      local      clean="%${magenta}F" # green foreground
+      local   modified="%${yellow}F"  # yellow foreground
+      local  untracked="%${blue}F"    # blue foreground
+      local conflicted="%${red}F"     # red foreground
     else
       # Styling for incomplete and stale Git status.
       local       meta='%f'  # default foreground
@@ -982,7 +984,7 @@
 
   ################[ pyenv: python environment (https://github.com/pyenv/pyenv) ]################
   # Pyenv color.
-  typeset -g POWERLEVEL9K_PYENV_FOREGROUND=6
+  typeset -g POWERLEVEL9K_PYENV_FOREGROUND=$grey
   # Hide python version if it doesn't come from one of these sources.
   typeset -g POWERLEVEL9K_PYENV_SOURCES=(shell local global)
   # If set to false, hide python version if it's the same as global:
@@ -1004,7 +1006,7 @@
   typeset -g POWERLEVEL9K_PYENV_CONTENT_EXPANSION='${P9K_CONTENT}${${P9K_CONTENT:#$P9K_PYENV_PYTHON_VERSION(|/*)}:+ $P9K_PYENV_PYTHON_VERSION}'
 
   # Custom icon.
-  # typeset -g POWERLEVEL9K_PYENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_PYENV_VISUAL_IDENTIFIER_EXPANSION=
 
   ################[ goenv: go environment (https://github.com/syndbg/goenv) ]################
   # Goenv color.
