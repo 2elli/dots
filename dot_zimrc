@@ -10,8 +10,7 @@ zmodule utility      # aliases and color for ls, grep, less
 zmodule fzf          # auto fzf integration, (ctrl+f, **<tab>)
 
 ##### prompt #####
-zmodule joke/zim-starship
-# zmodule romkatv/powerlevel10k
+zmodule romkatv/powerlevel10k
 
 ##### custom #####
 # warp dir

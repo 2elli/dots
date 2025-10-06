@@ -16,7 +16,6 @@ usage = "latest"
 # cargo
 "cargo:typst-live" = "latest"
 "cargo:monolith" = "latest"
-"cargo:starship" = "latest"
 # gem
 "gem:tmuxinator" = "latest"
 # go
