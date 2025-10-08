@@ -1,7 +1,7 @@
 # zmodload zsh/zprof
 # uncomment first and last line to benchmark
 
-# # p10k instant prompt
+# p10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -14,10 +14,11 @@ fi
 fpath+=~/.zfunc
 
 ##### history
-# Remove older command from the history if a duplicate is to be added.
+unsetopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
-# dont save hist for a command starting with a space (ex. setting api key)
 setopt HIST_IGNORE_SPACE
+SAVEHIST=0
+unset HISTFILE
 HISTSIZE=500
 
 ##### keybinds
@@ -67,7 +68,9 @@ function clear_clip {
 
 # clear zsh hist
 function clear_history {
-    :>!$HISTFILE
+    if [[ -n $HISTFILE ]]; then
+        :>!"$HISTFILE"
+    fi
     history -p
     clear
 }
@@ -80,7 +83,7 @@ function clean {
 
 # clear _evalcache
 function clear_evalcache {
-    if [[ -n ZSH_EVALCACHE_DIR ]]; then
+    if [[ -n $ZSH_EVALCACHE_DIR ]]; then
         setopt localoptions rmstarsilent
         rm -f "$ZSH_EVALCACHE_DIR"/*
     fi
@@ -152,6 +155,7 @@ zstyle ':zim:zmodule' use 'degit'
 # Disable automatic widget re-binding on each precmd. This can be set when
 # zsh-users/zsh-autosuggestions is the last module in your ~/.zimrc.
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
 ##### highlighting
 typeset -A ZSH_HIGHLIGHT_STYLES
