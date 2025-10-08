@@ -22,5 +22,6 @@ usage = "latest"
 "go:github.com/projectdiscovery/pdtm/cmd/pdtm" = "latest"
 "go:github.com/boyter/scc/v3" = "latest"
 "go:github.com/caarlos0/svu" = "latest"
+"go:github.com/OJ/gobuster/v3" = "latest"
 # npm
 "npm:tree-sitter-cli" = "latest"
