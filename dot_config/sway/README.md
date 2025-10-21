@@ -25,6 +25,9 @@ and custom waybar for tray (toggled with switch furthest right in i3status-rust 
 ## configure displays
 `nwg-displays`
 
+## theming
+`nwg-look`
+
 ## screenshots
 `grimshot`
 
@@ -49,6 +52,7 @@ sway
 sway-contrib
 swaync
 nwg-displays
+nwg-look
 autotiling-rs
 swaylock
 i3status-rust
