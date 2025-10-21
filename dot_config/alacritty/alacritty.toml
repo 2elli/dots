@@ -1,9 +1,6 @@
 [general]
 import = ["/home/morgan/.config/alacritty/carbonfox/carbonfox.toml"]
 
-[env]
-WINIT_X11_SCALE_FACTOR = "1"
-
 [font]
 size = 10.0
 
