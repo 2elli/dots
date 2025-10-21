@@ -2,17 +2,17 @@
 icons = "awesome4"
 
 [theme.overrides]
-idle_bg = "#161616"
+idle_bg = "#000000"
 idle_fg = "#f2f4f8"
-good_bg = "#161616"
+good_bg = "#000000"
 good_fg = "#be95ff"
-warning_bg = "#161616"
+warning_bg = "#000000"
 warning_fg = "#08bdba"
-critical_bg = "#161616"
+critical_bg = "#000000"
 critical_fg = "#ee5396"
-info_bg = "#161616"
+info_bg = "#000000"
 info_fg = "#f2f4f8"
-separator_bg = "#161616"
+separator_bg = "#000000"
 separator_fg = "#f2f4f8"
 
 [[block]]

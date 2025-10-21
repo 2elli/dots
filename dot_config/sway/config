@@ -216,12 +216,13 @@ exec autotiling-rs
 
 #################################################################### colors
 # base color vars:
-set $background #161616
+set $background #000000
 set $base       #161616
 set $foreground #f2f4f8
 set $text       #f2f4f8
 set $border     #7F78FF
 # colors
+set $none    #000000
 set $black   #282828
 set $white   #dfdfe0
 set $red     #ee5396
@@ -249,13 +250,15 @@ bar {
 
     colors {
         separator          $text
-        background         $base
         statusline         $text
+        background         $none
+        focused_background $none
 
-        focused_workspace	$purple $black $grey
-        active_workspace	$purple $purple $base
-        inactive_workspace	$black $black $text
-        urgent_workspace	$grey $red $text
+        # target            border   background  text
+        focused_workspace	$purple  $none       $text
+        active_workspace	$purple  $none       $text
+        inactive_workspace	$black   $none       $text
+        urgent_workspace	$grey    $red        $none
     }
 }
 #####################################################################
