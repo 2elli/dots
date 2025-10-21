@@ -256,7 +256,7 @@ bar {
 
 ###################################### includes
 # inputs
-include ~/.config/sway/input.conf
+include ~/.config/sway/inputs
 # outputs
 include ~/.config/sway/outputs
 # workspaces

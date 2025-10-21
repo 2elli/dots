@@ -9,3 +9,5 @@ input "type:touchpad" {
 input "type:pointer" {
     accel_profile flat
 }
+
+# vim: ft=swayconfig
