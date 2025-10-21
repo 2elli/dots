@@ -16,18 +16,24 @@ set $mod Mod4
 workspace_layout default
 
 # set inner/outer gaps
-gaps inner 2
-gaps outer 2
-for_window [class=".*"] border pixel 2
+gaps inner 1
+gaps outer 1
+
+# border sizes
+default_border pixel 1
+default_floating_border pixel 1
 
 # no mouse focus 
 focus_follows_mouse no
 
-#### mouse+$mod to drag windows
+# mouse+$mod to drag windows
 floating_modifier $mod
 
-default_border none
-default_floating_border none
+# drag tiles with mouse
+tiling_drag modifier
+
+# popups show in fullscreen
+popup_during_fullscreen smart
 ###############################
 
 ############################################### workspaces
