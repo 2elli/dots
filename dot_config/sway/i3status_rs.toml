@@ -54,7 +54,7 @@ block = "net"
 format = " $icon $device{ $signal_strength $ssid| $ip|} "
 [[block.click]]
 button = "left"
-cmd = "alacritty -e nmtui"
+cmd = "~/.config/sway/toggle_program.sh nm-applet"
 
 [[block]]
 block = "time"
@@ -77,4 +77,4 @@ interval = "once"
 command = "echo '\uf205'"
 [[block.click]]
 button = "left"
-cmd = "~/.config/sway/waytray/toggletray.sh"
+cmd = "~/.config/sway/toggle_program.sh waybar -c ~/.config/sway/waytray/config.jsonc -s ~/.config/sway/waytray/style.css"
